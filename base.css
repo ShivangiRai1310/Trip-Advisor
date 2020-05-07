@@ -1,0 +1,95 @@
+body{
+    margin: 0px;
+    background-color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    padding: 0px;
+}
+
+/* HEADER */
+header nav{
+    padding: 0px 0px;
+    background-color: #000839;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    
+}
+
+header ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    margin: 0px;
+    padding: 0px;
+}
+
+header li{
+    display: inline-block;
+    margin: auto;
+    font-size: 1.5rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    
+}
+
+.logo{
+    padding: 5px;
+    width: 60%;
+    margin: 0px 25px;
+}
+
+header a{
+    text-decoration: none;
+    color: white;
+}
+
+header a:hover{
+    text-decoration: underline;
+    color: #ed1250;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* FOOTER */
+footer{
+    background-color: #000839;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+footer img{
+    position: relative;
+    margin-left: 10px;
+    margin-right: 28%;
+    width: 15%;
+}
+
+footer i{
+    padding: 1%;
+}
+
+footer p{
+    display: inline-block;
+    margin-left: 23%;
+    margin-top: 3%;
+    line-height: 2;
+    
+}

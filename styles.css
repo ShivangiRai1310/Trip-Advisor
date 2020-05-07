@@ -1,8 +1,199 @@
 body{
-    text-align: center;
     margin: 0px;
+    background-color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    padding: 0px;
 }
 
-h1{
-    color: purple;
+/* HEADER */
+header nav{
+    padding: 0px 0px;
+    background-color: #000839;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    
+}
+
+header ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    margin: 0px;
+    padding: 0px;
+}
+
+header li{
+    display: inline-block;
+    margin: auto;
+    font-size: 1.5rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    
+}
+
+.logo{
+    padding: 5px;
+    width: 60%;
+    margin: 0px 25px;
+}
+
+header a{
+    text-decoration: none;
+    color: white;
+}
+
+header a:hover{
+    text-decoration: underline;
+    color: #ed1250;
+
+}
+
+/* TITLE SECTION */
+#title{
+    background-color: #00a8cc;
+    height: auto;
+}
+
+.carousel-item p{
+    position: absolute;
+    top: 40%;
+    left: 26%;
+    z-index: 1;
+    color: tomato;
+    font-size: 3rem;
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    line-height: 1.5;
+    width: 50%;
+    text-align: center;
+}
+
+/* ALL SECTIONS */
+section{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    height: auto;
+    padding: 60px 0px 40px 0px;
+}
+
+/* ABOUT SECTION */
+#about{
+    background-color: #fff6da;
+    
+}
+
+#about div{
+    display: inline-block;
+    margin: 5% 6%;
+    width: 30%;
+    line-height: 2;
+}
+
+#about div img{
+    width: 300px;
+    margin-top: 0px; 
+}
+
+
+
+/* GALLERY SECTION */
+#gallery{
+    background-color: #ed1250;
+    height: 600px;
+}
+
+/* PLAN SECTION */
+#plan{
+    background-color: #ffa41b;
+    height: 600px;
+}
+
+/* EXPLORE CITIES SECTION */
+#explore_cities{
+    background-color: #fbc99d;
+    /* height: 600px; */
+}
+
+.cities {
+    margin: auto;   /*auto centers*/
+    line-height: 2;
+    padding-bottom: 5%;
+}
+
+.cities a{
+    text-decoration: none;
+    color: #000839;
+}
+
+.cities a:hover{
+    text-decoration: underline;
+    color: #ed1250;
+}
+
+.cities div{
+    display: block;
+    width: 60%;
+    margin: 7% auto 0% auto;
+    text-align: left;
+}
+
+
+.cities img{
+    width: 40%;
+    float: left;
+    margin-right: 8%;
+}
+
+.right img{
+    float: right;
+    margin-left: 8%;
+    margin-right: 0%;
+}
+
+/* EXPLORE PACKAGES SECTION */
+#explore_packages{
+    background-color: #ed1250;
+    height: 600px;
+}
+
+/* CONTACT SECTION */
+#contact{
+    background-color:  #00a8cc;
+    /* height: 600px; */
+    text-align: center;
+}
+
+#contact form input,textarea,button{
+    display: inline-block;
+    margin: 1%;
+    padding: 10px;
+}
+
+
+/* FOOTER */
+footer{
+    background-color: #000839;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+footer img{
+    position: relative;
+    margin-left: 10px;
+    margin-right: 28%;
+    width: 15%;
+}
+
+footer i{
+    padding: 1%;
+}
+
+footer p{
+    display: inline-block;
+    margin-left: 23%;
+    margin-top: 3%;
+    line-height: 2;
+    
 }
