@@ -1,3 +1,20 @@
+/* NAVBAR */
+
+/* site logo */
+.logo-part1{
+  width: 56px;
+}
+.logo-part2{
+  width: 170px;
+}
+
+/* SIGN IN BUTTON */
+#sign-in-button{
+  border: 0;
+  font-size: 2.25rem;
+  padding-left: 2.5%;
+}
+
 body{
     margin: 0px;
     background-color: white;
@@ -7,35 +24,13 @@ body{
 }
 
 /* HEADER */
-header nav{
-    padding: 0px 0px;
+nav{
     background-color: #000839;
-    position: absolute;
-    width: 100%;
-    z-index: 1;
-    
-}
+  }
 
-header ul{
-    list-style-type: none;
-    display: flex;
-    flex-direction: row;
-    margin: 0px;
-    padding: 0px;
-}
-
-header li{
-    display: inline-block;
-    margin: auto;
-    font-size: 1.5rem;
+nav li{
+    font-size: 1.23rem;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    
-}
-
-.logo{
-    padding: 5px;
-    width: 60%;
-    margin: 0px 25px;
 }
 
 header a{
@@ -80,7 +75,7 @@ section{
 /* ABOUT SECTION */
 #about{
     background-color: #fff6da;
-    
+
 }
 
 #about div{
@@ -92,7 +87,7 @@ section{
 
 #about div img{
     width: 300px;
-    margin-top: 0px; 
+    margin-top: 0px;
 }
 
 
@@ -195,5 +190,5 @@ footer p{
     margin-left: 23%;
     margin-top: 3%;
     line-height: 2;
-    
+
 }

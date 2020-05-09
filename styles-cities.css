@@ -1,0 +1,19 @@
+/* site logo */
+.logo-part1{
+  width: 56px;
+}
+.logo-part2{
+  width: 170px;
+}
+
+/* SIGN IN BUTTON */
+#sign-in-button{
+  border: 0;
+  font-size: 2.25rem;
+  padding-left: 2.5%;
+}
+
+nav li{
+    font-size: 1.23rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
