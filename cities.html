@@ -2,34 +2,27 @@
 <html lang="en" dir="ltr">
 
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
   <title>Explore</title>
 
   <!-- CSS STYLES -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="swiper.min.css">
   <link rel="stylesheet" href="styles-cities.css">
 
   <!-- FONT AWESOME ICON -->
   <script src="https://kit.fontawesome.com/c151499d61.js" crossorigin="anonymous"></script>
 
   <!-- BOOTSTRAP SCRIPTS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-          integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-          crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-          integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-          crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-          integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-          crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 
 <body>
 
   <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #000839;">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #142850;">
     <a class="navbar-brand" href="#"><img class="logo-part1" src="images/logo-part1.png" alt="Trip advisor"></a>
     <a class="navbar-brand" href="#"><img class="logo-part2" src="images/logo-part2.png" alt="Trip advisor"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,11 +53,85 @@
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
       </form>
-      <button type="button" name="sign-in" class="btn btn-dark btn-lg" id="sign-in-button" style="background-color: #000839;">
+      <button type="button" name="sign-in" class="btn btn-dark btn-lg" id="sign-in-button" style="background-color: #142850;">
         <i class="fas fa-user-circle"></i>
       </button>
     </div>
   </nav>
+  <!-- ANIMATED CITY GALLERY -->
+    <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="image-box">
+                <img src="images/edited/Img-1.jpg" alt="">
+              </div>
+              <div class="city-img-details">
+                <h3>Varanasi <br><span>Uttar Pradesh, India</span> </h3>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="image-box">
+                <img src="images/edited/Img-2.jpg" alt="">
+              </div>
+              <div class="city-img-details">
+                <h3>Kolkata <br><span>West Bengal, India</span> </h3>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="image-box">
+                <img src="images/edited/Img-3.jpg" alt="">
+              </div>
+              <div class="city-img-details">
+                <h3>Srinagar <br><span>Jammu And Kashmir, India</span> </h3>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="image-box">
+                <img src="images/edited/Img-4.jpg" alt="">
+              </div>
+              <div class="city-img-details">
+                <h3>Delhi <br><span>Delhi, India</span> </h3>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="image-box">
+                <img src="images/edited/Img-5.jpg" alt="">
+              </div>
+              <div class="city-img-details">
+                <h3>Chandigarh <br><span>Chandigarh, India</span> </h3>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="image-box">
+                <img src="images/edited/Img-6.jpg" alt="">
+              </div>
+              <div class="city-img-details">
+                <h3>Mumbai <br><span>Maharashtra, India</span> </h3>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="image-box">
+                <img src="images/edited/Img-7.jpg" alt="">
+              </div>
+              <div class="city-img-details">
+                <h3>Bangalore <br><span>Karnatka, India</span> </h3>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="image-box">
+                <img src="images/edited/Img-8.jpg" alt="">
+              </div>
+              <div class="city-img-details">
+                <h3>Jaipur <br><span>Rajasthan, India</span> </h3>
+              </div>
+            </div>
+          </div>
+          <!-- Add Pagination -->
+          <div class="swiper-pagination"></div>
+        </div>
+      <!-- JAVASCRIPT -->
+  <script type="text/javascript" src="swiper.min.js"></script>
+  <script src="app.js" charset="utf-8"></script>
 </body>
 
 </html>
