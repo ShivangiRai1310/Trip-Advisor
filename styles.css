@@ -1,8 +1,271 @@
 body{
-    text-align: center;
     margin: 0px;
+    background-color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    line-height: 2;
+    padding: 0px;
 }
 
-h1{
-    color: purple;
+/* HEADER */
+header nav{
+    background-color: #000839;
 }
+
+header ul{
+    list-style-type: none;
+}
+
+header li{
+    font-size: 1.5rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: auto 30px; 
+}
+
+.logo{
+    width: 150px;
+    margin-left: 20px;
+}
+
+header a{
+    text-decoration: none;
+    color: white;
+}
+
+header a:hover{
+    text-decoration: underline;
+    color: #ed1250;
+
+} 
+
+/* TITLE SECTION */
+#title{
+    background-color: #00a8cc;
+    height: auto;
+}
+
+.carousel-item p{
+    position: absolute;
+    top: 40%;
+    left: 26%;
+    z-index: 1;
+    color: tomato;
+    font-size: 3rem;
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    line-height: 1.5;
+    width: 50%;
+    text-align: center;
+}
+
+/* ALL SECTIONS */
+section{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    height: auto;
+    padding: 60px 0px 40px 0px;
+}
+
+/* ABOUT SECTION */
+#about{
+    background-color: #fff6da;
+}
+
+.container1{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;  
+    justify-content: space-around;
+    align-items: center; 
+    padding-bottom: 0px;
+}
+
+.container1 div{
+
+    margin: 5% 6%;
+    width: 600px;
+    line-height: 2;
+    text-align: justify;
+}
+
+.container1 img{
+    width: 300px;
+    margin-right: 200px; 
+} 
+
+
+
+/* GALLERY SECTION */
+#gallery{
+    background-color: #ed1250;
+    height: 600px;
+}
+
+/* PLAN SECTION */
+#plan{
+    background-color: #ffa41b;
+    height: 600px;
+}
+
+/* EXPLORE CITIES SECTION */
+#explore_cities{
+    background-color: #fbc99d;
+    /* height: 600px; */
+}
+
+.cities {
+    margin: auto;   /*auto centers*/
+    line-height: 2;
+    padding-bottom: 5%;
+}
+
+.cities a{
+    text-decoration: none;
+    color: #000839;
+}
+
+.cities a:hover{
+    text-decoration: underline;
+    color: #ed1250;
+}
+
+.cities div{
+    display: block;
+    width: 60%;
+    margin: 7% auto 0% auto;
+    text-align: left;
+}
+
+
+.cities img{
+    width: 40%;
+    float: left;
+    margin-right: 8%;
+}
+
+.right img{
+    float: right;
+    margin-left: 8%;
+    margin-right: 0%;
+}
+
+/* EXPLORE PACKAGES SECTION */
+#explore_packages{
+    background-color: #ed1250;
+    height: 600px;
+    
+}
+
+#explore_packages .container-fluid{
+    display: flex;
+    /* justify-content: center;
+    align-items: center; */
+    /* min-height: 100vh; */
+    width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-gap: 15px;
+    margin: 50px auto;
+}
+
+#explore_packages .card{
+    position: relative;
+    width: 300px;
+    height: 400px;
+    margin: 0 auto; 
+    background-color: #fbc99d;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, .5);
+}
+
+#explore_packages .card .face{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#explore_packages .card .face.face1{
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+/* #explore_packages .card .face.face1 h3{
+    margin: 0;
+    padding: 0;
+} */
+
+#explore_packages .card:nth-child(1) .face.face2{
+    background: linear-gradient(45deg, #000839, #00a8cc);
+}
+
+#explore_packages .card:nth-child(2) .face.face2{
+    background: linear-gradient(45deg, tomato, #ffa41b);
+}
+
+#explore_packages .card:nth-child(3) .face.face2{
+    background: linear-gradient(45deg, #000839, #00a8cc);
+}
+
+#explore_packages .card .face.face2{
+    background-color: #000839;
+    transition: 0.5s;  
+}
+
+#explore_packages .card:hover .face.face2{
+    height: 60px;
+}
+
+#explore_packages .card .face.face2:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, .1);
+}
+
+#explore_packages .card .face.face2 h2{
+    color: white;
+    font-size: 4rem;
+    transition: 0.5s;
+    text-shadow: 0 2px 5px rgba(0,0,0,.2);
+}
+
+#explore_packages .card:hover .face.face2 h2{
+    font-size: 2rem;
+}
+
+/* CONTACT SECTION */
+#contact{
+    background-color:  #00a8cc;
+    /* height: 600px; */
+    text-align: center;
+}
+
+#contact form input,textarea,button{
+    display: inline-block;
+    margin: 1%;
+    padding: 10px;
+}
+ 
+
+/* FOOTER */
+footer{
+    background-color: #000839;
+    color: white;
+}
+
+footer i{
+    padding: 10px;
+}
+
+footer p{
+    /* margin-left: 25%; */
+    margin-top: 3%;
+    line-height: 2; 
+} 
