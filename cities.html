@@ -13,6 +13,9 @@
   <!-- FONT AWESOME ICON -->
   <script src="https://kit.fontawesome.com/c151499d61.js" crossorigin="anonymous"></script>
 
+  <!-- GOOGLE FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Cinzel+Decorative:wght@400;700&family=Dancing+Script:wght@700&family=Great+Vibes&family=Open+Sans&family=Permanent+Marker&display=swap" rel="stylesheet">
+
   <!-- BOOTSTRAP SCRIPTS -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -59,7 +62,85 @@
     </div>
   </nav>
   <!-- ANIMATED CITY GALLERY -->
-    <div class="swiper-container">
+  <div class="swiper-container" id="city-animation">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <div class="image-box">
+          <img src="images/edited/Img-1.jpg" alt="">
+        </div>
+        <div class="city-img-details">
+          <h3>Varanasi <br><span>Uttar Pradesh, India</span> </h3>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="image-box">
+          <img src="images/edited/Img-2.jpg" alt="">
+        </div>
+        <div class="city-img-details">
+          <h3>Kolkata <br><span>West Bengal, India</span> </h3>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="image-box">
+          <img src="images/edited/Img-3.jpg" alt="">
+        </div>
+        <div class="city-img-details">
+          <h3>Srinagar <br><span>Jammu And Kashmir, India</span> </h3>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="image-box">
+          <img src="images/edited/Img-4.jpg" alt="">
+        </div>
+        <div class="city-img-details">
+          <h3>Delhi <br><span>Delhi, India</span> </h3>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="image-box">
+          <img src="images/edited/Img-5.jpg" alt="">
+        </div>
+        <div class="city-img-details">
+          <h3>Chandigarh <br><span>Chandigarh, India</span> </h3>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="image-box">
+          <img src="images/edited/Img-6.jpg" alt="">
+        </div>
+        <div class="city-img-details">
+          <h3>Mumbai <br><span>Maharashtra, India</span> </h3>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="image-box">
+          <img src="images/edited/Img-7.jpg" alt="">
+        </div>
+        <div class="city-img-details">
+          <h3>Bangalore <br><span>Karnatka, India</span> </h3>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="image-box">
+          <img src="images/edited/Img-8.jpg" alt="">
+        </div>
+        <div class="city-img-details">
+          <h3>Jaipur <br><span>Rajasthan, India</span> </h3>
+        </div>
+      </div>
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+  </div>
+
+  <!-- CITIES DETAILS -->
+  <div class="container-fluid" id="places-background">
+    <div class="row">
+      <div class="col-lg-3">
+        <h1>hello</h1>
+      </div>
+      <div class="col-lg-9">
+        <div class="swiper-container" id="places-animation">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
               <div class="image-box">
@@ -129,7 +210,17 @@
           <!-- Add Pagination -->
           <div class="swiper-pagination"></div>
         </div>
-      <!-- JAVASCRIPT -->
+      </div>
+    </div>
+    <div class="background-picture container-fluid">
+        <img class="center-fit" src="images\img2.jpg" alt="">
+    </div>
+
+  </div>
+
+
+
+  <!-- JAVASCRIPT -->
   <script type="text/javascript" src="swiper.min.js"></script>
   <script src="app.js" charset="utf-8"></script>
 </body>
