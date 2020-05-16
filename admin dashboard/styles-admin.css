@@ -3,7 +3,7 @@ body {
     background-color: #eee;
   }
 
-  /* NAVBAR */
+/* NAVBAR */
 
 .sidebar{
   height: 100vh;
@@ -26,6 +26,10 @@ body {
 .sidebar-link:hover{
   background-color: #444;
   border-radius: 4px;  
+}
+
+.hide{
+  display: none;
 }
 
 .current{
@@ -105,9 +109,96 @@ body {
   transform: translateY(-1px);
 }
 
-/* TASK LISTS */
-.task-border{
-  border-left: 3px solid #f66436;
+/* PROFILE */
+#profile img{
+  width: 220px;
+  border-radius: 50%;
+  margin-bottom: 200px;
+  box-shadow: 2px 5px 5px black;
+  transition: all .3s;
 }
 
+#profile img:hover{
+  box-shadow: 2px 5px 10px black;
+  transform: translateY(-1px);
+}
+
+#profile form{
+  width: 70%;
+  margin-left: 15%;
+  padding: 5% 2%;
+  background-color: white;
+  text-align: center;
+}
+
+#profile form input{
+  display: none;
+}
+
+#profile form label{
+  font-size: 1.5rem;
+}
+
+#profile form p{
+  font-style: italic;
+}
+
+
+/* USERS */
+#users tr:hover{
+  background-color: rgb(192, 188, 188);
+}
+
+.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter{
+  padding-bottom: 1rem;
+}
+
+.dataTables_wrapper .dataTables_info{
+  padding-top: 1.5em;
+  margin-top: 1.2rem;
+}
+.dataTables_wrapper .dataTables_paginate {
+  padding-top: 1.5em;
+  
+}
+
+.form-width{
+  width: 50%;
+}
+
+.sub-section{
+  display: none;
+}
+
+/* CATEGORY */
+ul{
+  list-style-type: none;
+}
+
+/* CITIES */
+.description{
+  max-width: 400px;
+  word-wrap: break-word;
+}
+
+.sub-section p{
+  word-wrap: break-word;
+}
+
+/* PLACES */
+.address{
+  max-width: 200px;
+  word-wrap: break-word;
+}
+
+/* REVIEWS */
+.checked{
+  color: orange;
+}
+
+/* ENQUIRIES*/
+.subject{
+  max-width: 200px;
+  word-wrap: break-word;
+}
 
