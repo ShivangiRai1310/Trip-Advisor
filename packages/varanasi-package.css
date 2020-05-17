@@ -1,0 +1,160 @@
+body {
+  background-color: white;
+  font-size: 14px;
+  text-align: center;
+}
+
+html,body{
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+}
+  
+/* site logo */
+.logo-part1 {
+  width: 56px;
+}
+.logo-part2 {
+  width: 170px;
+}
+  
+/* SIGN IN BUTTON */
+#sign-in-button {
+  border: 0;
+  font-size: 2.25rem;
+  padding-left: 2.5%;
+}
+nav li {
+  font-size: 1.23rem;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+  
+/* ALL SECTIONS */
+section{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    line-height: 2;
+    height: auto;
+    padding: 0;
+    margin: 0;
+}
+
+/* HEADER SECTION*/
+#header{
+    background-image: url(../images/packages/varanasi/varanasi.jpg);
+    background-repeat: no-repeat;
+    color: #000839;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    height: 550px;
+}
+
+#header .row{
+  padding-top: 120px;
+}
+
+#slideshow{
+  width: 400px;
+  box-shadow: 5px 5px 20px black;
+}
+
+/* BENEFITS SECTION */
+#benefits{
+  padding: 20px;
+}
+
+/* OVERVIEW SECTION */
+#overview{
+    background-color: #fff6da;
+    padding: 50px 50px 10px 50px;
+    line-height: 2.5;
+    text-align: justify;
+}
+
+#overview h2{
+  text-align: center;
+  justify-content: center;
+}
+#overview p{
+  font-size: medium;
+}
+
+#overview .details{
+  width: 400px;
+  margin-left: 200px;
+  font-size: 1.2rem;
+}
+
+#overview button{
+  margin-left: 280px;
+}
+
+/* BOOKING SECTION */
+#booking{
+  background-color: #eee;
+  text-align: center;
+  padding: 50px;
+  display: none;
+}
+
+#booking form{
+  width: 80%;
+  font-size: 1.5rem;
+  
+}
+
+/* ITINERARY SECTION */
+#itinerary{
+    background-color: #ed1250;
+    padding: 20px 10px;
+    /* text-align: center; */
+}
+
+#accordion{
+  width: 70%;
+  margin-left: 15%;
+  padding-bottom: 40px;
+}
+
+/* INCLUSION SECTION */
+#inclusion{
+    background-color: #fff6da;
+    padding: 30px;
+    line-height: 2;
+}
+
+li{
+  list-style-type: none;
+}
+
+#greetings{
+  padding: 20px 0px 50px 0px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* FOOTER */
+footer{
+    background-color: #000839;
+    color: white;
+}
+
+footer i{
+    padding: 10px;
+}
+
+footer p{
+    /* margin-left: 25%; */
+    margin-top: 3%;
+    line-height: 2; 
+} 
