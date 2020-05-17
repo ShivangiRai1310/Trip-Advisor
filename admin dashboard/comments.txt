@@ -1,4 +1,6 @@
 //SIDEBAR N TOP NAVBAR
+my-auto                 => vertical align
+text-center             => horizontal align
 navbar-expand-md        =>would collapse as soon as screen size decreases below medium size
 navbar-light/dark       =>allows to display navbar toggler icon
 data-toggle="collapse"  => tells js what to happen on toggler click
@@ -25,7 +27,7 @@ fas fa-iconname         => class to insert form awesome icon
 text-danger/muted..     => change color of fas icon
 fa-light                => set large size of fas icon
 ml-auto                 => lets the ele to be pushed to the right end
-align-items-center      => class in row to align vertically
+align-items-center      => class in row to align horizontally
 :focus                  => when typing in search
 
 //MODAL SIGNOUT
