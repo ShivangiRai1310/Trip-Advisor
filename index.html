@@ -26,37 +26,53 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
         integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
 
-    
-   
+
+
 </head>
 
 <body>
 
     <!-- HEADER SECTION -->
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark">
+        
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #000839;">
             <!-- Brand -->
-            <a class="" href="index.html"><img class="logo" src="images/logo.png" alt="Trip advisor"></a>
-
+            <a class="navbar-brand" href="index.html"><img class="logo-part1" src="images/logo-part1.png"
+                    alt="Trip advisor"></a>
+            <a class="navbar-brand" href="index.html"><img class="logo-part2" src="images/logo-part2.png"
+                    alt="Trip advisor"></a>
             <!-- Toggler/collapsibe Button -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar"><span
-                    class="navbar-toggler-icon"></span></button>
-
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <!-- Navbar links -->
-            <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a href="index.html">Home</a></li>
-                    <li class="nav-item"><a href="#about">About</a></li>
-                    <li class="nav-item"><a href="#gallery">Gallery</a></li>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto navbar-list">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
                     <!-- Dropdown -->
-                    <li class="nav-item dropdown"><a class="dropdown-toggle" href="" data-toggle="dropdown">Explore</a>
+                    <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=""
+                            data-toggle="dropdown">Explore</a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#explore_cities">Cities</a>
                             <a class="dropdown-item" href="#explore_packages">Packages</a>
                         </div>
                     </li>
-                    <li class="nav-item"><a href="#contact">Contact</a></li>
-                    <li class="nav-item"><a href="">SignUp/SignIn</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    
+                    <!-- <li class="nav-item"><a class="nav-link" href="">SignUp/SignIn</a></li> -->
+                </ul>
+                <ul class="navbar-nav ml-auto navbar-list">
+                    <li class="nav-item"><a class="nav-link mt-2" href="dashboard">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link mt-2" href="#">SignUp/SignIn</a></li>
+                    <li><button type="button" name="sign-in" class="btn btn-dark btn-lg px-1" id="sign-in-button"
+                            style="background-color: #000839;">
+                            <i class="fas fa-user-circle"></i>
+                        </button></li>
                 </ul>
             </div>
         </nav>
@@ -179,24 +195,32 @@
 
     <section id="explore_packages">
         <h2>Explore Packages</h2>
-        
+
         <div class="container-fluid">
             <div class="card">
                 <div class="face face1">
-                    <div class="content"><h3>Lorem ipsum</h3> <p>dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                        ex</p> </div>
+                    <div class="content">
+                        <h3>Lorem ipsum</h3>
+                        <p>dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                            ut aliquip
+                            ex</p>
+                    </div>
                 </div>
                 <div class="face face2">
                     <h2>01</h2>
                 </div>
             </div>
-            
+
             <div class="card">
                 <div class="face face1">
-                    <div class="content"><h3>Lorem ipsum</h3> <p>dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                        ex</p> </div>
+                    <div class="content">
+                        <h3>Lorem ipsum</h3>
+                        <p>dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                            ut aliquip
+                            ex</p>
+                    </div>
                 </div>
                 <div class="face face2">
                     <h2>02</h2>
@@ -205,9 +229,13 @@
 
             <div class="card">
                 <div class="face face1">
-                    <div class="content"><h3>Lorem ipsum</h3> <p>dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                        ex</p> </div>
+                    <div class="content">
+                        <h3>Lorem ipsum</h3>
+                        <p>dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                            ut aliquip
+                            ex</p>
+                    </div>
                 </div>
                 <div class="face face2">
                     <h2>03</h2>
@@ -215,7 +243,7 @@
             </div>
 
         </div>
-        
+
     </section>
 
     <!-- CONTACT US SECTION -->
@@ -239,8 +267,10 @@
 
     <footer>
         <div class="container-fluid row">
-            <div class="col-lg-4 col-md-6 my-auto d-flex justify-content-center" ><a href="index.html"><img src="images/logo.png" alt="Trip advisor"></a></div>
-            <div class="col-lg-4 col-md-2 my-auto d-flex justify-content-center text-center"> <i class="social-icon fab fa-facebook-f fa-lg"></i>
+            <div class="col-lg-4 col-md-6 my-auto d-flex justify-content-center"><a href="index.html"><img
+                        src="images/logo.png" alt="Trip advisor"></a></div>
+            <div class="col-lg-4 col-md-2 my-auto d-flex justify-content-center text-center"> <i
+                    class="social-icon fab fa-facebook-f fa-lg"></i>
                 <i class="social-icon fab fa-twitter fa-lg"></i>
                 <i class="social-icon fab fa-instagram fa-lg"></i>
                 <i class="social-icon fas fa-envelope fa-lg"></i></div>
@@ -249,6 +279,8 @@
             </div>
         </div>
     </footer>
+
+    <script src="index.js"></script>
 
 </body>
 

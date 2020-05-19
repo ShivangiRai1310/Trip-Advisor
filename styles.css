@@ -7,6 +7,23 @@ body{
     padding: 0px;
 }
 
+/* NAVBAR */
+
+/* site logo */
+.logo-part1{
+    width: 56px;
+  }
+  .logo-part2{
+    width: 170px;
+  }
+  
+  /* SIGN IN BUTTON */
+  #sign-in-button{
+    border: 0;
+    font-size: 2.25rem;
+    padding-left: 2.5%;
+  }
+
 /* HEADER */
 header nav{
     background-color: #000839;
@@ -17,15 +34,15 @@ header ul{
 }
 
 header li{
-    font-size: 1.5rem;
+    font-size: 1.23rem;
+    margin-right: 2px;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    margin: auto 30px; 
 }
 
-.logo{
+/* .logo{
     width: 150px;
     margin-left: 20px;
-}
+} */
 
 header a{
     text-decoration: none;
@@ -35,7 +52,6 @@ header a{
 header a:hover{
     text-decoration: underline;
     color: #ed1250;
-
 } 
 
 /* TITLE SECTION */
