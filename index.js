@@ -57,6 +57,19 @@ app.get("/explore-cities", function(req,res){
     res.sendFile(__dirname + "/cities/cities.html");
 });
 
+app.get("/varanasi", function(req,res){
+    app.use(express.static('./cities/places')); 
+
+    res.sendFile(__dirname + "/cities/places/varanasi.html");
+});
+
+app.get("/kolkata", function(req,res){
+    app.use(express.static('./cities/places')); 
+
+    res.sendFile(__dirname + "/cities/places/kolkata.html");
+});
+
+
 //PACKAGES
 app.get("/varanasi-package", function(req,res){
     app.use(express.static('./packages')); 
