@@ -1,2 +1,6 @@
 extras
 colorScheme.css
+Destinations.txt
+node_modules
+.vscode
+package.json

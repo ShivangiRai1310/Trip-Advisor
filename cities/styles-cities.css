@@ -1,0 +1,179 @@
+body {
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #142850;
+  margin: 0;
+  padding: 0;
+}
+
+/*------------------- SITE LOGO ------------------------*/
+.logo-part1 {
+  width: 56px;
+}
+
+.logo-part2 {
+  width: 170px;
+}
+
+/* SIGN IN BUTTON */
+#sign-in-button {
+  border: 0;
+  font-size: 2.25rem;
+  padding-left: 2.5%;
+}
+
+nav li {
+  font-size: 1.23rem;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/*----------------- CITIES ANIMATION ---------------------*/
+
+/*------------ IMAGES----------- */
+.swiper-container {
+  position: relative;
+  width: 100%;
+  height: 80%;
+  padding-top: 20px;
+  padding-bottom: 50px;
+  background: #bae5e5;
+}
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 35%;
+  height: 100%;
+  background: #bae5e5;
+}
+
+.swiper-slide .image-box {
+  width: 100%;
+  height: 80%;
+  overflow: hidden;
+}
+
+.swiper-slide .image-box img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10%;
+}
+
+.swiper-slide .city-img-details {
+  box-sizing: border-box;
+  font-size: 0.5rem;
+  padding: 7px;
+}
+
+.swiper-slide .city-img-details h3 {
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  font-size: 1.75rem;
+  text-align: center;
+  line-height: 20px;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+}
+
+.swiper-slide .city-img-details h3 span {
+  font-size: 16px;
+  color: #142850;
+  font-family: 'Arvo', serif;
+  font-weight: 400;
+}
+
+/* ------------- CITY - DESCRIPTION ----------- */
+
+.city-info{
+  background-color: #f5fcc1;
+  width: auto;
+}
+.city-details{
+  padding: 5%;
+  text-align: center;
+}
+.city-details h2{
+  font-size: 2.5rem;
+  font-family: 'Permanent Marker', cursive;
+  font-weight: 400;
+}
+
+.city-details p{
+  font-size: 1.5rem;
+  font-family: 'Caveat', cursive;
+  font-weight: 400;
+  padding-top: 5%;
+}
+
+.city-pic{
+  text-align: center;
+  background-color: #f5fcc1;
+}
+
+.city-pic button{
+  margin: 0 3% 5% 3%;
+}
+
+/*------------- PLACES SECTION -----------------*/
+#about-cities{
+  padding-bottom: 5%;
+}
+#dabba{
+  padding: 2%;
+  position: absolute;
+  z-index: 1;
+}
+#dabba img{
+  width: 20%;
+  height: 20%;
+  border-radius: 50%;
+  border: 2%;
+  border-color: black;
+  }
+ .carousel-item{
+  width: 100%;
+  height: 55%;
+  min-height: 50%;
+  background: no-repeat center center scroll;
+  background-size: cover;
+  -webkit-background-size: cover;
+}
+.carousel-caption{
+  padding: 7%;
+  opacity: 65%;
+}
+
+ .carousel-caption h5{
+  font-size: 300%;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 2%;
+  font-family: cursive;
+  color: black;
+  background-color: white;
+
+}
+
+.carousel-caption p{
+  width: 60%;
+  margin: auto;
+  font-size: 150%;
+  line-height: 1.9;
+  font-family: sans-serif;
+  color: black;
+  background-color: white;
+}
+.carousel-caption a{
+  text-transform: uppercase;
+  background: #262626;
+  padding: 2% 5%;
+  display: inline-block;
+  color: #fff;
+  margin-top: 5%;
+}
+.carousel-control-next{
+  z-index: 2;
+}
+.carousel-control-prev{
+  z-index: 2;
+}

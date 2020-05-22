@@ -3,22 +3,22 @@ $(document).ready(function () {
 });
 
 // SIDEBAR links SHOW/HIDE
-$(".sidebar-link").click(function () {
-    if ($(".sidebar-link").hasClass("current")) {
-        $(".sidebar-link").removeClass("current");
-        $(".sidebar-link").children('ul').hide();
-    }
+// $(".sidebar-link").click(function () {
+//     // if ($(".sidebar-link").hasClass("current")) {
+//     //     $(".sidebar-link").removeClass("current");
+//     //     $(".sidebar-link").children('ul').hide();
+//     // }
 
-    $("section").hide();
+//     // $("section").hide();
 
-    $(this).addClass("current");
-    $(this).children('ul').show();
-    let idval = $(this).children('a').attr("href");
-    // alert(idval);
-    $(idval).show();
-    $(idval + " div").first().show();
+//     $(this).addClass("current");
+//     $(this).children('ul').show();
+//     let idval = $(this).children('a').attr("href");
+//     // alert(idval);
+//     $(idval).show();
+//     $(idval + " div").first().show();
 
-});
+// });
 
 // SUB-SIDEBAR links SHOW/HIDE
 $(".sidebar-sub-link").click(function () {
@@ -42,6 +42,11 @@ $(".disable-basedon").change(function () {
     // alert("changed");
     $(".disable").removeAttr("disabled");
     // $('.disable').prop("disabled", false);    BTN NOT WORKING WITH DISABLE CLASS 
+    if($(this).val()=='abc'){
+        $("#update-users input[name=fname]").val("abc");
+        $("#update-users input[name=user_type]").val(["general"]);
+    }
+    
 });
 
 // PENDING/ APPROVED BOOKING STATUS
