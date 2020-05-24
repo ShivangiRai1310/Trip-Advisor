@@ -37,6 +37,8 @@ header li{
     font-size: 1.23rem;
     margin-right: 2px;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    color: white;
+    margin-top: auto;
 }
 
 /* .logo{

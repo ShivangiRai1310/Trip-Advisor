@@ -2,9 +2,15 @@ const mysql = require('mysql');
 const express = require('express');
 const bodyParser = require('body-parser');    //for using req.body
 const path = require('path')
+const dotenv = require('dotenv');
 const date = require(__dirname + "/date.js");
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const cookieParser = require('cookie-parser');
+const authController = require(__dirname + '/controllers/auth'); 
 
 
+dotenv.config({ path: './.env'});     //to safequard our database details n other passwords
 
 const app = express();
 const port = 5000;
@@ -13,16 +19,18 @@ app.locals.myvar="hello";
                                   //to render css along with html in node.js app , need to use static method to include such static css, js files
 app.use(express.static('./'));    // './' is current dir specified since all static files i.e pics,.css,etc r in root dir
 app.use(bodyParser.urlencoded({ extended: true }));    // to get the form contents from req.body
+app.use(express.json());
+app.use(cookieParser());
 
 app.set('view engine', 'ejs');                 //sets ejs as the templating engine
 app.set('views', path.join(__dirname, './'));    //using this no need to use  res.sendFile(__dirname + "/index.html");
 
 // MYSQL CONNECTION
 const con = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '12345',
-    database: 'dbms'
+    host: process.env.host,
+    user: process.env.user,
+    password: process.env.password,
+    database: process.env.database
 });
 
 con.connect(function (err) {
@@ -33,21 +41,131 @@ con.connect(function (err) {
 });
 
 // INDEX PAGE
-app.get("/", function(req,res){
-    res.sendFile("index.html");
+app.get("/",authController.isLoggedIn, function(req,res){
+    res.render("index.ejs", {user : req.user});
 });
 
 // LOGIN REGISTER
 app.get("/login", function(req,res){
     app.use(express.static('./login signup')); 
 
-    res.sendFile(__dirname + "/login signup/login.html");
+    res.render(__dirname + "/login signup/login.ejs", {msg : ""});
+});
+
+app.post("/login", async function(req,res){
+    app.use(express.static('./login signup')); 
+
+    try{
+        let { user_name, password} = req.body;
+        console.log(req.body);  
+        if( !user_name || !password){
+            return res.status(400).render(__dirname + "/login signup/login.ejs", {msg : "Please provide username and password"});
+        }
+
+        let sql = "SELECT * FROM user WHERE user_name = '" + user_name +"'";
+        con.query(sql, async function(err,rows){
+            if(err)
+                console.log(err);
+           
+            console.log(rows);
+            if( !rows || !(await bcrypt.compare(password, rows[0].password)) ){
+                res.status(401).render(__dirname + "/login signup/login.ejs", {msg : "Username or password is incorrect"});
+            }
+            else{
+                const user_id = rows[0].user_id;
+
+                const token = jwt.sign({ user_id }, process.env.ACCESS_TOKEN_SECRET, {    //creates jwt token
+                    expiresIn: process.env.JWT_EXPIRES_IN
+                });
+                console.log("The token is " + token);
+
+                const cookieOptions = {
+                    expires: new Date(
+                        Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
+                    ),
+                    httpOnly: true
+                }
+
+                res.cookie('jwt', token, cookieOptions);
+                res.status(200).redirect("/");
+            }
+        });
+        
+    } catch(err) {
+        console.log(err);
+    }
+
+});
+
+app.get("/user-profile",authController.isLoggedIn, function(req,res) {    //the page to be hidden n visible only if it matches current token, for such authentication we create a middleware   
+    app.use(express.static('./login signup')); 
+    // console.log(req.message);                                          //we include the authController middleware's isLoggedIn func first in which the defined variables can be accessed here
+
+    if(req.user){
+        res.render(__dirname + "/login signup/user-profile.ejs", {user : req.user});
+    }
+    else{
+        res.redirect("/login");
+    }
+ 
+});
+
+app.get("/logout", function(req,res){
+    res.cookie('jwt', 'logout', {                         //new cookie that will overwrite existing cookie n expires in 2ms after logout is pressed
+        expires: new Date(Date.now() + 2*1000),
+        httpOnly: true
+    });
+
+    res.status(200).redirect("/");
 });
 
 app.get("/register", function(req,res){
     app.use(express.static('./login signup')); 
 
-    res.sendFile(__dirname + "/login signup/register.html");
+    res.render(__dirname + "/login signup/register.ejs", {msg : ""});
+});
+
+app.post("/register", function(req,res){
+    app.use(express.static('./login signup')); 
+
+    let { user_name, contact, password, confirm_password, email } = req.body;   //SHORTCUT IF NAMES R SAME
+    let user_type = "general";
+    let reg_date = date.currentDate();
+    let updation_date = reg_date;
+    // console.log(user_type);
+    // console.log(req.body);
+    // console.log(user_name +" "+ contact +" " + password +" " + confirm_password +" " + email +" " + user_type +" " + reg_date +" " + updation_date);
+
+    let sql = "SELECT user_name FROM user WHERE user_name = '" + user_name +"'";
+    con.query(sql, async function(err,rows){
+        if(err)
+        console.log(err);
+        
+        // console.log(rows);
+        if(rows.length>0){
+            res.render(__dirname + "/login signup/register.ejs", {msg : "That user name is already in use!! "});
+        }
+        else if(password != confirm_password){
+            res.render(__dirname + "/login signup/register.ejs", {msg : "Passwords do not match, Enter again!! "});        
+        }
+        else{
+         let hashed_password = await bcrypt.hash(password, 8);     //8 pased as no of rounds for encrypting, by default it takes salt (additional val added) so that even if a person who gets access to db n hacks one password, wont be able to hack others with same tech vuz of diff salt
+        //  console.log(hashed_password);
+
+        let sql = "INSERT INTO user VALUES(null, '" + user_name + "', '" + contact + "', '" + hashed_password + "', '" + email + "', '" + user_type + "', '" + reg_date + "', '" + updation_date + "')";
+        con.query(sql, function(err,rows){
+            if(err)
+                console.log(err);
+            else{
+                // console.log(rows);
+                res.render(__dirname + "/login signup/register.ejs", {msg : "User Registered!!"});
+            } 
+          });
+        }
+
+    });
+
+    // res.send("submitted");
 });
 
 //CITIES
@@ -124,7 +242,7 @@ app.post("/add-users", function(req,res) {
     let  updation_date = reg_date;
     // console.log(req.body.user_type);
     // console.log(req.body);
-    // console.log(fname + lname + contact + password + email + user_type + reg_date + updation_date);
+    // console.log(user_name + contact + password + email + user_type + reg_date + updation_date);
     let sql = "INSERT INTO user VALUES(null, '" + user_name + "', '" + contact + "', '" + password + "', '" + email + "', '" + user_type + "', '" + reg_date + "', '" + updation_date + "')";
     con.query(sql, function(err,rows){
         if(err)
