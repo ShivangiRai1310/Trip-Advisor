@@ -30,7 +30,7 @@ $(".sidebar-sub-link").click(function () {
 
 //EDIT USER
 $("#edit-profile").click( function() {
-    $("#profile input").show();
+    $("#profile .hide").show();
 });
 
 // VIEW USER TABLE
@@ -43,7 +43,7 @@ $(".disable-basedon").change(function () {
     $(".disable").removeAttr("disabled");
     // $('.disable').prop("disabled", false);    BTN NOT WORKING WITH DISABLE CLASS 
     if($(this).val()=='abc'){
-        $("#update-users input[name=fname]").val("abc");
+        $("#update-users input[name=contact]").val("1234567891");
         $("#update-users input[name=user_type]").val(["general"]);
     }
     

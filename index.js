@@ -210,18 +210,64 @@ app.get("/dashboard", function(req,res){
         if(err)
         console.log(err);
         else{
-            // console.log(rows);
-            res.render(__dirname + "/admin dashboard/admin.ejs", {userCount:rows[0].userCount, cityCount:rows[0].cityCount, placesCount:rows[0].placesCount, packagesCount:rows[0].packagesCount, reviewsCount:rows[0].reviewsCount, bookingsCount:rows[0].bookingsCount, enquiriesCount:rows[0].enquiriesCount});
+            console.log(rows);
+            res.render(__dirname + "/admin dashboard/admin.ejs", {user:rows[0]});
         } 
     });
     
 });
 
 // PROFILE PAGE
-app.get("/profile", function(req,res){
+app.get("/profile",authController.isLoggedIn, function(req,res){
     app.use(express.static('./admin dashboard')); 
 
-    res.render(__dirname + "/admin dashboard/profile.ejs");
+    if(req.user){
+        res.render(__dirname + "/admin dashboard/profile.ejs", {user : req.user});
+    }
+    else{
+        res.redirect("/login");
+    }
+
+});
+
+app.post("/profile",authController.isLoggedIn,function(req,res){
+    app.use(express.static('./admin dashboard')); 
+
+    let { contact, email } = req.body; 
+    let updation_date = date.currentDate();
+    // console.log(req.body);
+    // console.log(user_name + contact + password + email + user_type + updation_date);
+
+    if(req.user){
+
+        let sql = "UPDATE user SET contact = '" + contact + "' , email = '" + email + "' , updation_date = '" + updation_date + "' WHERE user_name = '" + req.user.user_name +"'";
+        con.query(sql, function(err,rows){
+        if(err)
+            console.log(err);
+        else{
+            console.log(rows);
+            res.redirect("/profile");
+            } 
+        });
+    }
+    else{
+        res.redirect("/login");
+    }
+ 
+
+});
+
+app.get("/user-profile",authController.isLoggedIn, function(req,res) {    //the page to be hidden n visible only if it matches current token, for such authentication we create a middleware   
+    app.use(express.static('./login signup')); 
+    // console.log(req.message);                                          //we include the authController middleware's isLoggedIn func first in which the defined variables can be accessed here
+
+    if(req.user){
+        res.render(__dirname + "/login signup/user-profile.ejs", {user : req.user});
+    }
+    else{
+        res.redirect("/login");
+    }
+ 
 });
 
 
