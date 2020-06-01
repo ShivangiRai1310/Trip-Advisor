@@ -205,7 +205,16 @@ app.get("/kolkata-package", function(req,res){
 app.get("/dashboard", function(req,res){
     app.use(express.static('./admin dashboard'));   //change static folder since earlier wasnt rendering css   
 
-    res.render(__dirname + "/admin dashboard/admin.ejs");
+    let sql = "SELECT (SELECT COUNT(*) FROM user) as userCount ,(SELECT COUNT(*) FROM cities) as cityCount ,(SELECT COUNT(*) FROM places) as placesCount ,(SELECT COUNT(*) FROM packages) as packagesCount ,(SELECT COUNT(*) FROM reviews) as reviewsCount ,(SELECT COUNT(*) FROM bookings) as bookingsCount ,(SELECT COUNT(*) FROM enquiries) as enquiriesCount "; 
+    con.query(sql, function(err,rows){
+        if(err)
+        console.log(err);
+        else{
+            // console.log(rows);
+            res.render(__dirname + "/admin dashboard/admin.ejs", {userCount:rows[0].userCount, cityCount:rows[0].cityCount, placesCount:rows[0].placesCount, packagesCount:rows[0].packagesCount, reviewsCount:rows[0].reviewsCount, bookingsCount:rows[0].bookingsCount, enquiriesCount:rows[0].enquiriesCount});
+        } 
+    });
+    
 });
 
 // PROFILE PAGE
