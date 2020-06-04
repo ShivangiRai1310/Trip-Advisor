@@ -37,6 +37,8 @@ header li{
     font-size: 1.23rem;
     margin-right: 2px;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    color: white;
+    margin-top: auto;
 }
 
 /* .logo{
@@ -119,8 +121,8 @@ section{
 
 /* PLAN SECTION */
 #plan{
-    background-color: #ffa41b;
-    height: 600px;
+    background-color: #f7c57a;
+    height: auto;
 }
 
 /* EXPLORE CITIES SECTION */

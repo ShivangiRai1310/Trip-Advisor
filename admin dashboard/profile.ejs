@@ -30,7 +30,7 @@
 
           <!-- SIDEBAR -->
           <div class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
-            <a class="navbar-brand text-white d-block mx-auto text-center py-3 mb-2 bottom-border" href="../index.html">Trip Advisor</a>
+            <a class="navbar-brand text-white d-block mx-auto text-center py-3 mb-2 bottom-border" href="./">Trip Advisor</a>
             <div class="bottom-border py-3  text-center">
               <img src="images/cust6.jpeg" alt="admin image" width="40" height="40" class="rounded-circle mx-2">
               <a href="#" class="text-white">Admin Name</a>
@@ -143,40 +143,39 @@
       <div class="row mb-5 pt-md-5 mt-md-3">
         <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
           <h2 class="text-muted text-center mb-4 pb-4">Profile</h2>
-          <form action="" method="post" class="row">
+          <form action="/profile" method="post" class="row">
             <div class="col-xl-4 col-sm-12 mt-4" >
               <img src="images/cust6.jpeg" alt="" srcset=""> <br>
               <button type="button" class="btn btn-info btn-lg mb-5 py-2" id="edit-profile"><i class="fas fa-edit fa-lg mr-2"></i>Edit Profile</button>
-              <button type="submit" class="btn btn-success btn-lg mb-5  py-2"><i class="fas fa-user-edit fa-lg mr-2"></i>Update</button>
+              <button type="submit" class="btn btn-success btn-lg mb-5 py-2 hide" id="update-profile" ><i class="fas fa-user-edit fa-lg mr-2"></i>Update</button>
             </div>
             <div class="col-xl-8 col-sm-12" >
               <div class="form-group py-2">
                 <label>User Name</label>
-                <p>Alice</p>
-                <input type="text" class="form-control" placeholder="Enter User Name">
+                <p><%= user.user_name %></p>
               </div>
               <div class="form-group py-2">
                 <label>Contact</label>
-                <p>1234567890</p>
-                <input type="tel" class="form-control" placeholder="Enter contact details">
+                <p><%= user.contact %></p>
+                <input type="tel" class="form-control hide" placeholder="Enter contact details" name="contact">
               </div>
               <div class="form-group py-2">
                 <label>Email Address</label>
-                <p>Alice@gmail.com</p>
-                <input type="email" class="form-control" placeholder="abc@example.com">
+                <p><%= user.email %></p>
+                <input type="email" class="form-control hide" placeholder="abc@example.com" name="email">
               </div>
-              <div class="form-group py-2">
+              <div class="form-group py-2">   
                 <label for="user-password">Password</label>
-                <p>12345</p>
-                <input type="password" class="form-control" id="user-password" placeholder="Enter password">
+                <p><%= user.password %></p>
+                <!-- <input type="password" class="form-control hide" id="user-password" placeholder="Enter password"> -->
               </div>
               <div class="py-2">
                 <label>Registration Date</label>
-                <p>13/05/2020</p>
+                <p><%= user.reg_date %></p>
               </div>
               <div class="py-2">
                 <label>Last Updation Date</label>
-                <p>15/05/2020</p>
+                <p><%= user.updation_date %></p>
               </div>
               
             </div>
@@ -199,7 +198,7 @@
             <div class="col-lg-6 text-center">
               <ul class="list-inline">
                 <li class="list-inline-item mr-2">
-                  <a href="#" class="text-dark">Trip Advisor</a>
+                  <a href="./" class="text-dark">Trip Advisor</a>
                 </li>
                 <li class="list-inline-item mr-2">
                   <a href="#" class="text-dark">About</a>

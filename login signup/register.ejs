@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Login and Registration form example</title>
+<link rel="stylesheet" type="text/css" href="register.css">
+
+</head>
+<body bgcolor="#E6E6FA">
+   
+<form name="regi" action="register" method="POST">
+	<fieldset>
+<legend><h2>Registration Form</h2></legend>
+<label for="r1" id="fn">User Name :</label>
+<input type="text" name="user_name" id="r1"><br/>
+<label  for="r5" id="em">Email :</label>
+<input type="email" name="email" id="r5"><br/>
+  <label  for="r6" id="mn">Mobile No :</label>
+<input type="text" placeholder="1234567890" name="contact" id="r6" pattern="[0-9]{10}"><br/>
+   <label  for="r4" id="pwd">Password :</label>
+<input type="password" name="password" id="r4" placeholder="at least 6 characters" minlength="6" required><br/>
+<label  for="r7" id="pwd2">Confirm Password :</label>
+<input type="password" name="confirm_password" id="r7" placeholder="at least 6 characters" minlength="6"  onchange="matchPassword()" required><br/>
+   </fieldset>
+<button type="submit" value="Submit" id="button">Register</button>
+<<<<<<< HEAD:login signup/register.html
+<a href="login.html">Already a user?</a>
+=======
+<a href="login">Already a user?</a> <br> <br>
+
+<h3><%= msg %></h3>
+>>>>>>> 0b510870e7b9b5284a594cd047815a55da2c7814:login signup/register.ejs
+</form>
+</body>
+</html>

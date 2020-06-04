@@ -131,9 +131,9 @@ body {
   text-align: center;
 }
 
-#profile form input{
+/* #profile form input{
   display: none;
-}
+} */
 
 #profile form label{
   font-size: 1.5rem;

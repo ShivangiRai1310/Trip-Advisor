@@ -30,7 +30,7 @@
 
           <!-- SIDEBAR -->
           <div class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
-            <a class="navbar-brand text-white d-block mx-auto text-center py-3 mb-2 bottom-border" href="../index.html">Trip Advisor</a>
+            <a class="navbar-brand text-white d-block mx-auto text-center py-3 mb-2 bottom-border" href="./">Trip Advisor</a>
             <div class="bottom-border py-3  text-center">
               <img src="images/cust6.jpeg" alt="admin image" width="40" height="40" class="rounded-circle mx-2">
               <a href="#" class="text-white">Admin Name</a>
@@ -153,39 +153,36 @@
                 <th>Email-address</th>
                 <th class="subject">Subject</th>
                 <th class="description">Message</th>
+                <th>Enquiry Date</th>
                 <th>Status</th>
                 <th>Send Email</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th>1</th>
-                <td>Abc</td>
-                <td>1234567890</td>
-                <td>abc@gmail.com</td>
-                <td class="subject">EGEAVGAHTGGGGGGGGGGGGGGGGGGGGGGGG</td>
-                <td class="description">.descriptionLorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex</td>
-                <td>
-                  <button type="submit" formaction="URL" class="btn btn-danger w-85 py-2 pending-enquiry">Pending</button>
-                </td>
-                <td>
-                  <button type="submit" formaction="URL" class="btn btn-info w-85 py-2 send_email">Email</button>
-                </td>
-              </tr>
-              <tr>
-                <th>1</th>
-                <td>Abc</td>
-                <td>1234567890</td>
-                <td>abc@gmail.com</td>
-                <td class="subject">EGEAVGAHTGGGGGGGGGGGGGGGGGGGGGGGG</td>
-                <td class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temporincididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex</td>
-                <td>
-                  <button type="submit" formaction="URL" class="btn btn-success w-85 py-2">Reviewed</button>
-                </td>
-                <td>
-                  <button type="submit" formaction="URL" class="btn btn-info w-85 py-2 send_email">Email</button>
-                </td>
-              </tr>
+              <%  for(var i=0; i<enquiries.length;i++){ %>
+                <tr>
+                  <th><%= enquiries[i].enquiry_id %></th>
+                  <td><%= enquiries[i].name %></td>
+                  <td><%= enquiries[i].contact %></td>
+                  <td><%= enquiries[i].email %></td>
+                  <td><%= enquiries[i].subject %></td>
+                  <td><%= enquiries[i].message %></td>
+                  <td><%= enquiries[i].enquiry_date %></td>
+                  <% if(enquiries[i].status === "reviewed"){  %>
+                  <td>
+                    <button type="submit" formaction="URL" class="btn btn-success w-85 py-2">Reviewed</button>
+                  </td>
+                  <% } else{  %>
+                  <td>
+                    <button type="submit" formaction="URL" class="btn btn-danger w-85 py-2 pending-enquiry">Pending</button>
+                  </td>
+                  <%  }  %>
+                  <td>
+                    <button type="submit" formaction="URL" class="btn btn-info w-85 py-2 send_email">Email</button>
+                  </td>
+                </tr>
+                <% } %>
+             
             </tbody>
           </table>
         </div>
@@ -203,7 +200,7 @@
             <div class="col-lg-6 text-center">
               <ul class="list-inline">
                 <li class="list-inline-item mr-2">
-                  <a href="#" class="text-dark">Trip Advisor</a>
+                  <a href="./" class="text-dark">Trip Advisor</a>
                 </li>
                 <li class="list-inline-item mr-2">
                   <a href="#" class="text-dark">About</a>
