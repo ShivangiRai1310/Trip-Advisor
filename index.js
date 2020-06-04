@@ -48,21 +48,13 @@ app.get("/", authController.isLoggedIn, function (req, res) {
 });
 
 // LOGIN REGISTER
-<<<<<<< HEAD
-app.get("/login", function(req,res){
-=======
 app.get("/login", function (req, res) {
->>>>>>> 0b510870e7b9b5284a594cd047815a55da2c7814
     app.use(express.static('./login signup'));
 
     res.render(__dirname + "/login signup/login.ejs", { msg: "" });
 });
 
-<<<<<<< HEAD
-app.get("/register", function(req,res){
-=======
 app.post("/login", async function (req, res) {
->>>>>>> 0b510870e7b9b5284a594cd047815a55da2c7814
     app.use(express.static('./login signup'));
 
     try {
@@ -179,31 +171,19 @@ app.post("/register", function (req, res) {
 });
 
 //CITIES
-<<<<<<< HEAD
-app.get("/explore-cities", function(req,res){
-=======
 app.get("/explore-cities", function (req, res) {
->>>>>>> 0b510870e7b9b5284a594cd047815a55da2c7814
     app.use(express.static('./cities'));
 
     res.sendFile(__dirname + "/cities/cities.html");
 });
 
-<<<<<<< HEAD
-app.get("/varanasi", function(req,res){
-=======
 app.get("/varanasi", function (req, res) {
->>>>>>> 0b510870e7b9b5284a594cd047815a55da2c7814
     app.use(express.static('./cities/places'));
 
     res.sendFile(__dirname + "/cities/places/varanasi.html");
 });
 
-<<<<<<< HEAD
-app.get("/kolkata", function(req,res){
-=======
 app.get("/kolkata", function (req, res) {
->>>>>>> 0b510870e7b9b5284a594cd047815a55da2c7814
     app.use(express.static('./cities/places'));
 
     res.sendFile(__dirname + "/cities/places/kolkata.html");
@@ -211,21 +191,13 @@ app.get("/kolkata", function (req, res) {
 
 
 //PACKAGES
-<<<<<<< HEAD
-app.get("/varanasi-package", function(req,res){
-=======
 app.get("/varanasi-package", function (req, res) {
->>>>>>> 0b510870e7b9b5284a594cd047815a55da2c7814
     app.use(express.static('./packages'));
 
     res.sendFile(__dirname + "/packages/varanasi-package.html");
 });
 
-<<<<<<< HEAD
-app.get("/kolkata-package", function(req,res){
-=======
 app.get("/kolkata-package", function (req, res) {
->>>>>>> 0b510870e7b9b5284a594cd047815a55da2c7814
     app.use(express.static('./packages'));
 
     res.sendFile(__dirname + "/packages/kolkata-package.html");
@@ -240,13 +212,8 @@ app.get("/trip-plan", function (req, res) {
 
 
 // DASHBOARD PAGE
-<<<<<<< HEAD
-app.get("/dashboard", function(req,res){
-    app.use(express.static('./admin dashboard'));   //change static folder since earlier wasnt rendering css
-=======
 app.get("/dashboard", function (req, res) {
     app.use(express.static('./admin dashboard'));   //change static folder since earlier wasnt rendering css   
->>>>>>> 0b510870e7b9b5284a594cd047815a55da2c7814
 
     let sql = "SELECT (SELECT COUNT(*) FROM user) as userCount ,(SELECT COUNT(*) FROM cities) as cityCount ,(SELECT COUNT(*) FROM places) as placesCount ,(SELECT COUNT(*) FROM packages) as packagesCount ,(SELECT COUNT(*) FROM reviews) as reviewsCount ,(SELECT COUNT(*) FROM bookings) as bookingsCount ,(SELECT COUNT(*) FROM enquiries) as enquiriesCount ";
     con.query(sql, function (err, rows) {
@@ -261,10 +228,6 @@ app.get("/dashboard", function (req, res) {
 });
 
 // PROFILE PAGE
-<<<<<<< HEAD
-app.get("/profile", function(req,res){
-    app.use(express.static('./admin dashboard'));
-=======
 app.get("/profile", authController.isLoggedIn, function (req, res) {
     app.use(express.static('./admin dashboard'));
 
@@ -314,17 +277,12 @@ app.get("/user-profile", authController.isLoggedIn, function (req, res) {    //t
     else {
         res.redirect("/login");
     }
->>>>>>> 0b510870e7b9b5284a594cd047815a55da2c7814
 
 });
 
 
 // USERS PAGE
-<<<<<<< HEAD
-app.get("/users", function(req,res){
-=======
 app.get("/users", function (req, res) {
->>>>>>> 0b510870e7b9b5284a594cd047815a55da2c7814
     app.use(express.static('./admin dashboard'));
 
     let sql = "SELECT * FROM user";
@@ -333,20 +291,12 @@ app.get("/users", function (req, res) {
             console.log(err);
         else {
             // console.log(rows);
-<<<<<<< HEAD
-            res.render(__dirname + "/admin dashboard/users.ejs", {users: rows});
-=======
             res.render(__dirname + "/admin dashboard/users.ejs", { users: rows });
->>>>>>> 0b510870e7b9b5284a594cd047815a55da2c7814
         }
     });
 });
 
-<<<<<<< HEAD
-app.post("/add-users", function(req,res) {
-=======
 app.post("/add-users", function (req, res) {
->>>>>>> 0b510870e7b9b5284a594cd047815a55da2c7814
 
     let user_name = req.body.user_name;
     let contact = req.body.contact;
@@ -367,19 +317,11 @@ app.post("/add-users", function (req, res) {
         }
     });
 
-<<<<<<< HEAD
-    let msg = "Congratulations!!  User " + user_name +" has been successfully added."
-    res.render(__dirname + "/pop-up.ejs", {title : "User Added", msg : msg});
-});
-
-app.post("/update-users", function(req,res) {
-=======
     let msg = "Congratulations!!  User " + user_name + " has been successfully added."
     res.render(__dirname + "/pop-up.ejs", { title: "User Added", msg: msg });
 });
 
 app.post("/update-users", function (req, res) {
->>>>>>> 0b510870e7b9b5284a594cd047815a55da2c7814
 
     let user_name = req.body.user_name;
     let contact = req.body.contact;
@@ -398,17 +340,6 @@ app.post("/update-users", function (req, res) {
             console.log(rows);
         }
     });
-<<<<<<< HEAD
-
-    let msg = "Congratulations!!  User "+ user_name + " has been updated successfully with values <br> "
-    let m1 =  "<br>User Name : "+ user_name;
-    let m2 =  "<br>Email : "+ email;
-    let m3 =  "<br>Password : "+ password;
-    let m4 =  "<br>Contact : "+ contact;
-    let m5 =  "<br>User Type : "+ user_type;
-    msg =  msg + m1 + m2 + m3 + m4 + m5;
-=======
->>>>>>> 0b510870e7b9b5284a594cd047815a55da2c7814
 
     let msg = "Congratulations!!  User " + user_name + " has been updated successfully with values <br> "
     let m1 = "<br>User Name : " + user_name;
@@ -421,11 +352,7 @@ app.post("/update-users", function (req, res) {
     res.render(__dirname + "/pop-up.ejs", { title: "User Updated", msg: msg });
 });
 
-<<<<<<< HEAD
-app.post("/delete-user", function(req,res) {
-=======
 app.post("/delete-user", function (req, res) {
->>>>>>> 0b510870e7b9b5284a594cd047815a55da2c7814
 
     let user_name = req.body.user_name;
 
@@ -442,11 +369,6 @@ app.post("/delete-user", function (req, res) {
 
     res.render(__dirname + "/pop-up.ejs", { title: "User Deleted", msg: msg });
 
-<<<<<<< HEAD
-    res.render(__dirname + "/pop-up.ejs", {title : "User Deleted", msg : msg });
-
-=======
->>>>>>> 0b510870e7b9b5284a594cd047815a55da2c7814
 });
 
 // app.post("/autofill-users", function(req,res){
@@ -469,18 +391,13 @@ app.post("/delete-user", function (req, res) {
 
 
 // CATEGORY PAGE
-<<<<<<< HEAD
-app.get("/category", function(req,res){
-=======
 app.get("/category", function (req, res) {
->>>>>>> 0b510870e7b9b5284a594cd047815a55da2c7814
     app.use(express.static('./admin dashboard'));
 
     res.render(__dirname + "/admin dashboard/category.ejs");
 });
 
 // CITIES PAGE
-<<<<<<< HEAD
 app.get("/city", function(req,res){
     app.use(express.static('./admin dashboard'));
     let sql = "SELECT * FROM cities";
@@ -555,16 +472,11 @@ app.post("/delete-city", function(req,res) {
     let msg = "Name "+ name + " has been successfully removed from the database. "
 
     res.render(__dirname + "/pop-up.ejs", {title : "City Deleted", msg : msg });
-=======
-app.get("/city", function (req, res) {
-    app.use(express.static('./admin dashboard'));
->>>>>>> 0b510870e7b9b5284a594cd047815a55da2c7814
 
 });
 
 
 // PLACES PAGE
-<<<<<<< HEAD
 app.get("/places", function(req,res){
     app.use(express.static('./admin dashboard'));
 
@@ -648,42 +560,26 @@ app.post("/delete-place", function(req,res) {
     let msg = "Place "+ place_name + " has been successfully removed from the database. "
 
     res.render(__dirname + "/pop-up.ejs", {title : "Place Deleted", msg : msg });
-=======
-app.get("/places", function (req, res) {
-    app.use(express.static('./admin dashboard'));
->>>>>>> 0b510870e7b9b5284a594cd047815a55da2c7814
 
 });
 
 
 
 // PACKAGES PAGE
-<<<<<<< HEAD
-app.get("/package", function(req,res){
-=======
 app.get("/package", function (req, res) {
->>>>>>> 0b510870e7b9b5284a594cd047815a55da2c7814
     app.use(express.static('./admin dashboard'));
 
     res.render(__dirname + "/admin dashboard/packages.ejs");
 });
 
 // REVIEWS PAGE
-<<<<<<< HEAD
-app.get("/reviews", function(req,res){
-=======
 app.get("/reviews", function (req, res) {
->>>>>>> 0b510870e7b9b5284a594cd047815a55da2c7814
     app.use(express.static('./admin dashboard'));
 
     res.render(__dirname + "/admin dashboard/reviews.ejs");
 });
 
 // BOOKINGS PAGE
-<<<<<<< HEAD
-app.get("/bookings", function(req,res){
-    app.use(express.static('./admin dashboard'));
-=======
 app.get("/bookings", function (req, res) {
     app.use(express.static('./admin dashboard'));
 
@@ -727,7 +623,6 @@ app.post("/add-bookings", function (req, res) {
 
         }
     });
->>>>>>> 0b510870e7b9b5284a594cd047815a55da2c7814
 
 
     let msg = "Congratulations!!  Booking for " + user_name + " has been successfully completed."
@@ -795,10 +690,6 @@ app.post("/delete-bookings", function (req, res) {
 
 
 // ENQUIRIES PAGE
-<<<<<<< HEAD
-app.get("/enquiries", function(req,res){
-    app.use(express.static('./admin dashboard'));
-=======
 app.get("/enquiries", function (req, res) {
     app.use(express.static('./admin dashboard'));
 
@@ -827,7 +718,6 @@ app.post("/add-enquiry", function (req, res) {
             // console.log(rows);
         }
     });
->>>>>>> 0b510870e7b9b5284a594cd047815a55da2c7814
 
     let msg = "Dear " + name + " your enquiry has been submitted successfully. <br> We will contact you soon. <br> Thank you!! <br>"
     let m1 = "<br>User Name : " + name;
@@ -840,22 +730,14 @@ app.post("/add-enquiry", function (req, res) {
 });
 
 // ANALYTICS PAGE
-<<<<<<< HEAD
-app.get("/analytics", function(req,res){
-=======
 app.get("/analytics", function (req, res) {
->>>>>>> 0b510870e7b9b5284a594cd047815a55da2c7814
     app.use(express.static('./admin dashboard'));
 
     res.render(__dirname + "/admin dashboard/analytics.ejs");
 });
 
 // CHARTS PAGE
-<<<<<<< HEAD
-app.get("/charts", function(req,res){
-=======
 app.get("/charts", function (req, res) {
->>>>>>> 0b510870e7b9b5284a594cd047815a55da2c7814
     app.use(express.static('./admin dashboard'));
 
     res.render(__dirname + "/admin dashboard/charts.ejs");
@@ -869,10 +751,5 @@ app.listen(port, function (err) {
     if (err)
         console.log("Error in connection " + err);
     else
-<<<<<<< HEAD
-        console.log("Listening on localhost:"+port);
-});
-=======
         console.log("Listening on localhost:" + port);
 });
->>>>>>> 0b510870e7b9b5284a594cd047815a55da2c7814
