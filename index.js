@@ -1,3 +1,4 @@
+//jshint esversion: 6
 const mysql = require('mysql');
 const express = require('express');
 const bodyParser = require('body-parser');    //for using req.body
@@ -39,32 +40,32 @@ app.get("/", function(req,res){
 
 // LOGIN REGISTER
 app.get("/login", function(req,res){
-    app.use(express.static('./login signup')); 
+    app.use(express.static('./login signup'));
 
     res.sendFile(__dirname + "/login signup/login.html");
 });
 
 app.get("/register", function(req,res){
-    app.use(express.static('./login signup')); 
+    app.use(express.static('./login signup'));
 
     res.sendFile(__dirname + "/login signup/register.html");
 });
 
 //CITIES
 app.get("/explore-cities", function(req,res){
-    app.use(express.static('./cities')); 
+    app.use(express.static('./cities'));
 
     res.sendFile(__dirname + "/cities/cities.html");
 });
 
 app.get("/varanasi", function(req,res){
-    app.use(express.static('./cities/places')); 
+    app.use(express.static('./cities/places'));
 
     res.sendFile(__dirname + "/cities/places/varanasi.html");
 });
 
 app.get("/kolkata", function(req,res){
-    app.use(express.static('./cities/places')); 
+    app.use(express.static('./cities/places'));
 
     res.sendFile(__dirname + "/cities/places/kolkata.html");
 });
@@ -72,27 +73,27 @@ app.get("/kolkata", function(req,res){
 
 //PACKAGES
 app.get("/varanasi-package", function(req,res){
-    app.use(express.static('./packages')); 
+    app.use(express.static('./packages'));
 
     res.sendFile(__dirname + "/packages/varanasi-package.html");
 });
 
 app.get("/kolkata-package", function(req,res){
-    app.use(express.static('./packages')); 
+    app.use(express.static('./packages'));
 
     res.sendFile(__dirname + "/packages/kolkata-package.html");
 });
 
 // DASHBOARD PAGE
 app.get("/dashboard", function(req,res){
-    app.use(express.static('./admin dashboard'));   //change static folder since earlier wasnt rendering css   
+    app.use(express.static('./admin dashboard'));   //change static folder since earlier wasnt rendering css
 
     res.render(__dirname + "/admin dashboard/admin.ejs");
 });
 
 // PROFILE PAGE
 app.get("/profile", function(req,res){
-    app.use(express.static('./admin dashboard')); 
+    app.use(express.static('./admin dashboard'));
 
     res.render(__dirname + "/admin dashboard/profile.ejs");
 });
@@ -100,7 +101,7 @@ app.get("/profile", function(req,res){
 
 // USERS PAGE
 app.get("/users", function(req,res){
-    app.use(express.static('./admin dashboard')); 
+    app.use(express.static('./admin dashboard'));
 
     let sql = "SELECT * FROM user";
     con.query(sql, function(err,rows){
@@ -109,12 +110,12 @@ app.get("/users", function(req,res){
         else{
             // console.log(rows);
             res.render(__dirname + "/admin dashboard/users.ejs", {users: rows});
-        } 
+        }
     });
 });
 
 app.post("/add-users", function(req,res) {
-   
+
     let user_name = req.body.user_name;
     let contact = req.body.contact;
     let password = req.body.password;
@@ -131,15 +132,15 @@ app.post("/add-users", function(req,res) {
         console.log(err);
         else{
             console.log(rows);
-        } 
+        }
     });
-    
+
     let msg = "Congratulations!!  User " + user_name +" has been successfully added."
     res.render(__dirname + "/pop-up.ejs", {title : "User Added", msg : msg});
 });
 
 app.post("/update-users", function(req,res) {
-   
+
     let user_name = req.body.user_name;
     let contact = req.body.contact;
     let password = req.body.password;
@@ -155,9 +156,9 @@ app.post("/update-users", function(req,res) {
         console.log(err);
         else{
             console.log(rows);
-        } 
+        }
     });
-    
+
     let msg = "Congratulations!!  User "+ user_name + " has been updated successfully with values <br> "
     let m1 =  "<br>User Name : "+ user_name;
     let m2 =  "<br>Email : "+ email;
@@ -170,7 +171,7 @@ app.post("/update-users", function(req,res) {
 });
 
 app.post("/delete-user", function(req,res) {
-   
+
     let user_name = req.body.user_name;
 
     console.log(req.body);
@@ -180,12 +181,12 @@ app.post("/delete-user", function(req,res) {
         console.log(err);
         else{
             console.log(rows);
-        } 
+        }
     });
     let msg = "User "+ user_name + " has been successfully removed from the database. "
 
     res.render(__dirname + "/pop-up.ejs", {title : "User Deleted", msg : msg });
-    
+
 });
 
 // app.post("/autofill-users", function(req,res){
@@ -201,71 +202,225 @@ app.post("/delete-user", function(req,res) {
 //             // $("#update-users input[name=user_type]").val(["general"]);
 //             res.render(__dirname + "/admin dashboard/users.ejs", {updates: rows,users});
 //             // res.redirect("localhost:"+ port+ "/users#update-users");
-//         } 
+//         }
 //     });
-    
+
 // });
 
 
 // CATEGORY PAGE
 app.get("/category", function(req,res){
-    app.use(express.static('./admin dashboard')); 
+    app.use(express.static('./admin dashboard'));
 
     res.render(__dirname + "/admin dashboard/category.ejs");
 });
 
 // CITIES PAGE
 app.get("/city", function(req,res){
-    app.use(express.static('./admin dashboard')); 
-
-    res.render(__dirname + "/admin dashboard/cities.ejs");
+    app.use(express.static('./admin dashboard'));
+    let sql = "SELECT * FROM cities";
+    con.query(sql, function(err,rows){
+        if(err)
+        console.log(err);
+        else{
+            console.log(rows);
+            res.render(__dirname + "/admin dashboard/cities.ejs", {cities: rows});
+        }
+    });
 });
+
+app.post("/add-cities", function(req,res) {
+
+    let name = req.body.name;
+    let location = req.body.location;
+    let description = req.body.description;
+
+    console.log(req.body);
+    console.log(name + location + description);
+    let sql = "INSERT INTO cities VALUES(null, '" +name + "', '" + location + "', '" + description + "')";
+    con.query(sql, function(err,rows){
+        if(err)
+        console.log(err);
+        else{
+            console.log(rows);
+        }
+    });
+
+    let msg = "Congratulations!!  City " + name +" has been successfully added."
+    res.render(__dirname + "/pop-up.ejs", {title : "City Added", msg : msg});
+});
+
+app.post("/update-cities", function(req,res) {
+
+    let name = req.body.name;
+    let location = req.body.location;
+    let description = req.body.description;
+    console.log(name + location + description);
+    let sql = "UPDATE city SET location = '" + location + "' , description = '" + description + "' WHERE name = '" + name +"'";
+    con.query(sql, function(err,rows){
+        if(err)
+        console.log(err);
+        else{
+            console.log(rows);
+        }
+    });
+
+    let msg = "Congratulations!!  City "+ name + " has been updated successfully with values <br> "
+    let m1 =  "<br>Name : "+ name;
+    let m2 =  "<br>location : "+ location;
+    let m3 =  "<br>description : "+ description;
+    msg =  msg + m1 + m2 + m3;
+
+    res.render(__dirname + "/pop-up.ejs", {title : "City Updated", msg : msg });
+});
+
+app.post("/delete-city", function(req,res) {
+
+    let name = req.body.name;
+
+    console.log(req.body);
+    let sql = "DELETE FROM cities WHERE name = '" + name + "'";
+    con.query(sql, function(err,rows){
+        if(err)
+        console.log(err);
+        else{
+            console.log(rows);
+        }
+    });
+    let msg = "Name "+ name + " has been successfully removed from the database. "
+
+    res.render(__dirname + "/pop-up.ejs", {title : "City Deleted", msg : msg });
+
+});
+
 
 // PLACES PAGE
 app.get("/places", function(req,res){
-    app.use(express.static('./admin dashboard')); 
+    app.use(express.static('./admin dashboard'));
 
-    res.render(__dirname + "/admin dashboard/places.ejs");
+    let sql = "SELECT * FROM places";
+        con.query(sql, function(err,rows){
+            if(err)
+            console.log(err);
+            else{
+                // console.log(rows);
+                res.render(__dirname + "/admin dashboard/places.ejs", {places: rows});
+            }
+        });
+    });
+
+    app.post("/add-places", function(req,res) {
+    let place_name = req.body.place_name;
+    let city_id = req.body.city_id;
+    let address = req.body.address;
+    let latitude = req.body.latitude;
+    let longitude = req.body.longitude;
+    let description = req.body.description;
+    console.log(req.body);
+
+    let sql = "INSERT INTO places VALUES(null, '" + place_name + "', '" + city_id + "', '" + address + "', '" + latitude + "', '" + longitude + "', '" + description + "')";
+    con.query(sql, function(err,rows){
+        if(err)
+        console.log(err);
+        else{
+            console.log(rows);
+        }
+    });
+
+    let msg = "Congratulations!! Place " + place_name +" has been successfully added."
+    res.render(__dirname + "/pop-up.ejs", {title : "Place Added", msg : msg});
 });
+
+app.post("/update-places", function(req,res) {
+
+  let place_name = req.body.place_name;
+  let city_id = req.body.city_id;
+  let address = req.body.address;
+  let latitude = req.body.latitude;
+  let longitude = req.body.longitude;
+  let description = req.body.description;
+
+
+    let sql = "UPDATE places SET place = '" + place_name + "', city_id '" + city_id + "', address '" + address + "', latitude '" + latitude + "', longitude'" + longitude + "', description'" + description + "')";
+    con.query(sql, function(err,rows){
+        if(err)
+        console.log(err);
+        else{
+            console.log(rows);
+        }
+    });
+
+    let msg = "Congratulations!!  place "+ place_name + " has been updated successfully with values <br> "
+    let m1 =  "<br>Place Name : "+ place_name;
+    let m2 =  "<br>City_id : "+ city_id;
+    let m3 =  "<br>Address : "+ address;
+    let m4 =  "<br>latitude : "+ latitude;
+    let m5 =  "<br>longitude : "+ longitude;
+    let m6 =  "<br>description : "+ description;
+    msg =  msg + m1 + m2 + m3 + m4 + m5 +m6;
+
+    res.render(__dirname + "/pop-up.ejs", {title : "place Updated", msg : msg });
+});
+
+app.post("/delete-place", function(req,res) {
+
+    let place_name = req.body.place_name;
+
+    console.log(req.body);
+    let sql = "DELETE FROM places WHERE place_name = '" + place_name + "'";
+    con.query(sql, function(err,rows){
+        if(err)
+        console.log(err);
+        else{
+            console.log(rows);
+        }
+    });
+    let msg = "Place "+ place_name + " has been successfully removed from the database. "
+
+    res.render(__dirname + "/pop-up.ejs", {title : "Place Deleted", msg : msg });
+
+});
+
+
 
 // PACKAGES PAGE
 app.get("/package", function(req,res){
-    app.use(express.static('./admin dashboard')); 
+    app.use(express.static('./admin dashboard'));
 
     res.render(__dirname + "/admin dashboard/packages.ejs");
 });
 
 // REVIEWS PAGE
 app.get("/reviews", function(req,res){
-    app.use(express.static('./admin dashboard')); 
+    app.use(express.static('./admin dashboard'));
 
     res.render(__dirname + "/admin dashboard/reviews.ejs");
 });
 
 // BOOKINGS PAGE
 app.get("/bookings", function(req,res){
-    app.use(express.static('./admin dashboard')); 
+    app.use(express.static('./admin dashboard'));
 
     res.render(__dirname + "/admin dashboard/bookings.ejs");
 });
 
 // ENQUIRIES PAGE
 app.get("/enquiries", function(req,res){
-    app.use(express.static('./admin dashboard')); 
+    app.use(express.static('./admin dashboard'));
 
     res.render(__dirname + "/admin dashboard/enquiries.ejs");
 });
 
 // ANALYTICS PAGE
 app.get("/analytics", function(req,res){
-    app.use(express.static('./admin dashboard')); 
+    app.use(express.static('./admin dashboard'));
 
     res.render(__dirname + "/admin dashboard/analytics.ejs");
 });
 
 // CHARTS PAGE
 app.get("/charts", function(req,res){
-    app.use(express.static('./admin dashboard')); 
+    app.use(express.static('./admin dashboard'));
 
     res.render(__dirname + "/admin dashboard/charts.ejs");
 });

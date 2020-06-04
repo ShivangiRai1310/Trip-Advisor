@@ -39,14 +39,14 @@ $(".mydatatable").DataTable();
 
 // UPDATE USER
 $(".disable-basedon").change(function () {
-    // alert("changed");
+    alert("changed");
     $(".disable").removeAttr("disabled");
-    // $('.disable').prop("disabled", false);    BTN NOT WORKING WITH DISABLE CLASS 
+    // $('.disable').prop("disabled", false);    BTN NOT WORKING WITH DISABLE CLASS
     if($(this).val()=='abc'){
         $("#update-users input[name=fname]").val("abc");
         $("#update-users input[name=user_type]").val(["general"]);
     }
-    
+
 });
 
 // PENDING/ APPROVED BOOKING STATUS
@@ -58,7 +58,7 @@ $(".pending").click(function () {
     $(this).html("Approved");
 });
 //see if both cn be combined by using if case to check ancestor id name first before changing html
-$(".pending-enquiry").click(function () { 
+$(".pending-enquiry").click(function () {
     alert("Has the enquiry been reviewed?");
     $(this).removeClass("btn-danger");
     $(this).removeClass("pending-enquiry");

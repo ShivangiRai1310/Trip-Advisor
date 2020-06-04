@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="styles-admin.css">
 </head>
 <body>
-    
+
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-md navbar-light px-0 ">
     <button class="navbar-toggler ml-auto mb-2 bg-light" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -142,40 +142,42 @@
 
     <!-- VIEW PLACES -->
     <div class="container-fluid pt-md-5 mt-md-1">
-      <div class="row mb-5 pt-md-5 mt-md-3">
-        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto table-responsive">
-          <h2 class="text-muted text-center mb-4">Places</h2>
-          <table class="table table-light table-striped table-bordered text-center mydatatable" data-page-list="[5, 10, 25, 50, 100, 200, All]">
-            <thead class="thead-dark pt-3">
-              <tr class="text-muted">
-                <th>#</th>
-                <th>Name</th>
-                <th>City</th>
-                <th class="address">Address</th>
-                <th class="description">Description</th>
-                <!-- not showing lat long used only for map -->
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>1</th>
-                <td>India Gate</td>
-                <td>Delhi</td>
-                <td class="address">RBRBGTHVHJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ</td>
-                <td class="description">fshhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh HETH</td>
-              </tr>
-              <tr>
-                <th>1</th>
-                <td>India Gate</td>
-                <td>Delhi</td>
-                <td class="address">RBRBGTHVHJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ</td>
-                <td class="description">sgfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffTH</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+    <div class="row mb-5 pt-md-5 mt-md-3">
+      <div class="col-xl-10 col-lg-9 col-md-8 ml-auto table-responsive ">
+        <h2 class="text-muted text-center mb-4">places</h2>
+
+        <table class="table table-light table-striped table-bordered text-center mydatatable" data-page-list="[5, 10, 25, 50, 100, 200, All]">
+          <thead class="thead-dark pt-3">
+            <tr class="text-muted">
+              <th>#</th>
+              <th>Name</th>
+              <th>City</th>
+              <th>Address</th>
+              <th>latitude</th>
+              <th>longitude</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+
+
+          <%  for(var i=0; i<places.length;i++){ %>
+            <tr>
+              <th><%= places[i].place_id %></th>
+              <td><%= places[i].place_name %></td>
+              <td><%= places[i].city %></td>
+              <td><%= places[i].address %></td>
+              <td><%= places[i].latitude %></td>
+              <td><%= places[i].longitude %></td>
+              <td><%= places[i].description %></td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
       </div>
     </div>
+  </div>
+
 
     <!-- ADD PLACES -->
     <div class="container-fluid pt-md-5 mt-md-1 form-width sub-section" id="add-places">
@@ -185,16 +187,16 @@
           <form action="" method="post">
             <div class="form-group py-2">
               <label>Place Name</label>
-              <input type="text" class="form-control" placeholder="Enter Place Name">
+              <input name="place_name" type="text" class="form-control" placeholder="Enter Place Name">
             </div>
             <div class="form-group py-2">
               <label>City</label>
-              <select class="form-control">
+              <select class="form-control disable-basedon" name="city_id">
                 <option value="" disabled selected>Select City</option>
-                <option value="abc">abc</option>
-                <option value="pqr">pqr</option>
-                <option value="klm">klm</option>
-              </select>
+                 <%  for(var i=0; i<places.length;i++){ %>
+                    <option value=<%= places[i].place_name %> ><%= places[i].city_id %></option>
+                <% } %>
+               </select>
             </div>
             <div class="form-group py-2">
               <label>Address</label>
@@ -202,11 +204,11 @@
             </div>
             <div class="form-group py-2">
               <label>Latitude</label>
-              <input type="text" class="form-control" placeholder="Enter latitude position value">
+              <input name="latitude" type="text" class="form-control" placeholder="Enter latitude position value">
             </div>
             <div class="form-group py-2">
               <label>Longitude Position</label>
-              <input type="text" class="form-control" placeholder="Enter longitude position value">
+              <input name="longitude" type="text" class="form-control" placeholder="Enter longitude position value">
             </div>
             <div class="form-group py-2">
               <label>Description</label>
@@ -223,43 +225,44 @@
     <div class="container-fluid pt-md-5 mt-md-1 form-width sub-section" id="update-places">
       <div class="row mb-5 pt-md-5 mt-md-3">
         <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
-          <h2 class="text-muted text-center mb-4"><i class="fas fa-edit fa-lg mr-3"></i>Update Place</h2>
-          <form action="" method="post">
+          <h2 class="text-muted text-center mb-4"><i class="fas fa-edit fa-lg mr-3"></i>Update places</h2>
+          <!-- <form action="/autofill-places" method="post"> -->
+            <form action="/update-places" method="post">
             <div class="form-group py-2">
-              <label>Place</label>
-              <select class="form-control disable-basedon">
-                <option value="" disabled selected>Select Place to Update</option>
-                <option value="abc">abc</option>
-                <option value="pqr">pqr</option>
-                <option value="klm">klm</option>
+              <label>place</label>
+              <select class="form-control disable-basedon" name="place_name">
+                <option value="" disabled selected>Select place to Update</option>
+                <%  for(var i=0; i<places.length;i++){ %>
+                    <option value=<%= places[i].place_name %> ><%= places[i].place_name %></option>
+                <% } %>
               </select>
             </div>
-            <div class="form-group py-2">
-              <label>Place Name</label>
-              <input type="text" class="form-control disable" placeholder="Enter Place Name" disabled="disabled">
-            </div>
-            <div class="form-group py-2">
-              <label>City</label>
-              <input type="text" class="form-control  disable" placeholder="Enter City Location" disabled="disabled">
-            </div>
+            <select class="form-control disable-basedon" name="city_id">
+              <option value="" disabled selected>Select City</option>
+               <%  for(var i=0; i<places.length;i++){ %>
+                  <option value=<%= places[i].place_name %> ><%= places[i].city_id %></option>
+              <% } %>
+             </select>
+            <!-- <button type="submit" class="btn btn-danger disable" disabled="disabled"><i class="fas fa-sync mr-3"></i>Autofill</button>
+            </form> -->
             <div class="form-group py-2">
               <label>Address</label>
-              <textarea name="address" class="form-control disable" id="" cols="20" rows="3" placeholder="Type address here" autocomplete="off" disabled="disabled"></textarea>
+              <input type="text" name="address" class="form-control disable" placeholder="Enter Address" disabled="disabled">
             </div>
             <div class="form-group py-2">
               <label>Latitude</label>
-              <input type="text" class="form-control disable" placeholder="Enter latitude position value" disabled="disabled">
+              <input type="text" name="latitude" class="form-control disable" placeholder="Enter latitude" disabled="disabled">
             </div>
             <div class="form-group py-2">
-              <label>Longitude Position</label>
-              <input type="text" class="form-control disable" placeholder="Enter longitude position value" disabled="disabled">
+              <label>Longitude</label>
+              <input type="text" name="longitude" class="form-control disable" placeholder="Enter longitude" disabled="disabled">
             </div>
             <div class="form-group py-2">
               <label>Description</label>
-              <textarea name="description" class="form-control  disable" id="" cols="40" rows="5" placeholder="Type city description here" autocomplete="off" disabled="disabled"></textarea>
+              <input type="text" name="description" class="form-control disable" placeholder="Enter description" disabled="disabled">
             </div>
 
-            <button type="submit" class="btn btn-info" disabled="disabled"><i class="fas fa-edit mr-3"></i>Update Place</button>
+            <button type="submit" class="btn btn-info disable" disabled="disabled"><i class="fas fa-edit mr-3"></i>Update place</button>
           </form>
         </div>
       </div>
@@ -269,42 +272,41 @@
     <div class="container-fluid pt-md-5 mt-md-1 form-width sub-section" id="delete-places">
       <div class="row mb-5 pt-md-5 mt-md-3">
         <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
-          <h2 class="text-muted text-center mb-4"><i class="fas fa-trash-alt fa-lg mr-3"></i>Delete Places</h2>
-          <form action="" method="post">
+          <h2 class="text-muted text-center mb-4"><i class="fas fa-trash-alt fa-lg mr-3"></i>Delete places</h2>
+          <form method="post" action="/delete-places" id="form1">
             <div class="form-group py-2">
-              <label>Place</label>
-              <select class="form-control disable-basedon">
-                <option value="" disabled selected>Select Place to Delete</option>
-                <option value="abc">abc</option>
-                <option value="pqr">pqr</option>
-                <option value="klm">klm</option>
+              <label>Places</label>
+              <select class="form-control disable-basedon" name="place_name">
+                <option value="" disabled selected>Select place to Delete</option>
+                <%  for(var i=0; i<places.length;i++){ %>
+                    <option value=<%= places[i].place_name %> ><%= places[i].place_name %></option>
+                <% } %>
               </select>
             </div>
-            <div class="row container-fluid">
-              <h4 class="col-12 py-3">Place Details</h4>
-              <div class="col-6 px-3 py-2">
-                <h5>Name</h5>
-                <p>India Gate</p>
-              </div>
-              <div class="col-6 px-3 py-2">
-                <h5>City</h5>
-                <p>Delhi</p>
-              </div>
-              <div class="col-12 px-3 py-2">
-                <h5>Address</h5>
-                <p>HHHHHEfubnyuhhhhhhhhhhhhhhhhhhhhhhhhh</p>
-              </div>
-              <div class="col-12 px-3 py-2">
-                <h5>Description</h5>
-                <p>HBGYGNCRRREHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHEfubnyuhhhhhhhhhhhhhhhhhhhhhhhhh</p>
-              </div>
-            </div>
-            <!-- taking care of referential integrity constraint by deleting all reviews -->
-            <button type="submit" class="btn btn-danger mt-4"><i class="fas fa-trash-alt mr-3"></i>Delete Place</button>
+            <button type="button" class="btn btn-danger mt-4"  onclick="javascript: return false;"
+            data-toggle="modal" data-target="#deleteplace"><i class="fas fa-trash-alt mr-3"></i>Delete place</button>
           </form>
         </div>
       </div>
     </div>
+    <!-- MODAL window for deleteplace -->
+    <div class="modal fade" id="deleteplace">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h4 class="modal-title">Delete Place</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                  Are you sure, you want to delete the place selected ?
+              </div>
+              <div class="modal-footer">
+                  <button type="submit" onclick="document.getElementById('form1').submit();" class="btn btn-danger" data-dismiss="modal">Delete</button>
+                  <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+              </div>
+          </div>
+      </div>
+  </div>
 
   </section>
 
