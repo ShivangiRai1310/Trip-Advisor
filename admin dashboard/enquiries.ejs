@@ -153,39 +153,36 @@
                 <th>Email-address</th>
                 <th class="subject">Subject</th>
                 <th class="description">Message</th>
+                <th>Enquiry Date</th>
                 <th>Status</th>
                 <th>Send Email</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th>1</th>
-                <td>Abc</td>
-                <td>1234567890</td>
-                <td>abc@gmail.com</td>
-                <td class="subject">EGEAVGAHTGGGGGGGGGGGGGGGGGGGGGGGG</td>
-                <td class="description">.descriptionLorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex</td>
-                <td>
-                  <button type="submit" formaction="URL" class="btn btn-danger w-85 py-2 pending-enquiry">Pending</button>
-                </td>
-                <td>
-                  <button type="submit" formaction="URL" class="btn btn-info w-85 py-2 send_email">Email</button>
-                </td>
-              </tr>
-              <tr>
-                <th>1</th>
-                <td>Abc</td>
-                <td>1234567890</td>
-                <td>abc@gmail.com</td>
-                <td class="subject">EGEAVGAHTGGGGGGGGGGGGGGGGGGGGGGGG</td>
-                <td class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temporincididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex</td>
-                <td>
-                  <button type="submit" formaction="URL" class="btn btn-success w-85 py-2">Reviewed</button>
-                </td>
-                <td>
-                  <button type="submit" formaction="URL" class="btn btn-info w-85 py-2 send_email">Email</button>
-                </td>
-              </tr>
+              <%  for(var i=0; i<enquiries.length;i++){ %>
+                <tr>
+                  <th><%= enquiries[i].enquiry_id %></th>
+                  <td><%= enquiries[i].name %></td>
+                  <td><%= enquiries[i].contact %></td>
+                  <td><%= enquiries[i].email %></td>
+                  <td><%= enquiries[i].subject %></td>
+                  <td><%= enquiries[i].message %></td>
+                  <td><%= enquiries[i].enquiry_date %></td>
+                  <% if(enquiries[i].status === "reviewed"){  %>
+                  <td>
+                    <button type="submit" formaction="URL" class="btn btn-success w-85 py-2">Reviewed</button>
+                  </td>
+                  <% } else{  %>
+                  <td>
+                    <button type="submit" formaction="URL" class="btn btn-danger w-85 py-2 pending-enquiry">Pending</button>
+                  </td>
+                  <%  }  %>
+                  <td>
+                    <button type="submit" formaction="URL" class="btn btn-info w-85 py-2 send_email">Email</button>
+                  </td>
+                </tr>
+                <% } %>
+             
             </tbody>
           </table>
         </div>

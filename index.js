@@ -538,7 +538,40 @@ app.post("/delete-bookings", function (req, res) {
 app.get("/enquiries", function (req, res) {
     app.use(express.static('./admin dashboard'));
 
-    res.render(__dirname + "/admin dashboard/enquiries.ejs");
+    let sql = "SELECT * FROM enquiries";
+    con.query(sql, function (err, rows) {
+        if (err)
+            console.log(err);
+        else {
+            // console.log(rows);
+            res.render(__dirname + "/admin dashboard/enquiries.ejs", { enquiries: rows });
+        }
+    });
+
+});
+
+app.post("/add-enquiry", function (req, res) {
+
+    let { name, contact, email, subject, message } = req.body;
+    let enquiry_date = date.currentDate();
+    let status = "pending";
+    let sql = "INSERT INTO enquiries VALUES(null, '" + name + "', '" + contact + "', '" + email + "', '" + subject + "', '" + message + "', '" + enquiry_date + "', '" + status + "')";
+    con.query(sql, function (err, rows) {
+        if (err)
+            console.log(err);
+        else {
+            // console.log(rows);
+        }
+    });
+
+    let msg = "Dear " + name + " your enquiry has been submitted successfully. <br> We will contact you soon. <br> Thank you!! <br>"
+    let m1 = "<br>User Name : " + name;
+    let m2 = "<br>Contact : " + contact;
+    let m3 = "<br>Email : " + email;
+    let m4 = "<br>Subject : " + subject;
+    let m5 = "<br>Message : " + message;
+    msg = msg + m1 + m2 + m3 + m4 + m5;
+    res.render(__dirname + "/pop-up.ejs", { title: "Enquiry Submitted", msg: msg });
 });
 
 // ANALYTICS PAGE
