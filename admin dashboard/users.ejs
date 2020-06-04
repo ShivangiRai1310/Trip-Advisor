@@ -17,11 +17,11 @@
   <!-- BASE CSS -->
   <link rel="stylesheet" href="styles-admin.css">
   <style>
-      
+
   </style>
 </head>
 <body>
-    
+
     <!-- NAVBAR -->
   <nav class="navbar navbar-expand-md navbar-light px-0 ">
     <button class="navbar-toggler ml-auto mb-2 bg-light" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -163,7 +163,7 @@
             </thead>
             <tbody>
 
-            
+
             <%  for(var i=0; i<users.length;i++){ %>
               <tr>
                 <th><%= users[i].user_id %></th>
@@ -293,15 +293,21 @@
                 <p>General</p>
               </div>
             </div> -->
+<<<<<<< HEAD
+            <button type="button" class="btn btn-danger mt-4"  onclick="javascript: return false;"
+            data-toggle="modal" data-target="#deleteuser"><i class="fas fa-trash-alt mr-3"></i>Delete User</button>
+
+=======
             <button type="button" class="btn btn-danger mt-4 disable"  onclick="javascript: return false;"
             data-toggle="modal" data-target="#deleteuser" disabled><i class="fas fa-trash-alt mr-3"></i>Delete User</button>
             
+>>>>>>> 0b510870e7b9b5284a594cd047815a55da2c7814
           </form>
         </div>
       </div>
     </div>
 
-    <!-- MODAL window for deleteuser --> 
+    <!-- MODAL window for deleteuser -->
     <div class="modal fade" id="deleteuser">
       <div class="modal-dialog">
           <div class="modal-content">
@@ -319,7 +325,7 @@
           </div>
       </div>
   </div>
-    
+
   </section>
 
   <!--FOOTER -->
@@ -355,7 +361,7 @@
       </div>
     </div>
   </footer>
-    
+
   <!-- JQuery -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <!-- BOOTSTRAP TABLE -->

@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="styles-admin.css">
 </head>
 <body>
-    
+
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-md navbar-light px-0 ">
     <button class="navbar-toggler ml-auto mb-2 bg-light" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -145,6 +145,7 @@
       <div class="row mb-5 pt-md-5 mt-md-3">
         <div class="col-xl-10 col-lg-9 col-md-8 ml-auto ">
           <h2 class="text-muted text-center mb-4">Cities</h2>
+
           <table class="table table-light table-striped table-bordered text-center mydatatable" data-page-list="[5, 10, 25, 50, 100, 200, All]">
             <thead class="thead-dark pt-3">
               <tr class="text-muted">
@@ -156,20 +157,15 @@
               </tr>
             </thead>
             <tbody>
+
+              <%  for(var i=0; i<cities.length;i++){ %>
               <tr>
-                <th>1</th>
-                <td>Mysore</td>
-                <td>Karnataka/India</td>
-                <td class="description">FEGGEwhgRHRARCRAGTSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSDGRAEVHTHYHETH</td>
-                <td>5</td>
-              </tr>
-              <tr>
-                <th>2</th>
-                <td>Mysore</td>
-                <td>Karnataka/India</td>
-                <td class="description">DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFfHETH</td>
-                <td>6</td>
-              </tr>
+                <th><%= cities[i].city_id %></th>
+                <td><%= cities[i].name %></td>
+                <td><%= cities[i].location %></td>
+                <td><%= cities[i].description %></td>
+                </tr>
+              <% } %>
             </tbody>
           </table>
 
@@ -182,14 +178,14 @@
       <div class="row mb-5 pt-md-5 mt-md-3">
         <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
           <h2 class="text-muted text-center mb-4"><i class="fas fa-plus-circle fa-lg mr-3"></i>Add City</h2>
-          <form action="" method="post">
+          <form action="/add-cities" method="post">
             <div class="form-group py-2">
               <label>City Name</label>
-              <input type="text" class="form-control" placeholder="Enter City Name">
+              <input type="text" name="name" class="form-control" placeholder="Enter City Name">
             </div>
             <div class="form-group py-2">
               <label>Location</label>
-              <input type="text" class="form-control" placeholder="Enter City Location">
+              <input type="text" name="location" class="form-control" placeholder="Enter City Location">
             </div>
             <div class="form-group py-2">
               <label>Description</label>
@@ -207,30 +203,27 @@
       <div class="row mb-5 pt-md-5 mt-md-3">
         <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
           <h2 class="text-muted text-center mb-4"><i class="fas fa-edit fa-lg mr-3"></i>Update Cities</h2>
-          <form action="" method="post">
+          <!-- forn action autofill -->
+          <form action="/update-cities" method="post">
             <div class="form-group py-2">
               <label>City</label>
-              <select class="form-control disable-basedon">
+              <select name="name" class="form-control disable-basedon">
                 <option value="" disabled selected>Select City to Update</option>
-                <option value="abc">abc</option>
-                <option value="pqr">pqr</option>
-                <option value="klm">klm</option>
+                <%  for(var i=0; i<cities.length;i++){ %>
+                    <option value=<%= cities[i].name %> ><%= cities[i].name %></option>
+                <% } %>
               </select>
             </div>
             <div class="form-group py-2">
-              <label>City Name</label>
-              <input type="text" class="form-control disable" placeholder="Enter City Name" disabled="disabled">
-            </div>
-            <div class="form-group py-2">
               <label>Location</label>
-              <input type="text" class="form-control  disable" placeholder="Enter City Location" disabled="disabled">
+              <input name="location" type="text" class="form-control  disable" placeholder="Enter City Location" disabled="disabled">
             </div>
             <div class="form-group py-2">
               <label>Description</label>
-              <textarea name="description" class="form-control  disable" id="" cols="40" rows="5" placeholder="Type city description here" autocomplete="off" disabled="disabled"></textarea>
+              <textarea name="description" class="form-control  disable"  cols="40" rows="5" placeholder="Type city description here" autocomplete="off" disabled="disabled"></textarea>
             </div>
 
-            <button type="submit" class="btn btn-info" disabled="disabled"><i class="fas fa-edit mr-3"></i>Update City</button>
+            <button type="submit" class="btn btn-info disable" disabled="disabled"><i class="fas fa-edit mr-3"></i>Update City</button>
           </form>
         </div>
       </div>
@@ -241,17 +234,17 @@
       <div class="row mb-5 pt-md-5 mt-md-3">
         <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
           <h2 class="text-muted text-center mb-4"><i class="fas fa-trash-alt fa-lg mr-3"></i>Delete Cities</h2>
-          <form action="" method="post">
+          <form action="/delete-city" method="post" id="form1">
             <div class="form-group py-2">
               <label>City</label>
-              <select class="form-control disable-basedon">
+              <select class="form-control disable-basedon" name="name">
                 <option value="" disabled selected>Select City to Delete</option>
-                <option value="abc">abc</option>
-                <option value="pqr">pqr</option>
-                <option value="klm">klm</option>
+                  <%  for(var i=0; i<cities.length;i++){ %>
+                    <option value=<%= cities[i].name %> ><%= cities[i].name %></option>
+                <% } %>
               </select>
             </div>
-            <div class="row container-fluid">
+            <!-- <div class="row container-fluid">
               <h4 class="col-12 py-3">City Details</h4>
               <div class="col-6 px-3 py-2">
                 <h5>City Name</h5>
@@ -265,13 +258,32 @@
                 <h5>Description</h5>
                 <p>HBGYGNCRRREHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHEfubnyuhhhhhhhhhhhhhhhhhhhhhhhhh</p>
               </div>
-            </div>
+            </div> -->
             <!-- taking care of referential integrity constraint by deleting all places -->
-            <button type="submit" class="btn btn-danger mt-4"><i class="fas fa-trash-alt mr-3"></i>Delete City</button>
+            <button type="button" class="btn btn-danger mt-4"  onclick="javascript: return false;"
+            data-toggle="modal" data-target="#deletecity"><i class="fas fa-trash-alt mr-3"></i>Delete City</button>
           </form>
         </div>
       </div>
     </div>
+    <!-- MODAL window for deletecity -->
+    <div class="modal fade" id="deletecity">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h4 class="modal-title">Delete city</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                  Are you sure, you want to delete the city selected ?
+              </div>
+              <div class="modal-footer">
+                  <button type="submit" onclick="document.getElementById('form1').submit();" class="btn btn-danger" data-dismiss="modal">Delete</button>
+                  <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+              </div>
+          </div>
+      </div>
+  </div>
 
   </section>
 
@@ -308,7 +320,7 @@
       </div>
     </div>
   </footer>
-    
+
   <!-- JQuery -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <!-- BOOTSTRAP TABLE -->
