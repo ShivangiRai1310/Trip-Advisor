@@ -219,7 +219,7 @@ app.get("/dashboard", function (req, res) {
         if (err)
             console.log(err);
         else {
-            console.log(rows);
+            // console.log(rows);
             res.render(__dirname + "/admin dashboard/admin.ejs", { user: rows[0] });
         }
     });
@@ -254,7 +254,7 @@ app.post("/profile", authController.isLoggedIn, function (req, res) {
             if (err)
                 console.log(err);
             else {
-                console.log(rows);
+                // console.log(rows);
                 res.redirect("/profile");
             }
         });
