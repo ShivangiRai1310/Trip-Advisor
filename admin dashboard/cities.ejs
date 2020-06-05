@@ -164,6 +164,11 @@
                 <td><%= cities[i].name %></td>
                 <td><%= cities[i].location %></td>
                 <td><%= cities[i].description %></td>
+               <% if(  places[i]  == undefined ){ %>
+                  <td>0</td>
+               <% } else { %>
+                <td><%= places[i].place_count %></td>
+               <% } %>
                 </tr>
               <% } %>
             </tbody>

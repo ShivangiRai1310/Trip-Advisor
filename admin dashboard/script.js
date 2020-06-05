@@ -42,7 +42,7 @@ $(".mydatatable").DataTable();
 
 // UPDATE USER
 $(".disable-basedon").change(function () {
-    alert("changed");
+    // alert("changed");
     $(".disable").removeAttr("disabled");
     // $('.disable').prop("disabled", false);    BTN NOT WORKING WITH DISABLE CLASS
     if($(this).val()=='abc'){

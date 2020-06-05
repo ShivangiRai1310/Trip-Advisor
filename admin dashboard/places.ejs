@@ -153,8 +153,8 @@
               <th>Name</th>
               <th>City</th>
               <th>Address</th>
-              <th>latitude</th>
-              <th>longitude</th>
+              <th>Latitude</th>
+              <th>Longitude</th>
               <th>Description</th>
             </tr>
           </thead>
@@ -165,7 +165,7 @@
             <tr>
               <th><%= places[i].place_id %></th>
               <td><%= places[i].place_name %></td>
-              <td><%= places[i].city %></td>
+              <td><%= places[i].name %></td>
               <td><%= places[i].address %></td>
               <td><%= places[i].latitude %></td>
               <td><%= places[i].longitude %></td>
@@ -184,7 +184,7 @@
       <div class="row mb-5 pt-md-5 mt-md-3">
         <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
           <h2 class="text-muted text-center mb-4"><i class="fas fa-plus-circle fa-lg mr-3"></i>Add Place</h2>
-          <form action="" method="post">
+          <form action="/add-places" method="post">
             <div class="form-group py-2">
               <label>Place Name</label>
               <input name="place_name" type="text" class="form-control" placeholder="Enter Place Name">
@@ -193,8 +193,8 @@
               <label>City</label>
               <select class="form-control disable-basedon" name="city_id">
                 <option value="" disabled selected>Select City</option>
-                 <%  for(var i=0; i<places.length;i++){ %>
-                    <option value=<%= places[i].place_name %> ><%= places[i].city_id %></option>
+                 <%  for(var i=0; i<cities.length;i++){ %>
+                    <option value="<%= cities[i].city_id %>" ><%= cities[i].city_id %> <%= cities[i].name %></option>
                 <% } %>
                </select>
             </div>
@@ -229,20 +229,20 @@
           <!-- <form action="/autofill-places" method="post"> -->
             <form action="/update-places" method="post">
             <div class="form-group py-2">
-              <label>place</label>
+              <label>Place</label>
               <select class="form-control disable-basedon" name="place_name">
                 <option value="" disabled selected>Select place to Update</option>
                 <%  for(var i=0; i<places.length;i++){ %>
-                    <option value=<%= places[i].place_name %> ><%= places[i].place_name %></option>
+                    <option value="<%= places[i].place_name %>" ><%= places[i].place_name %></option>
                 <% } %>
               </select>
             </div>
-            <select class="form-control disable-basedon" name="city_id">
+            <!-- <select class="form-control disable-basedon" name="city_id">
               <option value="" disabled selected>Select City</option>
                <%  for(var i=0; i<places.length;i++){ %>
                   <option value=<%= places[i].place_name %> ><%= places[i].city_id %></option>
               <% } %>
-             </select>
+             </select> -->
             <!-- <button type="submit" class="btn btn-danger disable" disabled="disabled"><i class="fas fa-sync mr-3"></i>Autofill</button>
             </form> -->
             <div class="form-group py-2">
