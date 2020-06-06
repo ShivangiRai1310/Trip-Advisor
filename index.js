@@ -207,8 +207,54 @@ app.get("/kolkata-package", function (req, res) {
 app.get("/trip-plan", function (req, res) {
     app.use(express.static('./map'));
 
-    res.render(__dirname + "/map/trip-plan.ejs");
+    let sql = "SELECT * FROM cities";
+    // sql += "SELECT * FROM places ";
+    con.query(sql, function (err, rows) {
+        if (err)
+            console.log(err);
+        else {
+            // console.log(rows);
+            // console.log(rows[1]);
+            res.render(__dirname + "/map/trip-plan.ejs", { cities: rows, places: ""});
+        }
+    });
+    
 });
+
+app.post("/get-location", function(req,res){
+    app.use(express.static('./map'));
+
+    let city_id= req.body.city_id;
+    let sql = "SELECT * FROM places WHERE city_id = '" + city_id + "';";
+    sql += "SELECT * FROM cities;";
+    con.query(sql, function (err, rows) {
+        if (err)
+            console.log(err);
+        else {
+            // console.log(rows);
+            res.render(__dirname + "/map/trip-plan.ejs", { cities: rows[1], places: rows[0]});
+        }
+    });
+});
+
+app.post("/load-map", function(req,res){
+    app.use(express.static('./map'));
+
+    let {start_place, waypoints, end_place} = req.body;
+    console.log(start_place);
+    console.log(waypoints);
+    console.log(end_place);
+    // let sql = "SELECT * FROM places WHERE city_id = '" + city_id + "'";
+    // con.query(sql, function (err, rows) {
+    //     if (err)
+    //         console.log(err);
+    //     else {
+    //         // console.log(rows);
+    //         res.render(__dirname + "/map/trip-plan.ejs", { cities: "", places: rows});
+    //     }
+    // });
+});
+
 
 
 // DASHBOARD PAGE

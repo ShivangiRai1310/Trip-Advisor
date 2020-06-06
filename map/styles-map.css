@@ -32,6 +32,7 @@ section{
 
 #details{
     background-color: #eee;
+    height: auto;
 }
 
 #map{
@@ -41,7 +42,6 @@ section{
 #route{
     background-color: #fff6da;
 }
-
 
 
 
