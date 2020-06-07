@@ -28,7 +28,7 @@
 
 </head>
 
-<body>
+<body onload="initMap();">
 
     <!-- HEADER SECTION -->
     <header>
@@ -42,6 +42,7 @@
     </header>
 
     <section id="overview">
+        <h1><%= start_place %></h1>
         <h2><a>Plan your trip here</a></h2>
         <div class="container-fluid row text-center px-5 mt-5">
             <div class="col-xl-6 col-sm-12 px-5">
@@ -81,9 +82,9 @@
                         </select>
                     </div>
                     <div class="col-4 my-auto">
-                        <button type="submit" class="btn btn-info btn-lg get-location mx-3 my-2" ><i
+                        <button type="submit" class="btn btn-info btn-lg get-location mx-3 my-2"><i
                                 class="fas fa-search-location fa-lg mr-3 my-2"></i>Get Locations</button>
-                        
+
                     </div>
                 </div>
             </form>
@@ -117,23 +118,21 @@
                         </select>
                     </div>
                     <button type="submit" class="btn btn-success btn-lg disable"><i
-                            class="fas fa-map-marked-alt fa-lg mr-3"></i>Load Map</button>           
+                            class="fas fa-map-marked-alt fa-lg mr-3"></i>Load Map</button>
                 </div>
             </form>
-            <a href="/trip-plan"><button class="btn btn-danger btn-lg mr-auto" ><i class="fas fa-redo mr-3"></i>Refresh Page</button></a>
+            <a href="/trip-plan"><button class="btn btn-danger btn-lg mr-auto" onclick="initMap();"><i class="fas fa-redo mr-3"></i>Refresh
+                    Page</button></a>
         </div>
     </section>
 
-    <section id="map">
-        
+    <section id="map-display">
+        <div id="map"></div>
     </section>
 
     <section id="route">
 
     </section>
-
-
-
 
 
 
@@ -152,6 +151,72 @@
         </div>
     </footer>
 
+    <script>
+        function initMap() {     //func in callback executed for map
+            var options = {
+                zoom: 11,
+                center: { lat: 22.5851, lng: 88.3469 }
+            };
+
+            var map = new google.maps.Map(document.getElementById("map"), options);    //displays map with position centered,takes 2 para id where to display n options
+
+            // LISTEN FOR CLICK ON MAP
+            // google.maps.event.addListener(map, "click", function(event){
+            //     addMarker({coords: event.latLng});
+            // })
+
+            // ADD SINGLE MARKER
+            // var marker = new google.maps.Marker({
+            //     position : {lat:25.3811 ,lng:83.0214 },
+            //     map : map
+            // });
+
+            // var infoWindow = new google.maps.InfoWindow({
+            //     content: "<h3> Varanasi, Uttarr Pradesh</h3>"
+            // });
+
+            // marker.addListener("click", function(){
+            //     infoWindow.open(map, marker);
+            // });
+           
+            // addMarker({
+            //     coords: { lat: "<%= start_place %>", lng: "<%= end_place %>" },
+            //     content: "<h3>Howrah Bridge</h3>"
+            // });
+
+            // addMarker({
+            //     coords: { lat: start_place.latitude , lng: start_place.latitude  },
+            //     content: "<h3>Howrah Bridge</h3>"
+            // });
+            
+            addMarker({
+                coords: { lat: 22.5449, lng: 88.8425 },
+                content: "<h3>Victoria Memorial</h3>"
+            });
+            addMarker({
+                coords: { lat: 22.554368, lng: 88.350554 },
+                content: "<h3>Indian Museum</h3>"
+            });
+
+            //ADD MARKER FUNCTION
+            function addMarker(props) {
+
+                var marker = new google.maps.Marker({
+                    position: props.coords,
+                    map: map
+                });
+
+                var infoWindow = new google.maps.InfoWindow({
+                    content: props.content
+                });
+
+                marker.addListener("click", function () {
+                    infoWindow.open(map, marker);
+                });
+            }
+        }
+    </script>
+
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -165,8 +230,13 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
         integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
-    <!-- BASE JS -->
-    <script src="script-map.js"></script>
+    <!-- GOOGLE MAPS API -->
+    <!-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> -->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDa59eQ6ObjDdSCeBBMH8E7hg-GU9n8qsU&callback=initMap"></script> -->
+    <!-- BASE JS
+    <script src="script-map.js"></script> -->
+    
 
 </body>
 

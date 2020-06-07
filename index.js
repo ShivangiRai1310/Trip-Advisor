@@ -215,7 +215,7 @@ app.get("/trip-plan", function (req, res) {
         else {
             // console.log(rows);
             // console.log(rows[1]);
-            res.render(__dirname + "/map/trip-plan.ejs", { cities: rows, places: ""});
+            res.render(__dirname + "/map/trip-plan.ejs", { cities: rows, places: "", start_place: "", end_place: ""});
         }
     });
     
@@ -232,7 +232,7 @@ app.post("/get-location", function(req,res){
             console.log(err);
         else {
             // console.log(rows);
-            res.render(__dirname + "/map/trip-plan.ejs", { cities: rows[1], places: rows[0]});
+            res.render(__dirname + "/map/trip-plan.ejs", { cities: rows[1], places: rows[0], start_place: "", end_place: ""});
         }
     });
 });
@@ -244,15 +244,19 @@ app.post("/load-map", function(req,res){
     console.log(start_place);
     console.log(waypoints);
     console.log(end_place);
-    // let sql = "SELECT * FROM places WHERE city_id = '" + city_id + "'";
-    // con.query(sql, function (err, rows) {
-    //     if (err)
-    //         console.log(err);
-    //     else {
-    //         // console.log(rows);
-    //         res.render(__dirname + "/map/trip-plan.ejs", { cities: "", places: rows});
-    //     }
-    // });
+    let sql = "SELECT * FROM places;";
+    sql += "SELECT latitude,longitude FROM places WHERE place_id ='"+start_place+"';"
+    sql += "SELECT latitude,longitude FROM places WHERE place_id ='"+end_place+"';"
+    con.query(sql, function (err, rows) {
+        if (err)
+            console.log(err);
+        else {
+            // console.log(rows[0]);
+            console.log(rows[1]);
+            console.log(rows[2]);
+            res.render(__dirname + "/map/trip-plan.ejs", { cities: "", places: rows[0], start_place: 22.5851, end_place: 88.3469});
+        }
+    });
 });
 
 
