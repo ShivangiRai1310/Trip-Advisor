@@ -171,7 +171,7 @@ app.get("/user-profile", authController.isLoggedIn, function (req, res) {    //t
 
     if (req.user) {
         // console.log(req.user.user_id);
-        let sql = "SELECT r.*, p.place_name, u.user_name FROM reviews AS r, places AS p, user AS u WHERE r.places_id = p.place_id AND r.users_id = u.user_id AND r.users_id = '" + req.user.user_id +"';";
+        let sql = "SELECT r.*, p.place_name, u.user_name FROM reviews AS r, places AS p, user AS u WHERE r.places_id = p.place_id AND r.users_id = u.user_id AND r.users_id = '" + req.user.user_id + "';";
         con.query(sql, function (err, rows) {
             if (err)
                 console.log(err);
@@ -180,7 +180,7 @@ app.get("/user-profile", authController.isLoggedIn, function (req, res) {    //t
                 res.render(__dirname + "/login signup/user-profile.ejs", { user: req.user, reviews: rows });
             }
         });
-        
+
     }
     else {
         res.redirect("/login");
@@ -647,73 +647,67 @@ app.post("/delete-places", function (req, res) {
 app.get("/package", function (req, res) {
     app.use(express.static('./admin dashboard'));
 
-    let sql = "SELECT * FROM packages";
+    let sql = "SELECT * FROM packages;";
+    sql += "SELECT city_id,name FROM cities;"
     con.query(sql, function (err, rows) {
         if (err)
             console.log(err);
         else {
             // console.log(rows);
-            res.render(__dirname + "/admin dashboard/packages.ejs", {
-                packages: rows
-            });
+            res.render(__dirname + "/admin dashboard/packages.ejs", { packages: rows[0], cities: rows[1] });
         }
     });
 });
 
 app.post("/add-packages", function (req, res) {
     let name = req.body.name;
+    let cityid = req.body.city_id;
     let location = req.body.location;
     let price = req.body.price;
     let duration = req.body.duration;
     let description = req.body.description;
-    console.log(req.body);
+    // console.log(req.body);
 
-    let sql = "INSERT INTO packages VALUES(null, '" + name + "','" + location + "', '" + price + "', '" + duration + "', '" + description + "')";
+    let sql = "INSERT INTO packages VALUES(null, '" + cityid + "','" + name + "','" + location + "', '" + duration + "', '" + price + "', '" + description + "')";
     con.query(sql, function (err, rows) {
         if (err)
             console.log(err);
         else {
-            console.log(rows);
+            // console.log(rows);
+            let msg = "Congratulations!!  Package " + name + " has been successfully added."
+            res.render(__dirname + "/pop-up.ejs", { title: "Package Added", msg: msg });
         }
-    });
-
-    let msg = "Congratulations!!  Package " + name + " has been successfully added."
-    res.render(__dirname + "/pop-up.ejs", {
-        title: "Package Added",
-        msg: msg
     });
 });
 
 app.post("/update-packages", function (req, res) {
 
     let name = req.body.name;
+    let cityid = req.body.city_id;
     let location = req.body.location;
     let price = req.body.price;
     let duration = req.body.duration;
     let description = req.body.description;
-    console.log(req.body);
+    // console.log(req.body);
 
-    let sql = "INSERT INTO packages VALUES(null, '" + name + "','" + location + "', '" + price + "', '" + duration + "', '" + description + "')";
+    let sql = "UPDATE packages SET cityid = '" + cityid + "', location = '" + location + "', price = '" + price + "', duration = '" + duration + "', description = '" + duration + "' WHERE name = '" + name + "'";
     con.query(sql, function (err, rows) {
         if (err)
             console.log(err);
         else {
-            console.log(rows);
+            // console.log(rows);
+            let msg = "Congratulations!!  Package " + name + " has been successfully updated with values <br> "
+            let m1 = "<br>Package Name : " + name;
+            let m2 = "<br>Location : " + location;
+            let m3 = "<br>Price : " + price;
+            let m4 = "<br>Duration : " + duration;
+            let m5 = "<br>Description : " + description;
+            msg = msg + m1 + m2 + m3 + m4 + m5;
+
+            res.render(__dirname + "/pop-up.ejs", { title: "Package Updated", msg: msg });
         }
     });
 
-    let msg = "Congratulations!!  Packages " + name + " has been updated successfully with values <br> "
-    let m1 = "<br>Package Name : " + name;
-    let m2 = "<br>Location : " + location;
-    let m3 = "<br>Price : " + price;
-    let m4 = "<br>Duration : " + duration;
-    let m5 = "<br>Description : " + description;
-    msg = msg + m1 + m2 + m3 + m4 + m5;
-
-    res.render(__dirname + "/pop-up.ejs", {
-        title: "Package Updated",
-        msg: msg
-    });
 });
 
 app.post("/delete-packages", function (req, res) {
@@ -726,14 +720,10 @@ app.post("/delete-packages", function (req, res) {
         if (err)
             console.log(err);
         else {
-            console.log(rows);
+            // console.log(rows);
+            let msg = "Package " + name + " has been successfully removed from the database. "
+            res.render(__dirname + "/pop-up.ejs", { title: "Package Deleted", msg: msg });
         }
-    });
-    let msg = "package " + name + " has been successfully removed from the database. "
-
-    res.render(__dirname + "/pop-up.ejs", {
-        title: "package Deleted",
-        msg: msg
     });
 
 });

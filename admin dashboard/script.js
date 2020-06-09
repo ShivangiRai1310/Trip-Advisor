@@ -28,6 +28,7 @@ $(".sidebar-sub-link").click(function () {
 
     $(".sub-section").hide();    //not working on view parts though it does target it
     let idval = $(this).children('a').attr("href");
+    // alert(idval);
     $(idval).show();
 });
 
