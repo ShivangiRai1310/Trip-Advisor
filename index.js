@@ -99,19 +99,6 @@ app.post("/login", async function (req, res) {
 
 });
 
-app.get("/user-profile", authController.isLoggedIn, function (req, res) {    //the page to be hidden n visible only if it matches current token, for such authentication we create a middleware   
-    app.use(express.static('./login signup'));
-    // console.log(req.message);                                          //we include the authController middleware's isLoggedIn func first in which the defined variables can be accessed here
-
-    if (req.user) {
-        res.render(__dirname + "/login signup/user-profile.ejs", { user: req.user });
-    }
-    else {
-        res.redirect("/login");
-    }
-
-});
-
 app.get("/logout", function (req, res) {
     res.cookie('jwt', 'logout', {                         //new cookie that will overwrite existing cookie n expires in 2ms after logout is pressed
         expires: new Date(Date.now() + 2 * 1000),
@@ -170,6 +157,66 @@ app.post("/register", function (req, res) {
     // res.send("submitted");
 });
 
+//ABOUT US
+app.get("/about-us", function (req, res) {
+    app.use(express.static('./about us'));
+
+    res.sendFile(__dirname + "/about us/about.html");
+});
+
+//GENERAL USER PROFILE
+app.get("/user-profile", authController.isLoggedIn, function (req, res) {    //the page to be hidden n visible only if it matches current token, for such authentication we create a middleware   
+    app.use(express.static('./login signup'));
+    // console.log(req.message);                                          //we include the authController middleware's isLoggedIn func first in which the defined variables can be accessed here
+
+    if (req.user) {
+        // console.log(req.user.user_id);
+        let sql = "SELECT r.*, p.place_name, u.user_name FROM reviews AS r, places AS p, user AS u WHERE r.places_id = p.place_id AND r.users_id = u.user_id AND r.users_id = '" + req.user.user_id +"';";
+        con.query(sql, function (err, rows) {
+            if (err)
+                console.log(err);
+            else {
+                console.log(rows);
+                res.render(__dirname + "/login signup/user-profile.ejs", { user: req.user, reviews: rows });
+            }
+        });
+        
+    }
+    else {
+        res.redirect("/login");
+    }
+
+});
+
+app.post("/user-profile-update", async function (req, res) {
+    app.use(express.static('./login signup'));
+
+    let { user_name, contact, email, password } = req.body;
+    let updation_date = date.currentDate();
+    let hashed_password = await bcrypt.hash(password, 8);
+    console.log(req.body);
+
+    let sql = "UPDATE user SET contact = '" + contact + "' , email = '" + email + "' , password = '" + hashed_password + "' , updation_date = '" + updation_date + "' WHERE user_name = '" + user_name + "'";
+    con.query(sql, function (err, rows) {
+        if (err)
+            console.log(err);
+        else {
+            console.log(rows);
+        }
+    });
+
+    let msg = "Congratulations!!  User " + user_name + " has been successfully updated with values <br> "
+    let m1 = "<br>User Name : " + user_name;
+    let m2 = "<br>Email : " + email;
+    let m3 = "<br>Contact : " + contact;
+    let m4 = "<br>Password : " + password;
+
+    msg = msg + m1 + m2 + m3 + m4;
+
+    res.render(__dirname + "/pop-up.ejs", { title: "User Updated", msg: msg });
+
+});
+
 //CITIES
 app.get("/explore-cities", function (req, res) {
     app.use(express.static('./cities'));
@@ -215,16 +262,16 @@ app.get("/trip-plan", function (req, res) {
         else {
             // console.log(rows);
             // console.log(rows[1]);
-            res.render(__dirname + "/map/trip.ejs", { cities: rows, places: ""});
+            res.render(__dirname + "/map/trip.ejs", { cities: rows, places: "" });
         }
     });
-    
+
 });
 
-app.post("/get-location", function(req,res){
+app.post("/get-location", function (req, res) {
     app.use(express.static('./map'));
 
-    let city_id= req.body.city_id;
+    let city_id = req.body.city_id;
     let sql = "SELECT * FROM places WHERE city_id = '" + city_id + "';";
     sql += "SELECT * FROM cities;";
     con.query(sql, function (err, rows) {
@@ -232,15 +279,15 @@ app.post("/get-location", function(req,res){
             console.log(err);
         else {
             // console.log(rows);
-            res.render(__dirname + "/map/trip.ejs", { cities: rows[1], places: rows[0]});
+            res.render(__dirname + "/map/trip.ejs", { cities: rows[1], places: rows[0] });
         }
     });
 });
 
-app.post("/load-map", function(req,res){
+app.post("/load-map", function (req, res) {
     app.use(express.static('./map'));
 
-    let {start_place, waypoints, end_place} = req.body;
+    let { start_place, waypoints, end_place } = req.body;
     // console.log(start_place);
     // console.log(waypoints);
     // console.log(end_place);
@@ -260,7 +307,7 @@ app.post("/load-map", function(req,res){
             // let elong = rows[2][0].longitude;
             // console.log(slat+" "+slong);
             // console.log(elat+" "+elong);
-            res.render(__dirname + "/map/trip.ejs", { cities: "", places: rows});
+            res.render(__dirname + "/map/trip.ejs", { cities: "", places: rows });
         }
     });
 });
@@ -322,20 +369,6 @@ app.post("/profile", authController.isLoggedIn, function (req, res) {
 
 
 });
-
-app.get("/user-profile", authController.isLoggedIn, function (req, res) {    //the page to be hidden n visible only if it matches current token, for such authentication we create a middleware   
-    app.use(express.static('./login signup'));
-    // console.log(req.message);                                          //we include the authController middleware's isLoggedIn func first in which the defined variables can be accessed here
-
-    if (req.user) {
-        res.render(__dirname + "/login signup/user-profile.ejs", { user: req.user });
-    }
-    else {
-        res.redirect("/login");
-    }
-
-});
-
 
 // USERS PAGE
 app.get("/users", function (req, res) {
@@ -587,7 +620,7 @@ app.post("/update-places", function (req, res) {
             let m5 = "<br>Longitude : " + longitude;
             let m6 = "<br>Description : " + description;
             msg = msg + m1 + m3 + m4 + m5 + m6;
-        
+
             res.render(__dirname + "/pop-up.ejs", { title: "Place Updated", msg: msg });
         }
     });
@@ -610,13 +643,101 @@ app.post("/delete-places", function (req, res) {
     });
 });
 
-
 // PACKAGES PAGE
 app.get("/package", function (req, res) {
     app.use(express.static('./admin dashboard'));
 
-    res.render(__dirname + "/admin dashboard/packages.ejs");
+    let sql = "SELECT * FROM packages";
+    con.query(sql, function (err, rows) {
+        if (err)
+            console.log(err);
+        else {
+            // console.log(rows);
+            res.render(__dirname + "/admin dashboard/packages.ejs", {
+                packages: rows
+            });
+        }
+    });
 });
+
+app.post("/add-packages", function (req, res) {
+    let name = req.body.name;
+    let location = req.body.location;
+    let price = req.body.price;
+    let duration = req.body.duration;
+    let description = req.body.description;
+    console.log(req.body);
+
+    let sql = "INSERT INTO packages VALUES(null, '" + name + "','" + location + "', '" + price + "', '" + duration + "', '" + description + "')";
+    con.query(sql, function (err, rows) {
+        if (err)
+            console.log(err);
+        else {
+            console.log(rows);
+        }
+    });
+
+    let msg = "Congratulations!!  Package " + name + " has been successfully added."
+    res.render(__dirname + "/pop-up.ejs", {
+        title: "Package Added",
+        msg: msg
+    });
+});
+
+app.post("/update-packages", function (req, res) {
+
+    let name = req.body.name;
+    let location = req.body.location;
+    let price = req.body.price;
+    let duration = req.body.duration;
+    let description = req.body.description;
+    console.log(req.body);
+
+    let sql = "INSERT INTO packages VALUES(null, '" + name + "','" + location + "', '" + price + "', '" + duration + "', '" + description + "')";
+    con.query(sql, function (err, rows) {
+        if (err)
+            console.log(err);
+        else {
+            console.log(rows);
+        }
+    });
+
+    let msg = "Congratulations!!  Packages " + name + " has been updated successfully with values <br> "
+    let m1 = "<br>Package Name : " + name;
+    let m2 = "<br>Location : " + location;
+    let m3 = "<br>Price : " + price;
+    let m4 = "<br>Duration : " + duration;
+    let m5 = "<br>Description : " + description;
+    msg = msg + m1 + m2 + m3 + m4 + m5;
+
+    res.render(__dirname + "/pop-up.ejs", {
+        title: "Package Updated",
+        msg: msg
+    });
+});
+
+app.post("/delete-packages", function (req, res) {
+
+    let name = req.body.name;
+
+    console.log(req.body);
+    let sql = "DELETE FROM packages WHERE name = '" + name + "'";
+    con.query(sql, function (err, rows) {
+        if (err)
+            console.log(err);
+        else {
+            console.log(rows);
+        }
+    });
+    let msg = "package " + name + " has been successfully removed from the database. "
+
+    res.render(__dirname + "/pop-up.ejs", {
+        title: "package Deleted",
+        msg: msg
+    });
+
+});
+
 
 // REVIEWS PAGE
 app.get("/reviews", function (req, res) {

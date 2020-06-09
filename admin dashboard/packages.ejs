@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="styles-admin.css">
 </head>
 <body>
-    
+
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-md navbar-light px-0 ">
     <button class="navbar-toggler ml-auto mb-2 bg-light" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -143,7 +143,7 @@
     <!-- VIEW PACKAGE -->
     <div class="container-fluid pt-md-5 mt-md-1">
       <div class="row mb-5 pt-md-5 mt-md-3">
-        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto ">
+        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto table-responsive">
           <h2 class="text-muted text-center mb-4">Packages</h2>
           <table class="table table-light table-striped table-bordered text-center mydatatable" data-page-list="[5, 10, 25, 50, 100, 200, All]">
             <thead class="thead-dark pt-3">
@@ -152,25 +152,22 @@
                 <th>Name</th>
                 <th>Location</th>
                 <th>&#8377; Price per head</th>
+                <th>Duration</th>
                 <th class="description">Description</th>
-
               </tr>
             </thead>
+
             <tbody>
+              <%  for(var i=0; i<packages.length;i++){ %>
               <tr>
-                <th>1</th>
-                <td>Two days Trip to Jaipur</td>
-                <td>Jaipur</td>
-                <td>&#8377; 5000</td>
-                <td class="description">fdbvvfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffH</td>
+                <th> <%=packages[i].package_id %> </th>
+                <th> <%=packages[i].name %> </th>
+                <th> <%=packages[i].location %> </th>
+                <th> <%=packages[i].price %> </th>
+                <th> <%=packages[i].duration %> </th>
+                <th> <%=packages[i].description %> </th>
               </tr>
-              <tr>
-                <th>1</th>
-                <td>Two days Trip to Jaipur</td>
-                <td>Jaipur</td>
-                <td>&#8377; 5000</td>
-                <td class="description">fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvTH</td>
-              </tr>
+              <% } %>
             </tbody>
           </table>
         </div>
@@ -182,22 +179,26 @@
       <div class="row mb-5 pt-md-5 mt-md-3">
         <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
           <h2 class="text-muted text-center mb-4"><i class="fas fa-plus-circle fa-lg mr-3"></i>Add Package</h2>
-          <form action="" method="post">
+          <form action="/add-packages" method="post">
             <div class="form-group py-2">
               <label>Package Name</label>
-              <input type="text" class="form-control" placeholder="Enter Package Name">
+              <input type="text" name="name" class="form-control" placeholder="Enter Package Name">
             </div>
             <div class="form-group py-2">
               <label>Location</label>
-              <input type="text" class="form-control" placeholder="Enter Package Location">
+              <input type="text" name="location" class="form-control" placeholder="Enter Package Location">
             </div>
             <div class="form-group py-2">
               <label>Price</label>
-              <input type="number" class="form-control" placeholder="Enter Package price per head &#8377;">
+              <input type="number" name="price" class="form-control" placeholder="Enter Package price per head &#8377;">
+            </div>
+            <div class="form-group py-2">
+              <label>Duration</label>
+              <input type="number" name="duration" class="form-control" placeholder="Enter Package price per head &#8377;">
             </div>
             <div class="form-group py-2">
               <label>Description</label>
-              <textarea name="description" class="form-control" id="" cols="40" rows="5" placeholder="Type Package description here" autocomplete="off"></textarea>
+              <textarea name="description" name="description" class="form-control" id="" cols="40" rows="5" placeholder="Type Package description here" autocomplete="off"></textarea>
             </div>
             <!-- need to add other package details -->
             <button type="submit" class="btn btn-success"><i class="fas fa-plus-circle mr-2"></i>Add Package</button>
@@ -211,33 +212,38 @@
       <div class="row mb-5 pt-md-5 mt-md-3">
         <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
           <h2 class="text-muted text-center mb-4"><i class="fas fa-edit fa-lg mr-3"></i>Update Package</h2>
-          <form action="" method="post">
+          <form action="/update-packages" method="post">
             <div class="form-group py-2">
               <label>Package</label>
-              <select class="form-control disable-basedon">
-                <option value="" disabled selected>Select Package to Update</option>
-                <option value="abc">abc</option>
-                <option value="pqr">pqr</option>
-                <option value="klm">klm</option>
+              <select class="form-control disable-basedon" name="name">
+                <option value="" disabled selected>Select User to Update</option>
+                  <%  for(var i=0; i<packages.length;i++){ %>
+                      <option value=<%= packages[i].name %> ><%= packages[i].name %></option>
+                  <% } %>
               </select>
-            </div>
+            <!-- </div>
+
             <div class="form-group py-2">
               <label>Package Name</label>
-              <input type="text" class="form-control disable" placeholder="Enter Package Name" disabled="disabled">
-            </div>
+              <input type="text" name="" class="form-control disable" placeholder="Enter Package Name" disabled="disabled">
+            </div> -->
             <div class="form-group py-2">
               <label>Location</label>
-              <input type="text" class="form-control  disable" placeholder="Enter Package Location" disabled="disabled">
+              <input type="text" name="location" class="form-control  disable" placeholder="Enter Package Location" disabled="disabled">
             </div>
             <div class="form-group py-2">
               <label>Price </label>
-              <input type="number" class="form-control disable" placeholder="Enter Package price per head &#8377;" disabled="disabled">
+              <input type="number" name="price" class="form-control disable" placeholder="Enter Package price per head &#8377;" disabled="disabled">
+            </div>
+            <div class="form-group py-2">
+              <label>Duration </label>
+              <input type="text" name="duration" class="form-control disable" placeholder="Enter Package price per head &#8377;" disabled="disabled">
             </div>
             <div class="form-group py-2">
               <label>Description</label>
               <textarea name="description" class="form-control  disable" id="" cols="40" rows="5" placeholder="Type city description here" autocomplete="off" disabled="disabled"></textarea>
             </div>
-            <button type="submit" class="btn btn-info" disabled="disabled"><i class="fas fa-edit mr-3"></i>Update Package</button>
+            <button type="submit" class="btn btn-info disable" disabled="disabled"><i class="fas fa-edit mr-3"></i>Update Package</button>
           </form>
         </div>
       </div>
@@ -248,41 +254,42 @@
       <div class="row mb-5 pt-md-5 mt-md-3">
         <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
           <h2 class="text-muted text-center mb-4"><i class="fas fa-trash-alt fa-lg mr-3"></i>Delete Package</h2>
-          <form action="" method="post">
+          <form action="/delete-packages" method="post" id="form1">
             <div class="form-group py-2">
               <label>Package</label>
-              <select class="form-control disable-basedon">
-                <option value="" disabled selected>Select Package to Delete</option>
-                <option value="abc">abc</option>
-                <option value="pqr">pqr</option>
-                <option value="klm">klm</option>
+              <select class="form-control disable-basedon" name="name">
+                <option value="" disabled selected>Select User to Update</option>
+                  <%  for(var i=0; i<packages.length;i++){ %>
+                      <option value=<%= packages[i].name %> ><%= packages[i].name %></option>
+                  <% } %>
               </select>
             </div>
-            <div class="row container-fluid">
-              <h4 class="col-12 py-3">Package Details</h4>
-              <div class="col-6 px-3 py-2">
-                <h5>Package Name</h5>
-                <p>Trip to Jaipur</p>
-              </div>
-              <div class="col-6 px-3 py-2">
-                <h5>Location</h5>
-                <p>Jaipur</p>
-              </div>
-              <div class="col-6 px-3 py-2">
-                <h5>Price per head</h5>
-                <p>&#8377;5000</p>
-              </div>
-              <div class="col-12 px-3 py-2">
-                <h5>Description</h5>
-                <p>HBGYGNCRRREHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHEfubnyuhhhhhhhhhhhhhhhhhhhhhhhhh</p>
-              </div>
-            </div>
-
-            <button type="submit" class="btn btn-danger mt-4"><i class="fas fa-trash-alt mr-3"></i>Delete Package</button>
-          </form>
+            <button type="button" class="btn btn-danger mt-4 disable"  onclick="javascript: return false;"
+            data-toggle="modal" data-target="#deletepackage" disabled><i class="fas fa-trash-alt mr-3"></i>Delete Package</button>
+            </form>
         </div>
       </div>
     </div>
+    <!-- MODAL window for deletepackage -->
+    <div class="modal fade" id="deletepackage">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h4 class="modal-title">Delete package</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                  Are you sure, you want to delete the package selected ?
+              </div>
+              <div class="modal-footer">
+                  <button type="submit" onclick="document.getElementById('form1').submit();" class="btn btn-danger" data-dismiss="modal">Delete</button>
+                  <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  </section>
 
   </section>
 
