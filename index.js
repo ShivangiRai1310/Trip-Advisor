@@ -176,7 +176,7 @@ app.get("/user-profile", authController.isLoggedIn, function (req, res) {    //t
             if (err)
                 console.log(err);
             else {
-                console.log(rows);
+                // console.log(rows);
                 res.render(__dirname + "/login signup/user-profile.ejs", { user: req.user, reviews: rows });
             }
         });
@@ -238,16 +238,75 @@ app.get("/kolkata", function (req, res) {
 
 
 //PACKAGES
-app.get("/varanasi-package", function (req, res) {
+app.get("/varanasi-package", authController.isLoggedIn, function (req, res) {
     app.use(express.static('./packages'));
 
-    res.sendFile(__dirname + "/packages/varanasi-package.html");
+    if (req.user) {
+        let sql = "SELECT * FROM packages WHERE cityid = '1'";
+        con.query(sql, function (err, rows) {
+            if (err)
+                console.log(err);
+            else {
+                // console.log(rows);
+                res.render(__dirname + "/packages/varanasi-package.ejs", { user: req.user, package: rows[0] });
+            }
+        });
+    }
+    else {
+        res.redirect("/login");
+    }
 });
 
-app.get("/kolkata-package", function (req, res) {
+app.get("/kolkata-package", authController.isLoggedIn, function (req, res) {
     app.use(express.static('./packages'));
 
-    res.sendFile(__dirname + "/packages/kolkata-package.html");
+    if (req.user) {
+        let sql = "SELECT * FROM packages WHERE cityid = '2'";
+        con.query(sql, function (err, rows) {
+            if (err)
+                console.log(err);
+            else {
+                // console.log(rows);
+                res.render(__dirname + "/packages/kolkata-package.ejs", { user: req.user, package: rows[0] });
+            }
+        });
+    }
+    else {
+        res.redirect("/login");
+    }
+});
+
+app.post("/confirm-booking", function (req, res) {
+
+    let { name, user_name, contact, email, count, total_price, travel_date } = req.body;
+    let booking_date = date.currentDate();
+    let status = "pending";
+    // console.log(req.body);
+
+    let sql = "SELECT p.package_id, u.user_id FROM packages AS p, user AS u WHERE p.name = '" + name + "' AND u.user_name = '" + user_name + "'";
+    con.query(sql, function (err, rows) {
+        if (err)
+            console.log(err);
+        else {
+            // console.log(rows);
+            let package_id = rows[0].package_id;
+            let user_id = rows[0].user_id;
+            let sql = "INSERT INTO bookings VALUES(null, '" + package_id + "', '" + user_id + "', '" + count + "', '" + total_price + "', '" + booking_date + "', '" + travel_date + "', '" + status + "')";
+            con.query(sql, function (err, rows) {
+                if (err)
+                    console.log(err);
+                else {
+                    // console.log(rows);
+                    let msg = "Congratulations!!  Booking for " + user_name + " has been successfully completed. <br>"
+                    let m1 = "<br>User Name : " + user_name + "<br>Contact : " + contact +"<br>Email : " + email ;
+                    let m2 = "<br><br>Package Name : " + name +"<br>Count : " + count + "<br>Total Price : " + total_price + "<br>Travel Date : " + travel_date + "<br>Booking Date : " + booking_date;
+                    let m3 = "<br> <br> <br>Payment can be done on the first day of tour.<br> <i>Thank you for booking with us.</i>"
+                    msg = msg + m1 + m2 + m3 ;
+                    res.render(__dirname + "/pop-up.ejs", { title: "Package Booking Added", msg: msg });
+                }
+            });
+        }
+    });
 });
 
 //TRIP-PLAN PAGE

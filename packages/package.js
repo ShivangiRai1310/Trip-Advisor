@@ -17,6 +17,12 @@ $(document).ready(function () {
     }
     today = year + '-' + month + '-' + day;
     
-    $(".date_open").attr("min", today);
+$(".date_open").attr("min", today);
     
-    });
+});
+
+function setTotalAmount(amt){
+    var c = $("#ppl-count").val();
+    c= c*amt;
+    $("#total-amt").val(c);
+}
