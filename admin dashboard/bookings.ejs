@@ -37,8 +37,9 @@
             <a class="navbar-brand text-white d-block mx-auto text-center py-3 mb-2 bottom-border" href="./">Trip
               Advisor</a>
             <div class="bottom-border py-3  text-center">
-              <img src="images/cust6.jpeg" alt="admin image" width="40" height="40" class="rounded-circle mx-2">
-              <a href="#" class="text-white">Admin Name</a>
+              <img src="../images/users/<%= user.user_name %>.jpeg" alt="admin image" width="40" height="40"
+                class="rounded-circle mx-2">
+              <a href="/profile" class="text-white"><%= user.user_name %></a>
             </div>
             <ul class="navbar-nav flex-column mt-4">
               <li class="nav-item sidebar-link"> <a href="/dashboard" class="nav-link text-light"><i
@@ -56,7 +57,7 @@
                         class="fas fa-trash-alt mr-3"></i>Delete User</a></li>
                 </ul>
               </li>
-              <li class="nav-item sidebar-link"> <a href="/category" class="nav-link text-light"><i
+              <!-- <li class="nav-item sidebar-link"> <a href="/category" class="nav-link text-light"><i
                     class="fas fa-stream text-light fa-lg mr-3"></i> Category </a>
                 <ul class="navbar-nav flex-column ml-5 hide">
                   <li class="nav-item sidebar-sub-link"><a href="#add-category" class="nav-link text-light"><i
@@ -66,7 +67,7 @@
                   <li class="nav-item sidebar-sub-link"><a href="#delete-category" class="nav-link text-light"><i
                         class="fas fa-trash-alt mr-3"></i>Delete Category</a></li>
                 </ul>
-              </li>
+              </li> -->
               <li class="nav-item sidebar-link"> <a href="/city" class="nav-link text-light"><i
                     class="fas fa-globe text-light fa-lg mr-3"></i> Cities </a>
                 <ul class="navbar-nav flex-column ml-5 hide">
@@ -139,12 +140,11 @@
               </div>
               <div class="col-md-3">
                 <ul class="navbar-nav">
-                  <li class="nav-item icon-parent"><a href="" class="nav-link icon-bullet"><i
+                  <li class="nav-item icon-parent"><a href="/reviews" class="nav-link icon-bullet"><i
                         class="fas fa-comments text-muted fa-lg"></i></a></li>
-                  <li class="nav-item icon-parent"><a href="" class="nav-link icon-bullet"><i
+                  <li class="nav-item icon-parent"><a href="/enquiries" class="nav-link icon-bullet"><i
                         class="fas fa-bell text-muted fa-lg"></i></a></li>
-                  <li class="nav-item ml-md-auto" onclick="javascript: return false;" data-toggle="modal"
-                    data-target="#sign-out"><a href="" class="nav-link"><i
+                  <li class="nav-item ml-md-auto"><a href="/logout" class="nav-link"><i
                         class="fas fa-sign-out-alt text-danger fa-lg"></i></a></li>
                 </ul>
               </div>
@@ -156,26 +156,6 @@
     </div>
 
   </nav>
-
-
-  <!-- MODAL window for sign-out -->
-  <div class="modal fade" id="sign-out">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Want to leave?</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <div class="modal-body">
-          Press logout to leave
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-dismiss="modal">Stay Here</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Logout</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- BOOKINGS -->
   <section id="bookings">
@@ -217,15 +197,19 @@
                 <td><%= bookings[i].travel_date %></td>
                 <% if(bookings[i].status === "approved"){  %>
                 <td>
-                  <button type="submit" formaction="URL" class="btn btn-success w-85 py-2">Approved</button>
+                  <button type="button" class="btn btn-success w-85 py-2">Approved</button>
                 </td>
                 <% } else{  %>
                 <td>
-                  <button type="submit" formaction="URL" class="btn btn-danger w-85 py-2 pending">Pending</button>
+                  <form action="/approve-booking" method="post">
+                    <input type="text" name="booking_id" value="<%= bookings[i].booking_id %>" hidden>
+                    <button type="submit" class="btn btn-danger w-85 py-2 pending">Pending</button>
+                  </form>
                 </td>
                 <%  }  %>
                 <td>
-                  <button type="submit" formaction="URL" class="btn btn-info w-85 py-2 send_email">Email</button>
+                  <a href="mailto: <%= bookings[i].email %>"><button type="button"
+                      class="btn btn-info w-85 py-2">Email</button></a>
                 </td>
               </tr>
               <% } %>
@@ -244,7 +228,7 @@
           <form action="/add-bookings" method="post">
             <div class="form-group py-2">
               <label>Package Name</label>
-              <select class="form-control" name="package_name">
+              <select class="form-control" name="package_name" required>
                 <option value="" disabled selected>Select Package Name</option>
                 <%  for(var i=0; i<packages.length;i++){ %>
                 <option value="<%= packages[i].name %>"><%= packages[i].name %></option>
@@ -253,7 +237,7 @@
             </div>
             <div class="form-group py-2">
               <label>User Name</label>
-              <select class="form-control" name="user_name">
+              <select class="form-control" name="user_name" required>
                 <option value="" disabled selected>Select User Name</option>
                 <%  for(var i=0; i<users.length;i++){ %>
                 <option value=<%= users[i].user_name %>><%= users[i].user_name %></option>
@@ -270,17 +254,17 @@
             </div> -->
             <div class="form-group py-2">
               <label>People Count</label>
-              <input type="number" class="form-control" placeholder="Enter People Count" name="count">
+              <input type="number" class="form-control" placeholder="Enter People Count" name="count" required>
             </div>
             <div class="form-group py-2">
               <!-- total amt auto fill -->
               <label>Total Amount</label>
               <input type="number" class="form-control" placeholder="Enter total amount of booking &#8377;"
-                name="total_price">
+                name="total_price" required>
             </div>
             <div class="form-group py-2">
               <label>Travel Date</label>
-              <input type="date" class="form-control date_open" placeholder="Enter Travel Date" name="travel_date">
+              <input type="date" class="form-control date_open" placeholder="Enter Travel Date" name="travel_date" required>
             </div>
 
             <!-- need to add other package details -->
@@ -298,7 +282,7 @@
           <form action="/update-bookings" method="post">
             <div class="form-group py-2">
               <label>Package Name</label>
-              <select class="form-control" name="package_name">
+              <select class="form-control" name="package_name" required>
                 <option value="" disabled selected>Select Package Name</option>
                 <%  for(var i=0; i<bookings.length;i++){ %>
                 <option value="<%= bookings[i].name %>"> #BookingId : <%= bookings[i].booking_id %>
@@ -308,7 +292,7 @@
             </div>
             <div class="form-group py-2">
               <label>User Name</label>
-              <select class="form-control disable-basedon" name="user_name">
+              <select class="form-control disable-basedon" name="user_name" required>
                 <option value="" disabled selected>Select User Name</option>
                 <%  for(var i=0; i<bookings.length;i++){ %>
                 <option value="<%= bookings[i].user_name %>"> #BookingId : <%= bookings[i].booking_id %>
@@ -319,17 +303,17 @@
             <div class="form-group py-2">
               <label>People Count</label>
               <input type="number" class="form-control disable" placeholder="Enter People Count" disabled="disabled"
-                name="count">
+                name="count" required>
             </div>
             <div class="form-group py-2">
               <label>Total Amount</label>
               <input type="number" class="form-control disable" placeholder="Enter total amount of booking &#8377;"
-                disabled="disabled" name="total_price">
+                disabled="disabled" name="total_price" required>
             </div>
             <div class="form-group py-2">
               <label>Travel Date</label>
               <input type="date" class="form-control disable date_open" placeholder="Enter Travel Date"
-                disabled="disabled" name="travel_date">
+                disabled="disabled" name="travel_date" required>
             </div>
 
             <button type="submit" class="btn btn-info disable" disabled="disabled"><i
@@ -348,7 +332,7 @@
           <form action="/delete-bookings" id="form1" method="post">
             <div class="form-group py-2">
               <label>Package Name</label>
-              <select class="form-control" name="package_booking_id">
+              <select class="form-control" name="package_booking_id" required>
                 <option value="" disabled selected>Select Package</option>
                 <%  for(var i=0; i<bookings.length;i++){ %>
                 <option value="<%= bookings[i].booking_id %>"> #BookingId : <%= bookings[i].booking_id %>
@@ -358,7 +342,7 @@
             </div>
             <div class="form-group py-2">
               <label>User Name</label>
-              <select class="form-control disable-basedon" name="user_booking_id">
+              <select class="form-control disable-basedon" name="user_booking_id" required>
                 <option value="" disabled selected>Select User Name</option>
                 <%  for(var i=0; i<bookings.length;i++){ %>
                 <option value="<%= bookings[i].booking_id %>"> #BookingId : <%= bookings[i].booking_id %>

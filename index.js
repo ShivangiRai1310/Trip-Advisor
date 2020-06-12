@@ -10,7 +10,6 @@ const bcrypt = require('bcryptjs');
 const cookieParser = require('cookie-parser');
 const authController = require(__dirname + '/controllers/auth');
 
-
 dotenv.config({ path: './.env' });     //to safequard our database details n other passwords
 
 const app = express();
@@ -194,14 +193,14 @@ app.post("/user-profile-update", async function (req, res) {
     let { user_name, contact, email, password } = req.body;
     let updation_date = date.currentDate();
     let hashed_password = await bcrypt.hash(password, 8);
-    console.log(req.body);
+    // console.log(req.body);
 
     let sql = "UPDATE user SET contact = '" + contact + "' , email = '" + email + "' , password = '" + hashed_password + "' , updation_date = '" + updation_date + "' WHERE user_name = '" + user_name + "'";
     con.query(sql, function (err, rows) {
         if (err)
             console.log(err);
         else {
-            console.log(rows);
+            // console.log(rows);
         }
     });
 
@@ -298,10 +297,10 @@ app.post("/confirm-booking", function (req, res) {
                 else {
                     // console.log(rows);
                     let msg = "Congratulations!!  Booking for " + user_name + " has been successfully completed. <br>"
-                    let m1 = "<br>User Name : " + user_name + "<br>Contact : " + contact +"<br>Email : " + email ;
-                    let m2 = "<br><br>Package Name : " + name +"<br>Count : " + count + "<br>Total Price : " + total_price + "<br>Travel Date : " + travel_date + "<br>Booking Date : " + booking_date;
+                    let m1 = "<br>User Name : " + user_name + "<br>Contact : " + contact + "<br>Email : " + email;
+                    let m2 = "<br><br>Package Name : " + name + "<br>Count : " + count + "<br>Total Price : " + total_price + "<br>Travel Date : " + travel_date + "<br>Booking Date : " + booking_date;
                     let m3 = "<br> <br> <br>Payment can be done on the first day of tour.<br> <i>Thank you for booking with us.</i>"
-                    msg = msg + m1 + m2 + m3 ;
+                    msg = msg + m1 + m2 + m3;
                     res.render(__dirname + "/pop-up.ejs", { title: "Package Booking Added", msg: msg });
                 }
             });
@@ -374,18 +373,23 @@ app.post("/load-map", function (req, res) {
 
 
 // DASHBOARD PAGE
-app.get("/dashboard", function (req, res) {
+app.get("/dashboard", authController.isLoggedIn, function (req, res) {
     app.use(express.static('./admin dashboard'));   //change static folder since earlier wasnt rendering css   
 
-    let sql = "SELECT (SELECT COUNT(*) FROM user) as userCount ,(SELECT COUNT(*) FROM cities) as cityCount ,(SELECT COUNT(*) FROM places) as placesCount ,(SELECT COUNT(*) FROM packages) as packagesCount ,(SELECT COUNT(*) FROM reviews) as reviewsCount ,(SELECT COUNT(*) FROM bookings) as bookingsCount ,(SELECT COUNT(*) FROM enquiries) as enquiriesCount ";
-    con.query(sql, function (err, rows) {
-        if (err)
-            console.log(err);
-        else {
-            // console.log(rows);
-            res.render(__dirname + "/admin dashboard/admin.ejs", { user: rows[0] });
-        }
-    });
+    if (req.user && req.user.user_type == "admin") {
+        let sql = "SELECT (SELECT COUNT(*) FROM user) as userCount ,(SELECT COUNT(*) FROM cities) as cityCount ,(SELECT COUNT(*) FROM places) as placesCount ,(SELECT COUNT(*) FROM packages) as packagesCount ,(SELECT COUNT(*) FROM reviews) as reviewsCount ,(SELECT COUNT(*) FROM bookings) as bookingsCount ,(SELECT COUNT(*) FROM enquiries) as enquiriesCount ";
+        con.query(sql, function (err, rows) {
+            if (err)
+                console.log(err);
+            else {
+                // console.log(rows);
+                res.render(__dirname + "/admin dashboard/admin.ejs", { user: req.user, total: rows[0] });
+            }
+        });
+    }
+    else {
+        res.redirect("/login");
+    }
 
 });
 
@@ -393,7 +397,7 @@ app.get("/dashboard", function (req, res) {
 app.get("/profile", authController.isLoggedIn, function (req, res) {
     app.use(express.static('./admin dashboard'));
 
-    if (req.user) {
+    if (req.user && req.user.user_type == "admin") {
         res.render(__dirname + "/admin dashboard/profile.ejs", { user: req.user });
     }
     else {
@@ -402,17 +406,18 @@ app.get("/profile", authController.isLoggedIn, function (req, res) {
 
 });
 
-app.post("/profile", authController.isLoggedIn, function (req, res) {
+app.post("/profile", authController.isLoggedIn, async function (req, res) {
     app.use(express.static('./admin dashboard'));
 
-    let { contact, email } = req.body;
+    let { contact, email, password } = req.body;
+    let hashed_password = await bcrypt.hash(password, 8);
     let updation_date = date.currentDate();
     // console.log(req.body);
     // console.log(user_name + contact + password + email + user_type + updation_date);
 
-    if (req.user) {
+    if (req.user && req.user.user_type == "admin") {
 
-        let sql = "UPDATE user SET contact = '" + contact + "' , email = '" + email + "' , updation_date = '" + updation_date + "' WHERE user_name = '" + req.user.user_name + "'";
+        let sql = "UPDATE user SET contact = '" + contact + "' , email = '" + email + "' , password = '" + hashed_password + "' , updation_date = '" + updation_date + "' WHERE user_name = '" + req.user.user_name + "'";
         con.query(sql, function (err, rows) {
             if (err)
                 console.log(err);
@@ -426,22 +431,26 @@ app.post("/profile", authController.isLoggedIn, function (req, res) {
         res.redirect("/login");
     }
 
-
 });
 
 // USERS PAGE
-app.get("/users", function (req, res) {
+app.get("/users", authController.isLoggedIn, function (req, res) {
     app.use(express.static('./admin dashboard'));
 
-    let sql = "SELECT * FROM user";
-    con.query(sql, function (err, rows) {
-        if (err)
-            console.log(err);
-        else {
-            // console.log(rows);
-            res.render(__dirname + "/admin dashboard/users.ejs", { users: rows });
-        }
-    });
+    if (req.user && req.user.user_type == "admin") {
+        let sql = "SELECT * FROM user";
+        con.query(sql, function (err, rows) {
+            if (err)
+                console.log(err);
+            else {
+                // console.log(rows);
+                res.render(__dirname + "/admin dashboard/users.ejs", { user: req.user, users: rows });
+            }
+        });
+    }
+    else {
+        res.redirect("/login");
+    }
 });
 
 app.post("/add-users", function (req, res) {
@@ -539,27 +548,33 @@ app.post("/delete-user", function (req, res) {
 
 
 // CATEGORY PAGE
-app.get("/category", function (req, res) {
-    app.use(express.static('./admin dashboard'));
+// app.get("/category", function (req, res) {
+//     app.use(express.static('./admin dashboard'));
 
-    res.render(__dirname + "/admin dashboard/category.ejs");
-});
+//     res.render(__dirname + "/admin dashboard/category.ejs");
+// });
 
 // CITIES PAGE
-app.get("/city", function (req, res) {
+app.get("/city", authController.isLoggedIn, function (req, res) {
     app.use(express.static('./admin dashboard'));
 
-    let sql = "SELECT * FROM cities;";
-    sql += "SELECT city_id,COUNT(*) AS place_count FROM places GROUP BY city_id;  ";
-    con.query(sql, function (err, rows) {
-        if (err)
-            console.log(err);
-        else {
-            // console.log(rows[0]);
-            // console.log(rows[1]);
-            res.render(__dirname + "/admin dashboard/cities.ejs", { cities: rows[0], places: rows[1] });
-        }
-    });
+    if (req.user && req.user.user_type == "admin") {
+        let sql = "SELECT * FROM cities;";
+        sql += "SELECT city_id,COUNT(*) AS place_count FROM places GROUP BY city_id;  ";
+        con.query(sql, function (err, rows) {
+            if (err)
+                console.log(err);
+            else {
+                // console.log(rows[0]);
+                // console.log(rows[1]);
+                res.render(__dirname + "/admin dashboard/cities.ejs", { user: req.user, cities: rows[0], places: rows[1] });
+            }
+        });
+    }
+    else {
+        res.redirect("/login");
+    }
+
 });
 
 app.post("/add-cities", function (req, res) {
@@ -621,19 +636,25 @@ app.post("/delete-city", function (req, res) {
 
 
 // PLACES PAGE
-app.get("/places", function (req, res) {
+app.get("/places", authController.isLoggedIn, function (req, res) {
     app.use(express.static('./admin dashboard'));
 
-    let sql = "SELECT p.*,c.name FROM places AS p, cities AS c WHERE p.city_id=c.city_id;";
-    sql += "SELECT city_id,name FROM cities;"
-    con.query(sql, function (err, rows) {
-        if (err)
-            console.log(err);
-        else {
-            // console.log(rows);
-            res.render(__dirname + "/admin dashboard/places.ejs", { places: rows[0], cities: rows[1] });
-        }
-    });
+    if (req.user && req.user.user_type == "admin") {
+        let sql = "SELECT p.*,c.name FROM places AS p, cities AS c WHERE p.city_id=c.city_id;";
+        sql += "SELECT city_id,name FROM cities;"
+        con.query(sql, function (err, rows) {
+            if (err)
+                console.log(err);
+            else {
+                // console.log(rows);
+                res.render(__dirname + "/admin dashboard/places.ejs", { user: req.user, places: rows[0], cities: rows[1] });
+            }
+        });
+    }
+    else {
+        res.redirect("/login");
+    }
+
 });
 
 app.post("/add-places", function (req, res) {
@@ -703,19 +724,25 @@ app.post("/delete-places", function (req, res) {
 });
 
 // PACKAGES PAGE
-app.get("/package", function (req, res) {
+app.get("/package", authController.isLoggedIn, function (req, res) {
     app.use(express.static('./admin dashboard'));
 
-    let sql = "SELECT * FROM packages;";
-    sql += "SELECT city_id,name FROM cities;"
-    con.query(sql, function (err, rows) {
-        if (err)
-            console.log(err);
-        else {
-            // console.log(rows);
-            res.render(__dirname + "/admin dashboard/packages.ejs", { packages: rows[0], cities: rows[1] });
-        }
-    });
+    if (req.user && req.user.user_type == "admin") {
+        let sql = "SELECT * FROM packages;";
+        sql += "SELECT city_id,name FROM cities;"
+        con.query(sql, function (err, rows) {
+            if (err)
+                console.log(err);
+            else {
+                // console.log(rows);
+                res.render(__dirname + "/admin dashboard/packages.ejs", { user: req.user, packages: rows[0], cities: rows[1] });
+            }
+        });
+    }
+    else {
+        res.redirect("/login");
+    }
+
 });
 
 app.post("/add-packages", function (req, res) {
@@ -789,36 +816,60 @@ app.post("/delete-packages", function (req, res) {
 
 
 // REVIEWS PAGE
-app.get("/reviews", function (req, res) {
+app.get("/reviews", authController.isLoggedIn, function (req, res) {
     app.use(express.static('./admin dashboard'));
 
-    let sql = "SELECT r.*, p.place_name, u.user_name FROM reviews AS r, places AS p, user AS u WHERE r.places_id = p.place_id AND r.users_id = u.user_id;";
+    if (req.user && req.user.user_type == "admin") {
+        let sql = "SELECT r.*, p.place_name, u.user_name FROM reviews AS r, places AS p, user AS u WHERE r.places_id = p.place_id AND r.users_id = u.user_id;";
+        con.query(sql, function (err, rows) {
+            if (err)
+                console.log(err);
+            else {
+                // console.log(rows);
+                res.render(__dirname + "/admin dashboard/reviews.ejs", { user: req.user, reviews: rows });
+            }
+        });
+    }
+    else {
+        res.redirect("/login");
+    }
+
+});
+
+// BOOKINGS PAGE
+app.get("/bookings", authController.isLoggedIn, function (req, res) {
+    app.use(express.static('./admin dashboard'));
+
+    if (req.user && req.user.user_type == "admin") {
+        let sql = "SELECT b.*, p.name, u.* FROM bookings AS b, packages AS p, user AS u WHERE b.package_id = p.package_id AND b.user_id = u.user_id;";
+        sql += "SELECT name FROM packages;";
+        sql += "SELECT user_name FROM user;";
+        con.query(sql, function (err, rows) {
+            if (err)
+                console.log(err);
+            else {
+                // console.log(rows[0]);
+                // console.log(rows[1]);
+                // console.log(rows[2]);
+                res.render(__dirname + "/admin dashboard/bookings.ejs", { user: req.user, bookings: rows[0], packages: rows[1], users: rows[2] });
+            }
+        });
+    }
+    else {
+        res.redirect("/login");
+    }
+});
+
+app.post("/approve-booking", function (req, res) {
+    app.use(express.static('./admin dashboard'));
+    let { booking_id } = req.body;
+    let sql = "UPDATE bookings SET status = 'approved' WHERE booking_id = '" + booking_id + "'";
     con.query(sql, function (err, rows) {
         if (err)
             console.log(err);
         else {
             // console.log(rows);
-            res.render(__dirname + "/admin dashboard/reviews.ejs", { reviews: rows });
-        }
-    });
-
-});
-
-// BOOKINGS PAGE
-app.get("/bookings", function (req, res) {
-    app.use(express.static('./admin dashboard'));
-
-    let sql = "SELECT b.*, p.name, u.* FROM bookings AS b, packages AS p, user AS u WHERE b.package_id = p.package_id AND b.user_id = u.user_id;";
-    sql += "SELECT name FROM packages;";
-    sql += "SELECT user_name FROM user;";
-    con.query(sql, function (err, rows) {
-        if (err)
-            console.log(err);
-        else {
-            // console.log(rows[0]);
-            // console.log(rows[1]);
-            // console.log(rows[2]);
-            res.render(__dirname + "/admin dashboard/bookings.ejs", { bookings: rows[0], packages: rows[1], users: rows[2] });
+            res.redirect("/bookings");
         }
     });
 });
@@ -873,21 +924,21 @@ app.post("/update-bookings", function (req, res) {
                 if (err)
                     console.log(err);
                 else {
-                    console.log(rows);
+                    // console.log(rows);
+                    let msg = "Congratulations!! Package booking for User " + user_name + " has been updated successfully with values <br> "
+                    let m1 = "<br>User Name : " + user_name;
+                    let m2 = "<br>Package Name : " + package_name;
+                    let m3 = "<br>People Count : " + count;
+                    let m4 = "<br>Total Amount : " + total_price;
+                    let m5 = "<br>Travel Date : " + travel_date;
+                    msg = msg + m1 + m2 + m3 + m4 + m5;
+
+                    res.render(__dirname + "/pop-up.ejs", { title: "Package Booking Updated", msg: msg });
                 }
             });
         }
     });
 
-    let msg = "Congratulations!! Package booking for User " + user_name + " has been updated successfully with values <br> "
-    let m1 = "<br>User Name : " + user_name;
-    let m2 = "<br>Package Name : " + package_name;
-    let m3 = "<br>People Count : " + count;
-    let m4 = "<br>Total Amount : " + total_price;
-    let m5 = "<br>Travel Date : " + travel_date;
-    msg = msg + m1 + m2 + m3 + m4 + m5;
-
-    res.render(__dirname + "/pop-up.ejs", { title: "Package Booking Updated", msg: msg });
 });
 
 app.post("/delete-bookings", function (req, res) {
@@ -915,19 +966,38 @@ app.post("/delete-bookings", function (req, res) {
 
 
 // ENQUIRIES PAGE
-app.get("/enquiries", function (req, res) {
+app.get("/enquiries", authController.isLoggedIn, function (req, res) {
     app.use(express.static('./admin dashboard'));
 
-    let sql = "SELECT * FROM enquiries";
+    if (req.user && req.user.user_type == "admin") {
+        let sql = "SELECT * FROM enquiries";
+        con.query(sql, function (err, rows) {
+            if (err)
+                console.log(err);
+            else {
+                // console.log(rows);
+                res.render(__dirname + "/admin dashboard/enquiries.ejs", { user: req.user, enquiries: rows });
+            }
+        });
+    }
+    else {
+        res.redirect("/login");
+    }
+
+});
+
+app.post("/review-enquiry", function (req, res) {
+    app.use(express.static('./admin dashboard'));
+    let { enquiry_id } = req.body;
+    let sql = "UPDATE enquiries SET status = 'reviewed' WHERE enquiry_id = '" + enquiry_id + "'";
     con.query(sql, function (err, rows) {
         if (err)
             console.log(err);
         else {
             // console.log(rows);
-            res.render(__dirname + "/admin dashboard/enquiries.ejs", { enquiries: rows });
+            res.redirect("/enquiries");
         }
     });
-
 });
 
 app.post("/add-enquiry", function (req, res) {
@@ -955,17 +1025,27 @@ app.post("/add-enquiry", function (req, res) {
 });
 
 // ANALYTICS PAGE
-app.get("/analytics", function (req, res) {
+app.get("/analytics", authController.isLoggedIn, function (req, res) {
     app.use(express.static('./admin dashboard'));
 
-    res.render(__dirname + "/admin dashboard/analytics.ejs");
+    if (req.user && req.user.user_type == "admin") {
+        res.render(__dirname + "/admin dashboard/analytics.ejs", { user: req.user });
+    }
+    else {
+        res.redirect("/login");
+    }
 });
 
 // CHARTS PAGE
-app.get("/charts", function (req, res) {
+app.get("/charts", authController.isLoggedIn, function (req, res) {
     app.use(express.static('./admin dashboard'));
 
-    res.render(__dirname + "/admin dashboard/charts.ejs");
+    if (req.user && req.user.user_type == "admin") {
+        res.render(__dirname + "/admin dashboard/charts.ejs", { user: req.user });
+    }
+    else {
+        res.redirect("/login");
+    }
 });
 
 
@@ -973,8 +1053,9 @@ app.get("/charts", function (req, res) {
 
 app.listen(port, function (err) {
 
-    if (err)
-        console.log("Error in connection " + err);
+    if (err) {
+
+    }
     else
         console.log("Listening on localhost:" + port);
 });

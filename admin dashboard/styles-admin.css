@@ -7,7 +7,7 @@ body {
 
 .sidebar{
   height: 100vh;
-  background: linear-gradient( rgba(0,0,0,.5), rgba(0,0,0,.9) ), url(images/img1.jpeg);
+  background: linear-gradient( rgba(0,0,0,.5), rgba(0,0,0,.9) ), url(images/img1.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -24,7 +24,7 @@ body {
 }
 
 .sidebar-link:hover{
-  background-color: #444;
+  background-color: #999;
   border-radius: 4px;  
 }
 
@@ -106,6 +106,16 @@ body {
 
 .card-common:hover{
   box-shadow: 2px 3px 15px #999;
+  transform: translateY(-1px);
+}
+
+.refresh{
+  color: #999;
+  transition: all .4s;
+}
+
+.refresh:hover{
+  color: #444;
   transform: translateY(-1px);
 }
 

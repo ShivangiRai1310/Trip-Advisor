@@ -26,7 +26,10 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
         integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
 
-
+    <!-- GOOGLE FONTS -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Arvo&family=Caveat:wght@400;700&family=Cinzel:wght@400;700&family=Dancing+Script:wght@700&family=Great+Vibes&family=Open+Sans&family=Permanent+Marker&display=swap"
+        rel="stylesheet">
 
 </head>
 
@@ -87,7 +90,7 @@
                     <li class="nav-item my-auto"><a class="nav-link" href="register">Register</a></li>
                     <li><a class="nav-link" href="login"><i class="fas fa-user-circle fa-2x"></i></a></li>
                     <% } %>
-                    
+
                 </ul>
             </div>
         </nav>
@@ -330,8 +333,8 @@
                     </div>
                     <!-- End -->
                 </div>
-                <div class="py-5 text-right"><a href="#" class="btn btn-dark px-5 py-3 text-uppercase">Show me more</a>
-                </div>
+                <!-- <div class="py-5 text-right"><a href="#" class="btn btn-dark px-5 py-3 text-uppercase">Show me more</a>
+                </div> -->
             </div>
         </div>
     </section>
@@ -367,8 +370,8 @@
         <h2>Explore Cities</h2>
         <div class="cities">
             <div>
-                <a href=""><img src="images/varanasi/var.jpg" alt="varanasi image"></a>
-                <a href="">
+                <a href="/varanasi"><img src="images/varanasi/var.jpg" alt="varanasi image"></a>
+                <a href="/varanasi">
                     <h4>Varanasi</h4>
                 </a>
                 <p>Varanasi, the spiritual capital of India, is full of soul, history, and significance.
@@ -381,8 +384,8 @@
                     sacred waters and discover what makes Varanasi unlike any other place on earth.
             </div>
             <div class="right">
-                <a href=""><img src="images/kolkata/kol.jpg" alt="kolkata image"></a>
-                <a href="">
+                <a href="/kolkata"><img src="images/kolkata/kol.jpg" alt="kolkata image"></a>
+                <a href="/kolkata">
                     <h4>Kolkata</h4>
                 </a>
                 <p>Kolkata (formerly Calcutta) is the capital of India's West Bengal state.
@@ -420,48 +423,53 @@
             <div class="card">
                 <div class="face face1">
                     <div class="content">
-                        <h3>Lorem ipsum</h3>
-                        <p>dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            ut aliquip
-                            ex</p>
+                        <h3>Varanasi Bodhgaya Tour</h3>
+                        <hr>
+                        <p>Enjoy the hindu Pilgrimage tour of Varanasi & Nearby cities like Allahabad, Ayodhya,
+                            Namisharanya, Chitrakoot, Gaya, Bodhgaya. <br>
+                            Kashi Yatra through the spiritual heart of India - Varanasi, Allahabad and Bodhgaya.</p>
+                        <hr>
+                        <a href="/varanasi-package"><button class="btn btn-success mt-2">View Details</button></a>
                     </div>
                 </div>
                 <div class="face face2">
-                    <h2>01</h2>
+                    <h2>Varanasi</h2>
                 </div>
             </div>
 
             <div class="card">
                 <div class="face face1">
                     <div class="content">
-                        <h3>Lorem ipsum</h3>
-                        <p>dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            ut aliquip
-                            ex</p>
+                        <h3>Kolkata: Tour around the city in three days</h3>
+                        <hr>
+                        <p>Travel to the majestic city of Kolkata. Explore important cultural and historical landmarks.
+                            See the sights of the Howrah Bridge. Discover Writers Building and Pareshnath Jain Temple &
+                            much more.</p>
+                        <hr>
+                        <a href="/kolkata-package"><button class="btn btn-success mt-2">View Details</button></a>
                     </div>
                 </div>
                 <div class="face face2">
-                    <h2>02</h2>
+                    <h2>Kolkata</h2>
                 </div>
             </div>
 
             <div class="card">
                 <div class="face face1">
                     <div class="content">
-                        <h3>Lorem ipsum</h3>
-                        <p>dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            ut aliquip
-                            ex</p>
+                        <h3>Charming Kashmir Sightseeing Tour</h3>
+                        <hr>
+                        <p>Go for sightseeing, and make your tour a memorable affair amidst mighty, snowy peaks. From
+                            shikara rides and houseboats to Gondola rides and nature walks, there are a myriad of things
+                            to do in Kashmir that make it magical.</p>
+                        <hr>
+                        <button class="btn btn-success mt-2">View Details</button>
                     </div>
                 </div>
                 <div class="face face2">
-                    <h2>03</h2>
+                    <h2>Kashmir</h2>
                 </div>
             </div>
-
         </div>
 
     </section>
@@ -477,13 +485,14 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" name="name" class="form-control" placeholder="Your Name *" required/>
+                            <input type="text" name="name" class="form-control" placeholder="Your Name *" required />
                         </div>
                         <div class="form-group">
-                            <input type="email" name="email" class="form-control" placeholder="Your Email *" required/>
+                            <input type="email" name="email" class="form-control" placeholder="Your Email *" required />
                         </div>
                         <div class="form-group">
-                            <input type="text" name="contact" class="form-control" placeholder="Your Phone Number *" required/>
+                            <input type="text" name="contact" class="form-control" placeholder="Your Phone Number *"
+                                required />
                         </div>
                         <div class="form-group">
                             <!-- <button type="reset" class="btn btn-dark btn-lg">Reset</button>
@@ -521,9 +530,9 @@
 
     <footer>
         <div class="container-fluid row">
-            <div class="col-lg-4 col-md-6 my-auto d-flex justify-content-center"><a href="./"><img
-                        src="images/logo.png" alt="Trip advisor"></a></div>
-            <div class="col-lg-4 col-md-2 my-auto d-flex justify-content-center text-center"> 
+            <div class="col-lg-4 col-md-6 my-auto d-flex justify-content-center"><a href="./"><img src="images/logo.png"
+                        alt="Trip advisor"></a></div>
+            <div class="col-lg-4 col-md-2 my-auto d-flex justify-content-center text-center">
                 <i class="social-icon fab fa-facebook-f fa-lg"></i>
                 <i class="social-icon fab fa-twitter fa-lg"></i>
                 <i class="social-icon fab fa-instagram fa-lg"></i>
@@ -535,6 +544,7 @@
     </footer>
 
     <script src="index.js"></script>
+    
 
 </body>
 

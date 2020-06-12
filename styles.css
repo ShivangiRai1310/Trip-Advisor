@@ -174,8 +174,11 @@ section{
 /* EXPLORE PACKAGES SECTION */
 #explore_packages{
     background-color: #ed1250;
-    height: 600px;
-    
+    height: auto;
+}
+
+#explore_packages h2{
+    color: white;
 }
 
 #explore_packages .container-fluid{
@@ -183,19 +186,32 @@ section{
     /* justify-content: center;
     align-items: center; */
     /* min-height: 100vh; */
-    width: 1200px;
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    grid-gap: 15px;
+    grid-gap: 10px;
     margin: 50px auto;
+}
+
+#explore_packages button{
+    background-color: #ed1250;
+    border: none;
+    transition: all .3s;
+}
+
+#explore_packages button:hover{
+    background-color: #f66436;
+    border-radius: 7px;
+    box-shadow: 2px 5px 10px black;
+    transform: translateY(-1px);
 }
 
 #explore_packages .card{
     position: relative;
-    width: 300px;
-    height: 400px;
+    width: 350px;
+    height: 450px;
     margin: 0 auto; 
-    background-color: #fbc99d;
+    background-color: #fff6da;
     box-shadow: 0 15px 30px rgba(0, 0, 0, .5);
 }
 
@@ -205,14 +221,25 @@ section{
     left: 0;
     width: 100%;
     height: 100%;
-    display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 #explore_packages .card .face.face1{
     box-sizing: border-box;
-    padding: 20px;
+    padding: 30px 20px; 
+}
+
+#explore_packages .card .face.face1 h3{
+    color: #000839;
+    font-family: 'Great Vibes', cursive;
+    font-weight: 500;
+    font-size: 1.8rem;
+}
+
+#explore_packages .card .face.face1 p{
+    text-align: justify; 
 }
 
 /* #explore_packages .card .face.face1 h3{
@@ -221,20 +248,29 @@ section{
 } */
 
 #explore_packages .card:nth-child(1) .face.face2{
-    background: linear-gradient(45deg, #000839, #00a8cc);
+    /* background: linear-gradient(45deg, #000839, #00a8cc); */
+    background-image: url(images/varanasi/varanasi-package.jpg);
+    background-size: cover;
 }
 
 #explore_packages .card:nth-child(2) .face.face2{
-    background: linear-gradient(45deg, tomato, #ffa41b);
+    /* background: linear-gradient(45deg, tomato, #ffa41b); */
+    background-image: url(images/kolkata/kolkata-package.jpg);
+    background-size: cover;
 }
 
 #explore_packages .card:nth-child(3) .face.face2{
-    background: linear-gradient(45deg, #000839, #00a8cc);
+    /* background: linear-gradient(45deg, #000839, #00a8cc); */
+    background-image: url(images/kashmir/kashmir-package.jpg);
+    background-size: cover;
 }
 
 #explore_packages .card .face.face2{
     background-color: #000839;
-    transition: 0.5s;  
+    transition: 0.5s;
+    display: flex; 
+    font-family: 'Great Vibes', cursive;
+    font-weight: bold;
 }
 
 #explore_packages .card:hover .face.face2{
