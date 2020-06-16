@@ -88,8 +88,8 @@ section{
 #about{
     /* background-color: #feceab; */
     /* background: #e84a5f; */
-    background: -webkit-linear-gradient(to right, #feceab, #ff847c, #e84a5f);
-    background: linear-gradient(to right,#feceab, #ff847c, #e84a5f);
+    background: -webkit-linear-gradient(to right, #98d6ea, #bae5e5, #f3d1f4);
+    background: linear-gradient(to right,#98d6ea, #bae5e5, #f3d1f4);
 }
 
 .container1{
