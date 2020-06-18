@@ -54,12 +54,25 @@ $(".disable-basedon").change(function () {
     // alert("changed");
     $(".disable").removeAttr("disabled");
     // $('.disable').prop("disabled", false);    BTN NOT WORKING WITH DISABLE CLASS
-    if($(this).val()=='abc'){
-        $("#update-users input[name=contact]").val("1234567891");
-        $("#update-users input[name=user_type]").val(["general"]);
-    }
+    // if($(this).val()=='abc'){
+    //     $("#update-users input[name=contact]").val("1234567891");
+    //     $("#update-users input[name=user_type]").val(["general"]);
+    // }
 
 });
+
+{/* <script>
+    function autofill(users){
+      $(".disable").removeAttr("disabled");
+      var username = $("#update-users .disable-basedon").val();
+      alert(username);
+      for(var i=0; i<users.length;i++){ 
+          if(users[i].user_name == username){
+            $("#update-users input[name=contact]").val("<%= users[i].contact %>");
+          }
+      } 
+    }
+  </script> */}
 
 // PENDING/ APPROVED BOOKING STATUS
 $(".pending").click(function () {

@@ -342,35 +342,6 @@ app.post("/get-location", function (req, res) {
     });
 });
 
-app.post("/load-map", function (req, res) {
-    app.use(express.static('./map'));
-
-    let { start_place, waypoints, end_place } = req.body;
-    // console.log(start_place);
-    // console.log(waypoints);
-    // console.log(end_place);
-    let sql = "SELECT * FROM places";
-    // sql += "SELECT latitude,longitude FROM places WHERE place_id ='"+start_place+"';"
-    // sql += "SELECT latitude,longitude FROM places WHERE place_id ='"+end_place+"';"
-    con.query(sql, function (err, rows) {
-        if (err)
-            console.log(err);
-        else {
-            // console.log(rows[0]);
-            // console.log(rows[1]);
-            // console.log(rows[2]);
-            // let slat = rows[1][0].latitude;
-            // let slong = rows[1][0].longitude;
-            // let elat = rows[2][0].latitude;
-            // let elong = rows[2][0].longitude;
-            // console.log(slat+" "+slong);
-            // console.log(elat+" "+elong);
-            res.render(__dirname + "/map/trip.ejs", { cities: "", places: rows });
-        }
-    });
-});
-
-
 
 // DASHBOARD PAGE
 app.get("/dashboard", authController.isLoggedIn, function (req, res) {
