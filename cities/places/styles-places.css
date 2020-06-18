@@ -85,7 +85,7 @@ body {
 }
 
 .text-lg {
-    font-size: 0.75rem;
+    font-size: 0.5rem;
 }
 
 .carousel-indicators li {
@@ -112,6 +112,10 @@ body {
   color: #ffaaa5;
 }
 .blockquote p{
-  font-size: 1rem;
+  font-size: 0.5rem;
   font-family: 'Indie Flower', cursive;
+}
+/* ********************  add your own review    ****************************** */
+.fa-star:hover{
+  color: orange;
 }
