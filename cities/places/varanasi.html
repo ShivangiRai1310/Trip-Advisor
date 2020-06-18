@@ -39,7 +39,7 @@
           <a class="nav-link" href="#varanasi">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" href="#add-comment">Add Review</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -443,7 +443,37 @@
   </section>
 
 
-  
+    <div class="place-gallery" id="add-comment">
+      <div class="login d-flex align-items-center py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-10 col-xl-7 mx-auto">
+              <h3 class="display-4">What do you say!?</h3>
+              <p class="text-muted mb-4">Add your comments here</p>
+              <form>
+                <div class="form-group mb-3">
+                  <input id="comment-place" type="text" placeholder="The place you want to tell about" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                </div>
+                <div class="form-group mb-3">
+                  <input id="comment-heading" type="text" placeholder="What is your comment about" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                </div>
+                <div class="form-group mb-3">
+                  <textarea id="comment-text" type="text" placeholder="Add your comment here" required="" class="form-control rounded-pill border-0 shadow-sm px-4"></textarea>
+                </div>
+                <div class="mb-3">
+                  <p>Your Rating:</p> <i onclick="this.style.color= 'red'" class="fas fa-heart"></i><i onclick="this.style.color= 'red'" class="fas fa-heart"></i><i onclick="this.style.color= 'red'" class="fas fa-heart"></i><i
+                    onclick="this.style.color= 'red'" class="fas fa-heart"></i><i onclick="this.style.color= 'red'" class="fas fa-heart"></i>
+                  <!-- <label for="customCheck1" class="custom-control-label">Remember password</label> -->
+                </div>
+                <button type="submit" class="btn btn-danger btn-block text-uppercase mb-2 rounded-pill shadow-sm">Make your opinion count</button>
+                <!-- <div class="text-center d-flex justify-content-between mt-4"><p>Snippet by <a href="https://bootstrapious.com/snippets" class="font-italic text-muted">
+                                          <u>Boostrapious</u></a></p></div> -->
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
   <!-- JAVASCRIPT -->
   <script type="text/javascript" src="swiper.min.js"></script>
