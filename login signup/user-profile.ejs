@@ -71,18 +71,18 @@
           </li>
           <!-- <li class="nav-item my-auto"><a class="nav-link" href="user-profile">Profile</a></li> -->
           <li class="nav-item my-auto"><a class="nav-link" href="logout">Logout</a></li>
-          <li><a class="nav-link" href="user-profile"><i class="fas fa-user-circle fa-2x"></i></a></li>
+          <li><a class="nav-link" href="user-profile"><i class="fas fa-user-circle my-2 fa-2x"></i></a></li>
           <% } else if(user.user_type === "admin") { %>
           <li class="nav-item my-auto">
             <p class="my-auto mr-2">Welcome <%= user.user_name %> !!</p>
           </li>
           <li class="nav-item my-auto"><a class="nav-link" href="dashboard">Dashboard</a></li>
           <li class="nav-item my-auto"><a class="nav-link" href="logout">Logout</a></li>
-          <li><a class="nav-link" href="profile"><i class="fas fa-user-circle fa-2x"></i></a></li>
+          <li><a class="nav-link" href="profile"><i class="fas fa-user-circle my-2 fa-2x"></i></a></li>
           <%} } else { %>
           <li class="nav-item my-auto"><a class="nav-link" href="login">Login</a></li>
           <li class="nav-item my-auto"><a class="nav-link" href="register">Register</a></li>
-          <li><a class="nav-link" href="login"><i class="fas fa-user-circle fa-2x"></i></a></li>
+          <li><a class="nav-link" href="login"><i class="fas fa-user-circle my-2 fa-2x"></i></a></li>
           <% } %>
 
         </ul>
@@ -109,9 +109,8 @@
           <form action="user-profile-update" method="post" class="mx-auto">
             <div class="px-4 pt-0 pb-0 bg-dark">
               <div class="media align-items-end">
-                <div class="mr-4 profile-header"><img
-                    src="../images/users/<%= user.user_name %>.jpeg" alt="..." width="160"
-                    class="rounded mb-2 img-thumbnail">
+                <div class="mr-4 profile-header"><img src="../images/users/<%= user.user_name %>.jpeg" alt="..."
+                    width="160" class="rounded mb-2 img-thumbnail">
                   <a href="#edit-profile" class="btn btn-dark btn-md btn-block" id="edit-profile"><i
                       class="fas fa-edit fa-lg mr-2"></i>Edit profile</a>
                 </div>
@@ -163,133 +162,112 @@
                     class="fas fa-user-edit fa-lg mr-2"></i>Update Profile</button>
               </ul>
             </div>
+          </form>
 
-            <div class="py-4 px-4">
-              <div class="d-flex align-items-center justify-content-between mb-3">
-                <h5 class="mb-0">Liked Places</h5><a href="#" class="btn btn-link text-muted">Show all</a>
-              </div>
-              <div class="row">
-    <div class="col-lg-11 mx-auto">
-      <!-- FIRST EXAMPLE ===================================-->
-      <div class="row py-5">
-        <div class="col-lg-4">
-          <figure class="rounded p-3 bg-white shadow-sm">
-            <img src="images\edited\Img-1.jpg" alt="" class="w-100 card-img-top">
-            <figcaption class="p-4 card-img-bottom">
-              <h2 class="h5 font-weight-bold mb-2 font-italic">Varanasi</h2>
-              <p class="mb-0 text-small text-muted font-italic">Sunset at Assi Ghat</p>
-            </figcaption>
-          </figure>
-        </div>
-        <div class="col-lg-4">
-          <figure class="rounded p-3 bg-white shadow-sm">
-            <img src="images\edited\Img-3.jpg" alt="" class="w-100 card-img-top">
-            <figcaption class="p-4 card-img-bottom">
-              <h2 class="h5 font-weight-bold mb-2 font-italic">Srinagar</h2>
-              <p class="mb-0 text-small text-muted font-italic">Shikara in Dal lake</p>
-            </figcaption>
-          </figure>
-        </div>
-        <div class="col-lg-4">
-          <figure class="rounded p-3 bg-white shadow-sm">
-            <img src="images\edited\Img-4.jpg" alt="" class="w-100 card-img-top">
-            <figcaption class="p-4 card-img-bottom">
-              <h2 class="h5 font-weight-bold mb-2 font-italic">Delhi</h2>
-              <p class="mb-0 text-small text-muted font-italic">An evening in India Gate</p>
-            </figcaption>
-          </figure>
-        </div>
-      </div>
+          <div class="separator py-1"></div>
 
-
-      <div class="separator my-3"></div>
-              <div class="py-4">
-                <h5 class="mb-3">Your Reviews</h5>
-
-                  <!-- <p class="font-italic mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                  <ul class="list-inline small text-muted mt-3 mb-0">
-                    <li class="list-inline-item"><i class="fa fa-comment-o mr-2"></i>12 Comments</li>
-                    <li class="list-inline-item"><i class="fa fa-heart-o mr-2"></i>200 Likes</li>
-                  </ul> -->
-                  <div class="p-4 bg-light rounded shadow-sm" id="accordion">
-
-                    <div class="card">
-                      <div class="card-header">
-                        <button class="btn btn-block bg-secondary text-light text-left" data-toggle="collapse"
-                          data-target="#collapse<%= reviews[0].review_id %>">
-                          <img src="../images/users/<%= reviews[0].user_name %>.jpeg" alt="" width="50" class="mr-3 rounded">
-                          <b><%= reviews[0].user_name %></b> posted a new review
-                        </button>
-                      </div>
-                      <div class="collapse show" id="collapse<%= reviews[0].review_id %>" data-parent="#accordion">
-                        <div class="card-body row">
-                          <div class="col-5">
-                            <h5>Place Name : </h5>
-                            <p><%= reviews[0].place_name %></p>
-                            <h5>Ratings : </h5>
-                            <p>
-                              <%  for(var j=0; j< reviews[0].rating ;j++){ %>
-                              <i class="fas fa-star fa-lg mr-1 checked"></i>
-                              <% } %>
-                              <%  for(var j=0; j< 5-reviews[0].rating ;j++){ %>
-                              <i class="fas fa-star fa-lg mr-1"></i>
-                              <% } %>
-                            </p>
-                          </div>
-                          <div class="col-7">
-                            <h5>"<%= reviews[0].title %>"</h5>
-                            <%= reviews[0].message %>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-
-                    <%  for(var i=1; i<reviews.length;i++){ %>
-                    <div class="card">
-                      <div class="card-header">
-                        <button class="btn btn-block bg-secondary text-light text-left" data-toggle="collapse"
-                          data-target="#collapse<%= reviews[i].review_id %>">
-                          <img src="../images/users/<%= reviews[i].user_name %>.jpeg" alt="" width="50" class="mr-3 rounded">
-                          <b><%= reviews[i].user_name %></b> posted a new review
-                        </button>
-                      </div>
-                      <div class="collapse" id="collapse<%= reviews[i].review_id %>" data-parent="#accordion">
-                        <div class="card-body row">
-                          <div class="col-5">
-                            <h5>Place Name : </h5>
-                            <p><%= reviews[i].place_name %></p>
-                            <h5>Ratings : </h5>
-                            <p>
-                              <%  for(var j=0; j< reviews[i].rating ;j++){ %>
-                              <i class="fas fa-star fa-lg mr-1 checked"></i>
-                              <% } %>
-                              <%  for(var j=0; j< 5-reviews[i].rating ;j++){ %>
-                              <i class="fas fa-star fa-lg mr-1"></i>
-                              <% } %>
-                            </p>
-                          </div>
-                          <div class="col-7">
-                            <h5>"<%= reviews[i].title %>"</h5>
-                            <%= reviews[i].message %>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <% } %>
-                  </div>
-
-              </div>
+          <div class="mx-3 my-5" id="liked">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <h5 class="mb-0 ml-4">Liked Places</h5><a href="#" class="btn btn-link text-muted">Show all</a>
             </div>
+
+            <!-- FIRST EXAMPLE ===================================-->
+            <div class="row">
+              <%  for(var i=0; i<places.length;i++){ %>
+              <% let city_name = places[i].name ; %>
+              <% city_name = city_name.toLowerCase(); %>
+              <div class="col-lg-4">
+                <a href="/<%= city_name %>">
+                  <figure class="rounded p-3 bg-light">
+                    <img src="../images/<%= city_name %>/<%= places[i].place_name %>.jpg" alt=""
+                      class="w-100 card-img-top">
+                    <figcaption class="p-4 card-img-bottom">
+                      <h2 class="h5 font-weight-bold mb-2 font-italic">"<%= places[i].place_name %>"</h2>
+                      <p class="mb-0 text-small text-muted font-italic">"<%= places[i].address %>"</p>
+                    </figcaption>
+                  </figure>
+                </a>
+              </div>
+              <% } %>
+            </div>
+          </div>
+
+          <!-- <div class="separator py-1"></div> -->
+
+          <div class="mx-3 my-5">
+            <h5 class="mb-3 ml-4">Your Reviews</h5>
+
+            <div class="p-4 bg-light rounded shadow-sm" id="accordion">
+
+              <div class="card">
+                <div class="card-header">
+                  <button class="btn btn-block bg-secondary text-light text-left" data-toggle="collapse"
+                    data-target="#collapse<%= reviews[0].review_id %>">
+                    <img src="../images/users/<%= reviews[0].user_name %>.jpeg" alt="" width="50" class="mr-3 rounded">
+                    <b><%= reviews[0].user_name %></b> posted a new review
+                  </button>
+                </div>
+                <div class="collapse show" id="collapse<%= reviews[0].review_id %>" data-parent="#accordion">
+                  <div class="card-body row">
+                    <div class="col-5">
+                      <h5>Place Name : </h5>
+                      <p><%= reviews[0].place_name %></p>
+                      <h5>Ratings : </h5>
+                      <p>
+                        <%  for(var j=0; j< reviews[0].rating ;j++){ %>
+                        <i class="fas fa-star fa-lg mr-1 checked"></i>
+                        <% } %>
+                        <%  for(var j=0; j< 5-reviews[0].rating ;j++){ %>
+                        <i class="fas fa-star fa-lg mr-1"></i>
+                        <% } %>
+                      </p>
+                    </div>
+                    <div class="col-7">
+                      <h5>"<%= reviews[0].title %>"</h5>
+                      <%= reviews[0].message %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <%  for(var i=1; i<reviews.length;i++){ %>
+              <div class="card">
+                <div class="card-header">
+                  <button class="btn btn-block bg-secondary text-light text-left" data-toggle="collapse"
+                    data-target="#collapse<%= reviews[i].review_id %>">
+                    <img src="../images/users/<%= reviews[i].user_name %>.jpeg" alt="" width="50" class="mr-3 rounded">
+                    <b><%= reviews[i].user_name %></b> posted a new review
+                  </button>
+                </div>
+                <div class="collapse" id="collapse<%= reviews[i].review_id %>" data-parent="#accordion">
+                  <div class="card-body row">
+                    <div class="col-5">
+                      <h5>Place Name : </h5>
+                      <p><%= reviews[i].place_name %></p>
+                      <h5>Ratings : </h5>
+                      <p>
+                        <%  for(var j=0; j< reviews[i].rating ;j++){ %>
+                        <i class="fas fa-star fa-lg mr-1 checked"></i>
+                        <% } %>
+                        <%  for(var j=0; j< 5-reviews[i].rating ;j++){ %>
+                        <i class="fas fa-star fa-lg mr-1"></i>
+                        <% } %>
+                      </p>
+                    </div>
+                    <div class="col-7">
+                      <h5>"<%= reviews[i].title %>"</h5>
+                      <%= reviews[i].message %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <% } %>
+            </div>
+          </div>
+
         </div>
-        </form>
-
       </div>
-    </div>
-
-
-    </div>
     </div>
   </section>
 

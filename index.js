@@ -58,7 +58,7 @@ app.post("/login", async function (req, res) {
 
     try {
         let { user_name, password } = req.body;
-        console.log(req.body);
+        // console.log(req.body);
         if (!user_name || !password) {
             return res.status(400).render(__dirname + "/login signup/login.ejs", { msg: "Please provide username and password" });
         }
@@ -68,7 +68,7 @@ app.post("/login", async function (req, res) {
             if (err)
                 console.log(err);
 
-            console.log(rows);
+            // console.log(rows);
             if (!rows || !(await bcrypt.compare(password, rows[0].password))) {
                 res.status(401).render(__dirname + "/login signup/login.ejs", { msg: "Username or password is incorrect" });
             }
@@ -78,7 +78,7 @@ app.post("/login", async function (req, res) {
                 const token = jwt.sign({ user_id }, process.env.ACCESS_TOKEN_SECRET, {    //creates jwt token
                     expiresIn: process.env.JWT_EXPIRES_IN
                 });
-                console.log("The token is " + token);
+                // console.log("The token is " + token);
 
                 const cookieOptions = {
                     expires: new Date(
@@ -171,20 +171,20 @@ app.get("/user-profile", authController.isLoggedIn, function (req, res) {    //t
     if (req.user) {
         // console.log(req.user.user_id);
         let sql = "SELECT r.*, p.place_name, u.user_name FROM reviews AS r, places AS p, user AS u WHERE r.places_id = p.place_id AND r.users_id = u.user_id AND r.users_id = '" + req.user.user_id + "';";
+        sql += "SELECT p.place_name,p.address,c.name FROM places AS p,bookmarks AS b,cities AS c WHERE b.userid = '" + req.user.user_id + "' AND p.place_id = b.place_id AND p.city_id = c.city_id;";
         con.query(sql, function (err, rows) {
             if (err)
                 console.log(err);
             else {
-                // console.log(rows);
-                res.render(__dirname + "/login signup/user-profile.ejs", { user: req.user, reviews: rows });
+                // console.log(rows[0]);
+                // console.log(rows[1]);
+                res.render(__dirname + "/login signup/user-profile.ejs", { user: req.user, reviews: rows[0], places: rows[1] });
             }
         });
-
     }
     else {
         res.redirect("/login");
     }
-
 });
 
 app.post("/user-profile-update", async function (req, res) {
@@ -223,18 +223,91 @@ app.get("/explore-cities", function (req, res) {
     res.sendFile(__dirname + "/cities/cities.html");
 });
 
-app.get("/varanasi", function (req, res) {
+app.get("/varanasi", authController.isLoggedIn, function (req, res) {
     app.use(express.static('./cities/places'));
+    let city_name = req.url.slice(1);
 
-    res.sendFile(__dirname + "/cities/places/varanasi.html");
+    if (req.user) {
+        let sql = "SELECT city_id FROM cities WHERE name = '" + city_name + "'";
+        con.query(sql, function (err, rows) {
+            if (err)
+                console.log(err);
+            else {
+                let city_id = rows[0].city_id;
+                let sql = "SELECT r.*,u.user_name,p.place_name FROM reviews AS r,places AS p,cities AS c,user AS u WHERE p.city_id = '"+ city_id +"' AND r.places_id = p.place_id AND r.users_id = u.user_id";
+                con.query(sql, function (err, rows) {
+                    if (err)
+                        console.log(err);
+                    else {
+                        // console.log(rows);
+                        res.render(__dirname + "/cities/places/varanasi.ejs", { user: req.user, reviews: rows });
+                    }
+                });
+            }
+        });
+    }
+    else {
+        res.redirect("/login");
+    }
 });
 
-app.get("/kolkata", function (req, res) {
+app.get("/kolkata", authController.isLoggedIn, function (req, res) {
     app.use(express.static('./cities/places'));
+    let city_name = req.url.slice(1);
 
-    res.sendFile(__dirname + "/cities/places/kolkata.html");
+    if (req.user) {
+        let sql = "SELECT city_id FROM cities WHERE name = '" + city_name + "'";
+        con.query(sql, function (err, rows) {
+            if (err)
+                console.log(err);
+            else {
+                let city_id = rows[0].city_id;
+                let sql = "SELECT r.*,u.user_name,p.place_name FROM reviews AS r,places AS p,cities AS c,user AS u WHERE p.city_id = '"+ city_id +"' AND r.places_id = p.place_id AND r.users_id = u.user_id";
+                con.query(sql, function (err, rows) {
+                    if (err)
+                        console.log(err);
+                    else {
+                        // console.log(rows);
+                        res.render(__dirname + "/cities/places/kolkata.ejs", { user: req.user, reviews: rows });
+                    }
+                });
+            }
+        });
+    }
+    else {
+        res.redirect("/login");
+    }   
 });
 
+app.post("/add-bookmark", function (req, res) {
+    app.use(express.static('./cities/places'));
+
+    let { user_id, place_name, cityname } = req.body;
+    console.log(req.body);
+
+    let sql = "SELECT place_id FROM places WHERE place_name = '" + place_name + "'";
+    con.query(sql, function (err, rows) {
+        if (err)
+            console.log(err);
+        else {
+            let place_id = rows[0].place_id;
+            // console.log(place_id);
+            let sql = "SELECT * FROM bookmarks WHERE place_id = '" + place_id + "' AND userid = '" + user_id + "'";
+            con.query(sql, function (err, rows) {
+                if (err)
+                    console.log(err);
+                else if (rows.length > 0) {
+                    console.log("Already bookmarked");
+                }
+                else {
+                    let sql = "INSERT INTO bookmarks VALUES(null, '" + user_id + "', '" + place_id + "')";
+                    con.query(sql);
+                }
+            });
+        }
+    });
+    res.redirect("/" + cityname);
+});
 
 //PACKAGES
 app.get("/varanasi-package", authController.isLoggedIn, function (req, res) {
@@ -442,11 +515,11 @@ app.post("/add-users", function (req, res) {
             console.log(err);
         else {
             console.log(rows);
+
+            let msg = "Congratulations!!  User " + user_name + " has been successfully added."
+            res.render(__dirname + "/pop-up.ejs", { title: "User Added", msg: msg });
         }
     });
-
-    let msg = "Congratulations!!  User " + user_name + " has been successfully added."
-    res.render(__dirname + "/pop-up.ejs", { title: "User Added", msg: msg });
 });
 
 app.post("/update-users", function (req, res) {
@@ -466,18 +539,17 @@ app.post("/update-users", function (req, res) {
             console.log(err);
         else {
             console.log(rows);
+            let msg = "Congratulations!!  User " + user_name + " has been updated successfully with values <br> "
+            let m1 = "<br>User Name : " + user_name;
+            let m2 = "<br>Email : " + email;
+            let m3 = "<br>Password : " + password;
+            let m4 = "<br>Contact : " + contact;
+            let m5 = "<br>User Type : " + user_type;
+            msg = msg + m1 + m2 + m3 + m4 + m5;
+
+            res.render(__dirname + "/pop-up.ejs", { title: "User Updated", msg: msg });
         }
     });
-
-    let msg = "Congratulations!!  User " + user_name + " has been updated successfully with values <br> "
-    let m1 = "<br>User Name : " + user_name;
-    let m2 = "<br>Email : " + email;
-    let m3 = "<br>Password : " + password;
-    let m4 = "<br>Contact : " + contact;
-    let m5 = "<br>User Type : " + user_type;
-    msg = msg + m1 + m2 + m3 + m4 + m5;
-
-    res.render(__dirname + "/pop-up.ejs", { title: "User Updated", msg: msg });
 });
 
 app.post("/delete-user", function (req, res) {
@@ -491,11 +563,12 @@ app.post("/delete-user", function (req, res) {
             console.log(err);
         else {
             console.log(rows);
+            let msg = "User " + user_name + " has been successfully removed from the database. "
+
+            res.render(__dirname + "/pop-up.ejs", { title: "User Deleted", msg: msg });
         }
     });
-    let msg = "User " + user_name + " has been successfully removed from the database. "
 
-    res.render(__dirname + "/pop-up.ejs", { title: "User Deleted", msg: msg });
 
 });
 

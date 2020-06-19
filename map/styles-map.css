@@ -18,7 +18,7 @@ body{
 }
   
 section{
-    height: 600px;
+    height: 800px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     text-align: center;
     padding: 60px 0px 40px 0px;
@@ -40,7 +40,7 @@ section{
 }
 
 #map{
-    width: 100%;
+    width: 150%;
     height: 100%;
 }
 

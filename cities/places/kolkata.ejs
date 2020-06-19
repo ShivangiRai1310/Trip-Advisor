@@ -6,7 +6,8 @@
   <title>Kolkata</title>
 
   <!-- CSS STYLES -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="../swiper.min.css">
   <link rel="stylesheet" href="styles-places.css">
 
@@ -20,30 +21,43 @@
     rel="stylesheet">
 
   <!-- BOOTSTRAP SCRIPTS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
 </head>
 
 <body>
 
   <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #142850;">
-    <a class="navbar-brand" href="#"><img class="logo-part1" src="../../images/logo-part1.png" alt="Trip advisor"></a>
-    <a class="navbar-brand" href="#"><img class="logo-part2" src="../../images/logo-part2.png" alt="Trip advisor"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #000839;">
+    <a class="navbar-brand" href="/"><img class="logo-part1" src="../../images/logo-part1.png" alt="Trip advisor"></a>
+    <a class="navbar-brand" href="/"><img class="logo-part2" src="../../images/logo-part2.png" alt="Trip advisor"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
+        <!-- <li class="nav-item active">
           <a class="nav-link" href="#kolkata">Home <span class="sr-only">(current)</span></a>
+        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="/explore-cities">Cities
+            <!-- <span class="sr-only">(current)</span> -->
+          </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#add-comment">Add Review</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             Places
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -58,11 +72,16 @@
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
       </form>
-      <button type="button" name="sign-in" class="btn btn-dark btn-lg" id="sign-in-button" style="background-color: #142850;">
-        <i class="fas fa-user-circle"></i>
-      </button>
+      <% if(user.user_type === "general"){ %>
+      <a class="nav-link" href="user-profile" id="sign-in-button" style="color: white;"><i
+          class="fas fa-user-circle my-2 fa-2x"></i></a>
+      <% } else if(user.user_type === "admin") { %>
+      <a class="nav-link" href="profile" id="sign-in-button" style="color: white;"><i
+          class="fas fa-user-circle my-2 fa-2x"></i></a>
+      <% } %>
     </div>
   </nav>
+
 
   <!-- Heading -->
   <div class="heading" id="kolkata">
@@ -72,6 +91,12 @@
 
   <!-- Gallery -->
 
+  <form action="/add-bookmark" id="add-bookmark" method="post">
+    <input type="text" name="user_id" value="<%= user.user_id %>" hidden>
+    <input type="text" name="place_name" value="" hidden>
+    <input type="text" name="cityname" value="kolkata" hidden>
+  </form>
+
   <!-- =============================== HOWRAH BRIDGE =========================== -->
   <div class="place-gallery" id="howrah-bridge">
     <div class="container-fluid row">
@@ -79,7 +104,7 @@
         <p>HOWRAH BRIDGE</p>
       </div>
       <div class="col-3 like-btn">
-        <p>Like what you see? <i onclick="this.style.color= 'red'" class="fas fa-heart"></i></p>
+        <p>Like what you see? <i class="fas fa-heart liked" place-name="Howrah Bridge"></i></p>
       </div>
     </div>
 
@@ -119,7 +144,7 @@
   </div>
 
   <!-- REVIEWS -->
-  <section class="pb-5">
+  <section class="my-5 pb-2">
     <div class="container">
       <p class="review-heading">What do people have to say about this place???</p>
       <div class="row">
@@ -129,62 +154,79 @@
             <div class="carousel slide" id="carouselExampleIndicators-1" data-ride="carousel">
               <!-- Bootstrap carousel indicators [nav] -->
               <ol class="carousel-indicators mb-0">
-                <li class="active" data-target="#carouselExampleIndicators" data-slide-to="0"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                <li class="active" data-target="#carouselExampleIndicators-1" data-slide-to="0"></li>
+                <li data-target="#carouselExampleIndicators-1" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators-1" data-slide-to="2"></li>
               </ol>
               <!-- Bootstrap inner [slides]-->
-              <div class="carousel-inner px-5 pb-4">
+              <div class="carousel-inner px-5 ">
+
                 <!-- Carousel slide-->
+                <% let cnt = 0; %>
+                <% for(var i=0; i<reviews.length;i++){ %>
+                <% if( reviews[i].place_name == "Howrah Bridge") {%>
+                <% cnt= cnt+1; %>
+                <% if(cnt == 1) { %>
                 <div class="carousel-item active">
-                  <div class="media"><img class="rounded-circle img-thumbnail" src="https://res.cloudinary.com/mhmd/image/upload/v1579676165/avatar-1_ffutqr.jpg" alt="" width="75">
+                  <div class="media"><img class="rounded-circle img-thumbnail"
+                      src="../../images/users/<%= reviews[i].user_name %>.jpeg" alt="" width="100">
                     <div class="media-body ml-3">
                       <blockquote class="blockquote border-0 p-0">
-                        <p class="font-italic lead"> <i class="fa fa-quote-left mr-3"></i>
-                          "Good Place To Hangout And Walk With Friends And Family"</p>
-                        <footer class="blockquote-footer">Someone famous in
-                          <cite title="Source Title">Source Title</cite>
-                        </footer>
-                      </blockquote>
-                    </div>
-                  </div>
-                </div>
-                <!-- Carousel slide-->
-                <div class="carousel-item">
-                  <div class="media"><img class="rounded-circle img-thumbnail" src="https://res.cloudinary.com/mhmd/image/upload/v1579676165/avatar-3_hdxocq.jpg" alt="" width="75">
-                    <div class="media-body ml-3">
-                      <blockquote class="blockquote border-0 p-0">
+                        <h5 class="font-italic"><%= reviews[i].title %></h5>
                         <p class="font-italic lead"> <i class="fa fa-quote-left mr-3 "></i>
-                          The iconic bridge .It's electrical colour effect on night is very astonishing.
-                          Do visit the bridge after 6:30 pm in winter or after 7:15 pm in summer</p>
-                        <footer class="blockquote-footer">Someone famous in
-                          <cite title="Source Title">Source Title</cite>
+                          <%= reviews[i].message %></p>
+                        <footer class="blockquote-footer">
+                          <cite title="Source Title"><%= reviews[i].user_name %></cite>
                         </footer>
                       </blockquote>
+                      <p class="review-heading">How do they like it??<br>
+                        <%  for(var j=0; j< reviews[i].rating ;j++){ %>
+                        <i class="fas fa-star mr-1"></i>
+                        <% } %>
+                        <%  for(var j=0; j< 5-reviews[i].rating ;j++){ %>
+                        <i class="far fa-star mr-1"></i>
+                        <% } %>
+                      </p>
                     </div>
                   </div>
                 </div>
-                <!-- Carousel slide-->
+                <% } else { %>
                 <div class="carousel-item">
-                  <div class="media"><img class="rounded-circle img-thumbnail" src="https://res.cloudinary.com/mhmd/image/upload/v1579676165/avatar-2_gibm2s.jpg" alt="" width="75">
+                  <div class="media"><img class="rounded-circle img-thumbnail"
+                      src="../../images/users/<%= reviews[i].user_name %>.jpeg" alt="" width="100">
                     <div class="media-body ml-3">
                       <blockquote class="blockquote border-0 p-0">
-                        <p class="font-italic lead"> <i class="fa fa-quote-left mr-3"></i>
-                          "Soothing weather and pleasant condition seemed at night" </p>
-                        <footer class="blockquote-footer">Someone famous in
-                          <cite title="Source Title">Source Title</cite>
+                        <h5 class="font-italic"><%= reviews[i].title %></h5>
+                        <p class="font-italic lead"> <i class="fa fa-quote-left mr-3 "></i>
+                          <%= reviews[i].message %></p>
+                        <footer class="blockquote-footer">
+                          <cite title="Source Title"><%= reviews[i].user_name %></cite>
                         </footer>
                       </blockquote>
+                      <p class="review-heading">How do they like it??<br>
+                        <!-- <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                          class="fas fa-star-half-alt"></i><i class="far fa-star"></i> -->
+                        <%  for(var j=0; j< reviews[i].rating ;j++){ %>
+                        <i class="fas fa-star mr-1"></i>
+                        <% } %>
+                        <%  for(var j=0; j< 5-reviews[i].rating ;j++){ %>
+                        <i class="far fa-star mr-1"></i>
+                        <% } %>
+                      </p>
                     </div>
                   </div>
                 </div>
+                <% }}} %>
               </div>
+
               <!-- Bootstrap controls [dots]-->
-              <a class="carousel-control-prev width-auto" href="#carouselExampleIndicators-1" role="button" data-slide="prev">
+              <a class="carousel-control-prev width-auto" href="#carouselExampleIndicators-1" role="button"
+                data-slide="prev">
                 <i class="fa fa-angle-left text-dark text-lg"></i>
                 <span class="sr-only">Previous</span>
               </a>
-              <a class="carousel-control-next width-auto" href="#carouselExampleIndicators-1" role="button" data-slide="next">
+              <a class="carousel-control-next width-auto" href="#carouselExampleIndicators-1" role="button"
+                data-slide="next">
                 <i class="fa fa-angle-right text-dark text-lg"></i>
                 <span class="sr-only">Next</span>
               </a>
@@ -192,10 +234,8 @@
           </div>
         </div>
       </div>
-      <p class="review-heading">How do they like it??<br>
-        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
-      </p>
-      <p class="review-heading">Add you comment here </p>
+
+      <!-- <p class="review-heading">Add you comment here </p> -->
     </div>
   </section>
 
@@ -206,7 +246,7 @@
         <p>VICTORIA MEMORIAL</p>
       </div>
       <div class="col-3 like-btn">
-        <p>Like what you see? <i onclick="this.style.color= 'red'" class="fas fa-heart"></i></p>
+        <p>Like what you see? <i class="fas fa-heart liked" place-name="Victoria Memorial"></i></p>
       </div>
     </div>
 
@@ -263,61 +303,78 @@
             <div class="carousel slide" id="carouselExampleIndicators-2" data-ride="carousel">
               <!-- Bootstrap carousel indicators [nav] -->
               <ol class="carousel-indicators mb-0">
-                <li class="active" data-target="#carouselExampleIndicators" data-slide-to="0"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                <li class="active" data-target="#carouselExampleIndicators-2" data-slide-to="0"></li>
+                <li data-target="#carouselExampleIndicators-2" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators-2" data-slide-to="2"></li>
               </ol>
               <!-- Bootstrap inner [slides]-->
-              <div class="carousel-inner px-5 pb-4">
+              <div class="carousel-inner px-5 ">
+
                 <!-- Carousel slide-->
+                <% cnt = 0; %>
+                <% for(var i=0; i<reviews.length;i++){ %>
+                <% if( reviews[i].place_name == "Victoria Memorial") {%>
+                <% cnt= cnt+1; %>
+                <% if(cnt == 1) { %>
                 <div class="carousel-item active">
-                  <div class="media"><img class="rounded-circle img-thumbnail" src="https://res.cloudinary.com/mhmd/image/upload/v1579676165/avatar-1_ffutqr.jpg" alt="" width="75">
+                  <div class="media"><img class="rounded-circle img-thumbnail"
+                      src="../../images/users/<%= reviews[i].user_name %>.jpeg" alt="" width="100">
                     <div class="media-body ml-3">
                       <blockquote class="blockquote border-0 p-0">
-                        <p class="font-italic lead"> <i class="fa fa-quote-left mr-3"></i>
-                          Showcasing how British enjoyed on the Indian money and people."</p>
-                        <footer class="blockquote-footer">Someone famous in
-                          <cite title="Source Title">Source Title</cite>
-                        </footer>
-                      </blockquote>
-                    </div>
-                  </div>
-                </div>
-                <!-- Carousel slide-->
-                <div class="carousel-item">
-                  <div class="media"><img class="rounded-circle img-thumbnail" src="https://res.cloudinary.com/mhmd/image/upload/v1579676165/avatar-3_hdxocq.jpg" alt="" width="75">
-                    <div class="media-body ml-3">
-                      <blockquote class="blockquote border-0 p-0">
+                        <h5 class="font-italic"><%= reviews[i].title %></h5>
                         <p class="font-italic lead"> <i class="fa fa-quote-left mr-3 "></i>
-                          Kolkata's Pride. One of the best architectural heritage sites in India.</p>
-                        <footer class="blockquote-footer">Someone famous in
-                          <cite title="Source Title">Source Title</cite>
+                          <%= reviews[i].message %></p>
+                        <footer class="blockquote-footer">
+                          <cite title="Source Title"><%= reviews[i].user_name %></cite>
                         </footer>
                       </blockquote>
+                      <p class="review-heading">How do they like it??<br>
+                        <%  for(var j=0; j< reviews[i].rating ;j++){ %>
+                        <i class="fas fa-star mr-1"></i>
+                        <% } %>
+                        <%  for(var j=0; j< 5-reviews[i].rating ;j++){ %>
+                        <i class="far fa-star mr-1"></i>
+                        <% } %>
+                      </p>
                     </div>
                   </div>
                 </div>
-                <!-- Carousel slide-->
+                <% } else { %>
                 <div class="carousel-item">
-                  <div class="media"><img class="rounded-circle img-thumbnail" src="https://res.cloudinary.com/mhmd/image/upload/v1579676165/avatar-2_gibm2s.jpg" alt="" width="75">
+                  <div class="media"><img class="rounded-circle img-thumbnail"
+                      src="../../images/users/<%= reviews[i].user_name %>.jpeg" alt="" width="100">
                     <div class="media-body ml-3">
                       <blockquote class="blockquote border-0 p-0">
-                        <p class="font-italic lead"> <i class="fa fa-quote-left mr-3"></i>
-                          "Awsome historical place with exotic garden space for family"</p>
-                        <footer class="blockquote-footer">Someone famous in
-                          <cite title="Source Title">Source Title</cite>
+                        <h5 class="font-italic"><%= reviews[i].title %></h5>
+                        <p class="font-italic lead"> <i class="fa fa-quote-left mr-3 "></i>
+                          <%= reviews[i].message %></p>
+                        <footer class="blockquote-footer">
+                          <cite title="Source Title"><%= reviews[i].user_name %></cite>
                         </footer>
                       </blockquote>
+                      <p class="review-heading">How do they like it??<br>
+                        <!-- <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                          class="fas fa-star-half-alt"></i><i class="far fa-star"></i> -->
+                        <%  for(var j=0; j< reviews[i].rating ;j++){ %>
+                        <i class="fas fa-star mr-1"></i>
+                        <% } %>
+                        <%  for(var j=0; j< 5-reviews[i].rating ;j++){ %>
+                        <i class="far fa-star mr-1"></i>
+                        <% } %>
+                      </p>
                     </div>
                   </div>
                 </div>
+                <% }}} %>
               </div>
               <!-- Bootstrap controls [dots]-->
-              <a class="carousel-control-prev width-auto" href="#carouselExampleIndicators-2" role="button" data-slide="prev">
+              <a class="carousel-control-prev width-auto" href="#carouselExampleIndicators-2" role="button"
+                data-slide="prev">
                 <i class="fa fa-angle-left text-dark text-lg"></i>
                 <span class="sr-only">Previous</span>
               </a>
-              <a class="carousel-control-next width-auto" href="#carouselExampleIndicators-2" role="button" data-slide="next">
+              <a class="carousel-control-next width-auto" href="#carouselExampleIndicators-2" role="button"
+                data-slide="next">
                 <i class="fa fa-angle-right text-dark text-lg"></i>
                 <span class="sr-only">Next</span>
               </a>
@@ -326,9 +383,6 @@
         </div>
       </div>
     </div>
-    <p class="review-heading">How do they like it??<br>
-      <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
-    </p>
     </div>
   </section>
 
@@ -340,7 +394,7 @@
         <p>INDIAN MUSEUM</p>
       </div>
       <div class="col-3 like-btn">
-        <p>Like what you see? <i onclick="this.style.color= 'red'" class="fas fa-heart"></i></p>
+        <p>Like what you see? <i class="fas fa-heart liked" place-name="Indian Museum"></i></p>
       </div>
     </div>
 
@@ -391,68 +445,81 @@
         <div class="col-lg-10 col-xl-8 mx-auto">
           <div class="p-5 bg-white shadow rounded">
             <!-- Bootstrap carousel-->
-            <div class="carousel slide" id="carouselExampleIndicators" data-ride="carousel">
+            <div class="carousel slide" id="carouselExampleIndicators-3" data-ride="carousel">
               <!-- Bootstrap carousel indicators [nav] -->
               <ol class="carousel-indicators mb-0">
-                <li class="active" data-target="#carouselExampleIndicators" data-slide-to="0"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                <li class="active" data-target="#carouselExampleIndicators-3" data-slide-to="0"></li>
+                <li data-target="#carouselExampleIndicators-3" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators-3" data-slide-to="2"></li>
               </ol>
               <!-- Bootstrap inner [slides]-->
-              <div class="carousel-inner px-5 pb-4">
+              <div class="carousel-inner px-5 ">
+
                 <!-- Carousel slide-->
+                <% cnt = 0; %>
+                <% for(var i=0; i<reviews.length;i++){ %>
+                <% if( reviews[i].place_name == "Indian Museum") {%>
+                <% cnt= cnt+1; %>
+                <% if(cnt == 1) { %>
                 <div class="carousel-item active">
-                  <div class="media"><img class="rounded-circle img-thumbnail" src="https://res.cloudinary.com/mhmd/image/upload/v1579676165/avatar-1_ffutqr.jpg" alt="" width="75">
+                  <div class="media"><img class="rounded-circle img-thumbnail"
+                      src="../../images/users/<%= reviews[i].user_name %>.jpeg" alt="" width="100">
                     <div class="media-body ml-3">
                       <blockquote class="blockquote border-0 p-0">
-                        <p class="font-italic lead"> <i class="fa fa-quote-left mr-3"></i>
-                          "Most interesting section is Egyptian section, zoology and geology. Also the arts section has
-                          many important sculptures. Well maintained place. One day is required to visit the whole
-                          place."</p>
-                        <footer class="blockquote-footer">Someone famous in
-                          <cite title="Source Title">Source Title</cite>
-                        </footer>
-                      </blockquote>
-                    </div>
-                  </div>
-                </div>
-                <!-- Carousel slide-->
-                <div class="carousel-item">
-                  <div class="media"><img class="rounded-circle img-thumbnail" src="https://res.cloudinary.com/mhmd/image/upload/v1579676165/avatar-3_hdxocq.jpg" alt="" width="75">
-                    <div class="media-body ml-3">
-                      <blockquote class="blockquote border-0 p-0">
+                        <h5 class="font-italic"><%= reviews[i].title %></h5>
                         <p class="font-italic lead"> <i class="fa fa-quote-left mr-3 "></i>
-                          "Probably the Oldest in India and also one of the Biggest. Built around 1814-15, this place
-                          holds much treasures from our glorious past"</p>
-                        <footer class="blockquote-footer">Someone famous in
-                          <cite title="Source Title">Source Title</cite>
+                          <%= reviews[i].message %></p>
+                        <footer class="blockquote-footer">
+                          <cite title="Source Title"><%= reviews[i].user_name %></cite>
                         </footer>
                       </blockquote>
+                      <p class="review-heading">How do they like it??<br>
+                        <%  for(var j=0; j< reviews[i].rating ;j++){ %>
+                        <i class="fas fa-star mr-1"></i>
+                        <% } %>
+                        <%  for(var j=0; j< 5-reviews[i].rating ;j++){ %>
+                        <i class="far fa-star mr-1"></i>
+                        <% } %>
+                      </p>
                     </div>
                   </div>
                 </div>
-                <!-- Carousel slide-->
+                <% } else { %>
                 <div class="carousel-item">
-                  <div class="media"><img class="rounded-circle img-thumbnail" src="https://res.cloudinary.com/mhmd/image/upload/v1579676165/avatar-2_gibm2s.jpg" alt="" width="75">
+                  <div class="media"><img class="rounded-circle img-thumbnail"
+                      src="../../images/users/<%= reviews[i].user_name %>.jpeg" alt="" width="100">
                     <div class="media-body ml-3">
                       <blockquote class="blockquote border-0 p-0">
-                        <p class="font-italic lead"> <i class="fa fa-quote-left mr-3"></i>
-                          "There were just 2 sections which I found interesting and worth the visit. Those are the
-                          geology and zoology sections in the ground and first floor respectively."</p>
-                        <footer class="blockquote-footer">Someone famous in
-                          <cite title="Source Title">Source Title</cite>
+                        <h5 class="font-italic"><%= reviews[i].title %></h5>
+                        <p class="font-italic lead"> <i class="fa fa-quote-left mr-3 "></i>
+                          <%= reviews[i].message %></p>
+                        <footer class="blockquote-footer">
+                          <cite title="Source Title"><%= reviews[i].user_name %></cite>
                         </footer>
                       </blockquote>
+                      <p class="review-heading">How do they like it??<br>
+                        <!-- <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                          class="fas fa-star-half-alt"></i><i class="far fa-star"></i> -->
+                        <%  for(var j=0; j< reviews[i].rating ;j++){ %>
+                        <i class="fas fa-star mr-1"></i>
+                        <% } %>
+                        <%  for(var j=0; j< 5-reviews[i].rating ;j++){ %>
+                        <i class="far fa-star mr-1"></i>
+                        <% } %>
+                      </p>
                     </div>
                   </div>
                 </div>
+                <% }}} %>
               </div>
               <!-- Bootstrap controls [dots]-->
-              <a class="carousel-control-prev width-auto" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <a class="carousel-control-prev width-auto" href="#carouselExampleIndicators-3" role="button"
+                data-slide="prev">
                 <i class="fa fa-angle-left text-dark text-lg"></i>
                 <span class="sr-only">Previous</span>
               </a>
-              <a class="carousel-control-next width-auto" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <a class="carousel-control-next width-auto" href="#carouselExampleIndicators-3" role="button"
+                data-slide="next">
                 <i class="fa fa-angle-right text-dark text-lg"></i>
                 <span class="sr-only">Next</span>
               </a>
@@ -461,9 +528,6 @@
         </div>
       </div>
     </div>
-    <p class="review-heading">How do they like it??<br>
-      <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></i><i class="far fa-star"></i>
-    </p>
     </div>
   </section>
 
@@ -474,7 +538,7 @@
         <p>SCIENCE CITY</p>
       </div>
       <div class="col-3 like-btn">
-        <p>Like what you see? <i onclick="this.style.color= 'red'" class="fas fa-heart"></i></p>
+        <p>Like what you see? <i class="fas fa-heart liked" place-name="Science City"></i></p>
       </div>
     </div>
 
@@ -526,66 +590,81 @@
         <div class="col-lg-10 col-xl-8 mx-auto">
           <div class="p-5 bg-white shadow rounded">
             <!-- Bootstrap carousel-->
-            <div class="carousel slide" id="carouselExampleIndicators" data-ride="carousel">
+            <div class="carousel slide" id="carouselExampleIndicators-4" data-ride="carousel">
               <!-- Bootstrap carousel indicators [nav] -->
               <ol class="carousel-indicators mb-0">
-                <li class="active" data-target="#carouselExampleIndicators" data-slide-to="0"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                <li class="active" data-target="#carouselExampleIndicators-4" data-slide-to="0"></li>
+                <li data-target="#carouselExampleIndicators-4" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators-4" data-slide-to="2"></li>
               </ol>
               <!-- Bootstrap inner [slides]-->
-              <div class="carousel-inner px-5 pb-4">
+              <div class="carousel-inner px-5 ">
+
                 <!-- Carousel slide-->
+                <% cnt = 0; %>
+                <% for(var i=0; i<reviews.length;i++){ %>
+                <% if( reviews[i].place_name == "Science City") {%>
+                <% cnt= cnt+1; %>
+                <% if(cnt == 1) { %>
                 <div class="carousel-item active">
-                  <div class="media"><img class="rounded-circle img-thumbnail" src="https://res.cloudinary.com/mhmd/image/upload/v1579676165/avatar-1_ffutqr.jpg" alt="" width="75">
+                  <div class="media"><img class="rounded-circle img-thumbnail"
+                      src="../../images/users/<%= reviews[i].user_name %>.jpeg" alt="" width="100">
                     <div class="media-body ml-3">
                       <blockquote class="blockquote border-0 p-0">
-                        <p class="font-italic lead"> <i class="fa fa-quote-left mr-3"></i>
-                          "Wonderful place for students.staffs are good behaved. But one thing I have to mention is that
-                          the food quality and the behavior of the caterer is very bad"</p>
-                        <footer class="blockquote-footer">Someone famous in
-                          <cite title="Source Title">Source Title</cite>
-                        </footer>
-                      </blockquote>
-                    </div>
-                  </div>
-                </div>
-                <!-- Carousel slide-->
-                <div class="carousel-item">
-                  <div class="media"><img class="rounded-circle img-thumbnail" src="https://res.cloudinary.com/mhmd/image/upload/v1579676165/avatar-3_hdxocq.jpg" alt="" width="75">
-                    <div class="media-body ml-3">
-                      <blockquote class="blockquote border-0 p-0">
+                        <h5 class="font-italic"><%= reviews[i].title %></h5>
                         <p class="font-italic lead"> <i class="fa fa-quote-left mr-3 "></i>
-                          "This is really a very gud place for students.Its very informative and educative for young
-                          generation."</p>
-                        <footer class="blockquote-footer">Someone famous in
-                          <cite title="Source Title">Source Title</cite>
+                          <%= reviews[i].message %></p>
+                        <footer class="blockquote-footer">
+                          <cite title="Source Title"><%= reviews[i].user_name %></cite>
                         </footer>
                       </blockquote>
+                      <p class="review-heading">How do they like it??<br>
+                        <%  for(var j=0; j< reviews[i].rating ;j++){ %>
+                        <i class="fas fa-star mr-1"></i>
+                        <% } %>
+                        <%  for(var j=0; j< 5-reviews[i].rating ;j++){ %>
+                        <i class="far fa-star mr-1"></i>
+                        <% } %>
+                      </p>
                     </div>
                   </div>
                 </div>
-                <!-- Carousel slide-->
+                <% } else { %>
                 <div class="carousel-item">
-                  <div class="media"><img class="rounded-circle img-thumbnail" src="https://res.cloudinary.com/mhmd/image/upload/v1579676165/avatar-2_gibm2s.jpg" alt="" width="75">
+                  <div class="media"><img class="rounded-circle img-thumbnail"
+                      src="../../images/users/<%= reviews[i].user_name %>.jpeg" alt="" width="100">
                     <div class="media-body ml-3">
                       <blockquote class="blockquote border-0 p-0">
-                        <p class="font-italic lead"> <i class="fa fa-quote-left mr-3"></i>
-                          "The Science City of Kolkata is the largest science centre in the Indian Subcontinaltal"</p>
-                        <footer class="blockquote-footer">Someone famous in
-                          <cite title="Source Title">Source Title</cite>
+                        <h5 class="font-italic"><%= reviews[i].title %></h5>
+                        <p class="font-italic lead"> <i class="fa fa-quote-left mr-3 "></i>
+                          <%= reviews[i].message %></p>
+                        <footer class="blockquote-footer">
+                          <cite title="Source Title"><%= reviews[i].user_name %></cite>
                         </footer>
                       </blockquote>
+                      <p class="review-heading">How do they like it??<br>
+                        <!-- <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                          class="fas fa-star-half-alt"></i><i class="far fa-star"></i> -->
+                        <%  for(var j=0; j< reviews[i].rating ;j++){ %>
+                        <i class="fas fa-star mr-1"></i>
+                        <% } %>
+                        <%  for(var j=0; j< 5-reviews[i].rating ;j++){ %>
+                        <i class="far fa-star mr-1"></i>
+                        <% } %>
+                      </p>
                     </div>
                   </div>
                 </div>
+                <% }}} %>
               </div>
               <!-- Bootstrap controls [dots]-->
-              <a class="carousel-control-prev width-auto" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <a class="carousel-control-prev width-auto" href="#carouselExampleIndicators-4" role="button"
+                data-slide="prev">
                 <i class="fa fa-angle-left text-dark text-lg"></i>
                 <span class="sr-only">Previous</span>
               </a>
-              <a class="carousel-control-next width-auto" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <a class="carousel-control-next width-auto" href="#carouselExampleIndicators-4" role="button"
+                data-slide="next">
                 <i class="fa fa-angle-right text-dark text-lg"></i>
                 <span class="sr-only">Next</span>
               </a>
@@ -594,9 +673,6 @@
         </div>
       </div>
     </div>
-    <p class="review-heading">How do they like it??<br>
-      <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-    </p>
     </div>
   </section>
 
@@ -607,7 +683,7 @@
         <p>MARBLE PALACE</p>
       </div>
       <div class="col-3 like-btn">
-        <p>Like what you see? <i onclick="this.style.color= 'red'" class="fas fa-heart"></i></p>
+        <p>Like what you see? <i class="fas fa-heart liked" place-name="Marble Palace"></i></p>
       </div>
     </div>
 
@@ -660,64 +736,81 @@
         <div class="col-lg-10 col-xl-8 mx-auto">
           <div class="p-5 bg-white shadow rounded">
             <!-- Bootstrap carousel-->
-            <div class="carousel slide" id="carouselExampleIndicators" data-ride="carousel">
+            <div class="carousel slide" id="carouselExampleIndicators-5" data-ride="carousel">
               <!-- Bootstrap carousel indicators [nav] -->
               <ol class="carousel-indicators mb-0">
-                <li class="active" data-target="#carouselExampleIndicators" data-slide-to="0"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                <li class="active" data-target="#carouselExampleIndicators-5" data-slide-to="0"></li>
+                <li data-target="#carouselExampleIndicators-5" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators-5" data-slide-to="2"></li>
               </ol>
               <!-- Bootstrap inner [slides]-->
-              <div class="carousel-inner px-5 pb-4">
+              <div class="carousel-inner px-5 ">
+
                 <!-- Carousel slide-->
+                <% cnt = 0; %>
+                <% for(var i=0; i<reviews.length;i++){ %>
+                <% if( reviews[i].place_name == "Marble Palace") {%>
+                <% cnt= cnt+1; %>
+                <% if(cnt == 1) { %>
                 <div class="carousel-item active">
-                  <div class="media"><img class="rounded-circle img-thumbnail" src="https://res.cloudinary.com/mhmd/image/upload/v1579676165/avatar-1_ffutqr.jpg" alt="" width="75">
+                  <div class="media"><img class="rounded-circle img-thumbnail"
+                      src="../../images/users/<%= reviews[i].user_name %>.jpeg" alt="" width="100">
                     <div class="media-body ml-3">
                       <blockquote class="blockquote border-0 p-0">
-                        <p class="font-italic lead"> <i class="fa fa-quote-left mr-3"></i>
-                          "Wonderful place for hangout with family and friends.fine atmosphere"</p>
-                        <footer class="blockquote-footer">Someone famous in
-                          <cite title="Source Title">Source Title</cite>
-                        </footer>
-                      </blockquote>
-                    </div>
-                  </div>
-                </div>
-                <!-- Carousel slide-->
-                <div class="carousel-item">
-                  <div class="media"><img class="rounded-circle img-thumbnail" src="https://res.cloudinary.com/mhmd/image/upload/v1579676165/avatar-3_hdxocq.jpg" alt="" width="75">
-                    <div class="media-body ml-3">
-                      <blockquote class="blockquote border-0 p-0">
+                        <h5 class="font-italic"><%= reviews[i].title %></h5>
                         <p class="font-italic lead"> <i class="fa fa-quote-left mr-3 "></i>
-                          "Great 2 see our history...service from staff very bad"</p>
-                        <footer class="blockquote-footer">Someone famous in
-                          <cite title="Source Title">Source Title</cite>
+                          <%= reviews[i].message %></p>
+                        <footer class="blockquote-footer">
+                          <cite title="Source Title"><%= reviews[i].user_name %></cite>
                         </footer>
                       </blockquote>
+                      <p class="review-heading">How do they like it??<br>
+                        <%  for(var j=0; j< reviews[i].rating ;j++){ %>
+                        <i class="fas fa-star mr-1"></i>
+                        <% } %>
+                        <%  for(var j=0; j< 5-reviews[i].rating ;j++){ %>
+                        <i class="far fa-star mr-1"></i>
+                        <% } %>
+                      </p>
                     </div>
                   </div>
                 </div>
-                <!-- Carousel slide-->
+                <% } else { %>
                 <div class="carousel-item">
-                  <div class="media"><img class="rounded-circle img-thumbnail" src="https://res.cloudinary.com/mhmd/image/upload/v1579676165/avatar-2_gibm2s.jpg" alt="" width="75">
+                  <div class="media"><img class="rounded-circle img-thumbnail"
+                      src="../../images/users/<%= reviews[i].user_name %>.jpeg" alt="" width="100">
                     <div class="media-body ml-3">
                       <blockquote class="blockquote border-0 p-0">
-                        <p class="font-italic lead"> <i class="fa fa-quote-left mr-3"></i>
-                          "Awesome place with huge collection, my suggestion is add a food court."</p>
-                        <footer class="blockquote-footer">Someone famous in
-                          <cite title="Source Title">Source Title</cite>
+                        <h5 class="font-italic"><%= reviews[i].title %></h5>
+                        <p class="font-italic lead"> <i class="fa fa-quote-left mr-3 "></i>
+                          <%= reviews[i].message %></p>
+                        <footer class="blockquote-footer">
+                          <cite title="Source Title"><%= reviews[i].user_name %></cite>
                         </footer>
                       </blockquote>
+                      <p class="review-heading">How do they like it??<br>
+                        <!-- <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                          class="fas fa-star-half-alt"></i><i class="far fa-star"></i> -->
+                        <%  for(var j=0; j< reviews[i].rating ;j++){ %>
+                        <i class="fas fa-star mr-1"></i>
+                        <% } %>
+                        <%  for(var j=0; j< 5-reviews[i].rating ;j++){ %>
+                        <i class="far fa-star mr-1"></i>
+                        <% } %>
+                      </p>
                     </div>
                   </div>
                 </div>
+                <% }}} %>
               </div>
               <!-- Bootstrap controls [dots]-->
-              <a class="carousel-control-prev width-auto" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <a class="carousel-control-prev width-auto" href="#carouselExampleIndicators-5" role="button"
+                data-slide="prev">
                 <i class="fa fa-angle-left text-dark text-lg"></i>
                 <span class="sr-only">Previous</span>
               </a>
-              <a class="carousel-control-next width-auto" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <a class="carousel-control-next width-auto" href="#carouselExampleIndicators-5" role="button"
+                data-slide="next">
                 <i class="fa fa-angle-right text-dark text-lg"></i>
                 <span class="sr-only">Next</span>
               </a>
@@ -726,9 +819,6 @@
         </div>
       </div>
     </div>
-    <p class="review-heading">How do they like it??<br>
-      <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
-    </p>
     </div>
   </section>
 
@@ -781,20 +871,26 @@
             <p class="text-muted mb-4">Add your comments here</p>
             <form>
               <div class="form-group mb-3">
-                <input id="comment-place" type="text" placeholder="The place you want to tell about" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                <input id="comment-place" type="text" placeholder="The place you want to tell about" required=""
+                  autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
               </div>
               <div class="form-group mb-3">
-                <input id="comment-heading" type="text" placeholder="What is your comment about" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                <input id="comment-heading" type="text" placeholder="What is your comment about" required=""
+                  autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
               </div>
               <div class="form-group mb-3">
-                <textarea id="comment-text" type="text" placeholder="Add your comment here" required="" class="form-control rounded-pill border-0 shadow-sm px-4"></textarea>
+                <textarea id="comment-text" type="text" placeholder="Add your comment here" required=""
+                  class="form-control rounded-pill border-0 shadow-sm px-4"></textarea>
               </div>
               <div class="mb-3">
-                <p>Your Rating:</p> <i onclick="this.style.color= 'red'" class="fas fa-heart"></i><i onclick="this.style.color= 'red'" class="fas fa-heart"></i><i onclick="this.style.color= 'red'" class="fas fa-heart"></i><i
-                  onclick="this.style.color= 'red'" class="fas fa-heart"></i><i onclick="this.style.color= 'red'" class="fas fa-heart"></i>
+                <p>Your Rating:</p> <i onclick="this.style.color= 'red'" class="fas fa-heart"></i><i
+                  onclick="this.style.color= 'red'" class="fas fa-heart"></i><i onclick="this.style.color= 'red'"
+                  class="fas fa-heart"></i><i onclick="this.style.color= 'red'" class="fas fa-heart"></i><i
+                  onclick="this.style.color= 'red'" class="fas fa-heart"></i>
                 <!-- <label for="customCheck1" class="custom-control-label">Remember password</label> -->
               </div>
-              <button type="submit" class="btn btn-danger btn-block text-uppercase mb-2 rounded-pill shadow-sm">Make your opinion count</button>
+              <button type="submit" class="btn btn-danger btn-block text-uppercase mb-2 rounded-pill shadow-sm">Make
+                your opinion count</button>
               <!-- <div class="text-center d-flex justify-content-between mt-4"><p>Snippet by <a href="https://bootstrapious.com/snippets" class="font-italic text-muted">
                                         <u>Boostrapious</u></a></p></div> -->
             </form>

@@ -28,12 +28,12 @@ exports.isLoggedIn =  async function(req, res, next) {
         try{
             //step1) verify the token
             const decoded = await promisify(jwt.verify)(req.cookies.jwt, process.env.ACCESS_TOKEN_SECRET);
-            console.log(decoded);    //can get the user_id from this of the user loggedin
+            // console.log(decoded);    //can get the user_id from this of the user loggedin
 
             //step2) check if user still exists
             let sql = "SELECT * FROM user WHERE user_id = '" + decoded.user_id +"'";
             con.query(sql, function(err, rows) {
-                console.log(rows);
+                // console.log(rows);
 
                 if(!rows){
                     return next();

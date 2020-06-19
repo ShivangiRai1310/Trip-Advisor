@@ -17,12 +17,12 @@ body{
     width: 170px;
   }
 
-  /* SIGN IN BUTTON
-  #sign-in-button{
+   /* SIGN IN BUTTON */
+  /* #sign-in-button{
     border: 0;
     font-size: 2.25rem;
     padding-left: 2.5%;
-  } */
+  }  */
 
 /* HEADER */
 header nav{
@@ -88,8 +88,8 @@ section{
 #about{
     /* background-color: #feceab; */
     /* background: #e84a5f; */
-    background: -webkit-linear-gradient(to right, #98d6ea, #bae5e5, #f3d1f4);
-    background: linear-gradient(to right,#98d6ea, #bae5e5, #f3d1f4);
+    background: -webkit-linear-gradient(to right, #c3cfe2, #f5f7fa, #f3d1f4);
+    background: linear-gradient(to right,#c3cfe2, #f5f7fa, #f3d1f4);  
 }
 
 .container1{
@@ -120,6 +120,11 @@ section{
 background: #a770ef;
 background: -webkit-linear-gradient(to right, #a770ef, #cf8bf3, #fdb99b);
 background: linear-gradient(to right, #a770ef, #cf8bf3, #fdb99b);
+
+
+    /* background: rgb(251,63,63);
+background: linear-gradient(137deg, rgba(251,63,63,1) 0%, rgba(249,116,143,1) 100%); */
+
 }
 /* .banner {
  background: #a770ef;
@@ -325,8 +330,11 @@ background: linear-gradient(to right, #a770ef, #cf8bf3, #fdb99b);
 }
   */
 .contact-us-section{
-  background: -webkit-linear-gradient(to right, #4f98ca, #50d890, #effffb);
-  background: linear-gradient(to right, #4f98ca, #50d890, #effffb);
+  /* background: -webkit-linear-gradient(to right, #4f98ca, #50d890, #effffb);
+  background: linear-gradient(to right, #4f98ca, #50d890, #effffb); */
+
+    background: -webkit-linear-gradient(to right, #98d6ea, #bae5e5, #f3d1f4);
+    background: linear-gradient(to right,#98d6ea, #bae5e5, #f3d1f4);
     height: auto;
     padding-bottom: 0px 0px 10px 0px;
 }

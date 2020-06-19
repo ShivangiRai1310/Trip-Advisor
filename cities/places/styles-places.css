@@ -12,7 +12,7 @@
 /* SIGN IN BUTTON */
 #sign-in-button {
   border: 0;
-  font-size: 2.25rem;
+  font-size: 1.2rem;
   padding-left: 2.5%;
 }
 
@@ -111,11 +111,19 @@ body {
 .fa-quote-left{
   color: #ffaaa5;
 }
+.blockquote h5{
+  /* font-size: 1.5rem; */
+  color: #fc9993;
+  font-size: 1.8rem;
+  font-weight: bold;
+  font-family: 'Indie Flower', cursive;
+  padding-bottom: 10px;
+}
 .blockquote p{
-  font-size: 0.5rem;
+  font-size: 1.5rem;
   font-family: 'Indie Flower', cursive;
 }
 /* ********************  add your own review    ****************************** */
-.fa-star:hover{
+/* .fa-star:hover{
   color: orange;
-}
+} */

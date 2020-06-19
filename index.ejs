@@ -63,18 +63,18 @@
           </li>
           <li class="nav-item my-auto"><a class="nav-link" href="user-profile">Profile</a></li>
           <li class="nav-item my-auto"><a class="nav-link" href="logout">Logout</a></li>
-          <li><a class="nav-link" href="user-profile"><i class="fas fa-user-circle fa-2x"></i></a></li>
+          <li><a class="nav-link" href="user-profile"><i class="fas fa-user-circle my-2 fa-2x"></i></a></li>
           <% } else if(user.user_type === "admin") { %>
           <li class="nav-item my-auto">
             <p class="my-auto mr-2">Welcome <%= user.user_name %> !!</p>
           </li>
           <li class="nav-item my-auto"><a class="nav-link" href="dashboard">Dashboard</a></li>
           <li class="nav-item my-auto"><a class="nav-link" href="logout">Logout</a></li>
-          <li><a class="nav-link" href="profile"><i class="fas fa-user-circle fa-2x"></i></a></li>
+          <li><a class="nav-link" href="profile"><i class="fas fa-user-circle my-2 fa-2x"></i></a></li>
           <%} } else { %>
           <li class="nav-item my-auto"><a class="nav-link" href="login">Login</a></li>
           <li class="nav-item my-auto"><a class="nav-link" href="register">Register</a></li>
-          <li><a class="nav-link" href="login"><i class="fas fa-user-circle fa-2x"></i></a></li>
+          <li><a class="nav-link" href="login"><i class="fas fa-user-circle my-2 fa-2x"></i></a></li>
           <% } %>
 
         </ul>

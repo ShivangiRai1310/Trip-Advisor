@@ -52,6 +52,19 @@ header li{
     margin: 50px 0px;
 }
 
+/* LIKED PLACES */
+figure{
+    transition: all .3s;
+}
+figure:hover{
+    box-shadow: 2px 5px 10px black;
+    transform: translateY(-1px);
+}
+
+#liked a{
+    text-decoration: inherit;
+    color: inherit;
+}
 
 /* REVIEWS */
 .checked{

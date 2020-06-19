@@ -46,23 +46,26 @@
         <div class="container-fluid row text-center px-5 mt-5">
             <div class="col-xl-6 col-sm-12 px-5">
                 <h3 class="text-center mb-4">Overview</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip
-                    ex
-                    ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-                    eu
-                    fugiat
-                    nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                    mollit
-                    anim id est</p>
+                <p>Want to customize your trip according to your own time and way?
+                    Try and do it with this feature of ours.Just tell us where you want to
+                    start your journey from and where you plan to go. Rest will be taken care
+                    by us. We provide you with a simple to understand and follow map so that you
+                    know where you are headed in the new city.</p>
             </div>
-            <div class="col-xl-6 col-sm-12 my-auto text-center px-5 py-2">
+            <!-- <div class="col-xl-6 col-sm-12 my-auto text-center px-5 py-2">
                 <div class="container-fluid" style="width: 500px; height: 300px; background-color: aliceblue;">
                     Video description
                 </div>
-            </div>
+            </div> -->
+            <div class="col-xl-6 col-sm-12 my-auto text-center px-5 py-2">
+                <div class="container-fluid">
+                  <video width="500" height="300" controls>
+                    <source src="../video-clips/Mountain.mp4" type="video/mp4">
+                    <source src="../video-clips/Mountain.ogg" type="video/ogg">
+                    Your browser does not support HTML video.
+                  </video>
+                </div>
+              </div>
         </div>
     </section>
 
@@ -89,7 +92,7 @@
             </form>
 
             <div class="row ml-auto px-5 py-3 my-5">
-                <div class="col-4 form-group py-2">
+                <div class="col-3 form-group py-2">
                     <label>Start</label>
                     <select class="form-control " id="start" name="start_place" required>
                         <option value="" disabled selected>Select start location</option>
@@ -99,7 +102,7 @@
                         <% } %>
                     </select>
                 </div>
-                <div class="col-4 form-group py-2">
+                <div class="col-3 form-group py-2">
                     <label>Waypoints (Ctrl+Click for multiple selection)</label>
                     <select class="form-control" id="waypoints" name="waypoints" multiple required>
                         <option value="" disabled selected>Select places to visit</option>
@@ -109,7 +112,7 @@
                         <% } %>
                     </select>
                 </div>
-                <div class="col-4 form-group py-2">
+                <div class="col-3 form-group py-2">
                     <label>End</label>
                     <select class="form-control" id="end" name="end_place" required>
                         <option value="" disabled selected>Select end location</option>
@@ -119,7 +122,8 @@
                         <% } %>
                     </select>
                 </div>
-                <button id="loadmap" class="btn btn-success btn-lg">Load Map</button>
+                <div class="col-3 py-2">
+                <button id="loadmap" class="btn btn-success btn-lg">Load Map</button></div>
             </div>
 
             <a href="/trip-plan"><button class="btn btn-danger btn-lg mr-auto"><i class="fas fa-redo mr-3"></i>Refresh
