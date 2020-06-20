@@ -1,5 +1,15 @@
 /* Login form css */
-body{
+.login,
+.image {
+  min-height: 100vh;
+}
+
+.bg-image {
+  background-image: url('https://images.unsplash.com/photo-1541436293327-8f104af135eb?ixlib=rb-1.2.1&w=1000&q=80');
+  background-size: cover;
+  background-position: center center;
+}
+/* body{
 margin: 100px 0px;
 padding:0px;
 text-align:center;
@@ -31,5 +41,5 @@ color: gray;
 }
 a{
 	margin-right: 0.5%;
-}
+} */
 /* Login form css */

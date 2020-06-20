@@ -1,40 +1,106 @@
 <!DOCTYPE html>
 
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Login and Registration form example</title>
+  <meta charset="UTF-8">
+  <title>Login and Registration form example</title>
 
-<link rel="stylesheet" type="text/css" href="login.css">
+  <!-- CSS STYLES -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="../swiper.min.css">
+  <link rel="stylesheet" href="login.css">
 
+  <!-- FONT AWESOME ICON -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://kit.fontawesome.com/c151499d61.js" crossorigin="anonymous"></script>
+
+  <!-- GOOGLE FONTS -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Arvo&family=Bad+Script&family=Caveat:wght@400;700&family=Cinzel:wght@400;700&family=Cookie&family=Dancing+Script:wght@700&family=Great+Vibes&family=Indie+Flower&family=Kaushan+Script&family=Open+Sans&family=Permanent+Marker&family=Sacramento&family=Satisfy&family=Shadows+Into+Light&display=swap"
+    rel="stylesheet">
+
+  <!-- BOOTSTRAP SCRIPTS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 
-<body bgcolor="#E6E6FA">
+<body>
 
-<div id="container">
-<form id="flogin" action="login" method="POST">
+  <div class="container-fluid">
+    <div class="row no-gutter">
+      <!-- The image half -->
+      <div class="col-md-6 d-none d-md-flex bg-image"></div>
 
-<fieldset>
-    <legend><h2>Login Form</h2></legend>
 
-<label for="uname" id="un">Username:</label>
-<input type="text" name="user_name" placeholder="Enter Username" id="uname" required><br/><br/>
+      <!-- The content half -->
+      <div class="col-md-6 bg-light">
+        <div class="login d-flex align-items-center py-5">
 
-<label for="upass" id="ps">Password:</label>
-<input type="password" name="password" placeholder="Enter Password" id="upass" minlength="6" required><br/><br/>
-</fieldset>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" value="Login"  id="submit">Login</button>
+          <!-- Demo content-->
+          <div class="container">
+            <div class="row">
+              <div id="container" class="col-lg-10 col-xl-7 mx-auto">
+                <h3 class="display-4">Log in Page!</h3>
+                <p class="text-muted mb-4">Enter your credentials here</p>
+                <form id="flogin" action="login" method="POST">
+                  <label for="uname" id="un">Username</label>
+                  <div class="form-group mb-3">
+                    <input id="uname" name="user_name" type="text" placeholder="Enter username" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                  </div>
+                  <div class="form-group mb-3">
+                    <label for="upass" id="ps">Password</label>
+                    <input id="upass" name="password" type="password" placeholder="Password" minlength="6" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                  </div>
+                  <!-- <div class="custom-control custom-checkbox mb-3">
+                                    <input id="customCheck1" type="checkbox" checked class="custom-control-input">
+                                    <label for="customCheck1" class="custom-control-label">Remember password</label>
+                                </div> -->
+                  <button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm">Sign in</button>
+                  <div class="text-center d-flex justify-content-between mt-4">
+                    <a href="register">New Member?</a>
+                    <a href="forgotPassword.html">Forgot Password?</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <h3><%= msg %></h3>
+          </div><!-- End -->
 
- <!-- Note:-use "&amp;nbsp"(use in html) or "margin"(left/right in css in head tag) to adjust the space) -->
+        </div>
+      </div><!-- End -->
 
-<a href="register">New Member</a>
-<a href="forgotPassword.html">Forgot Password?</a>
+    </div>
+  </div>
 
-</form>
+  <!-- <div id="container">
+    <form id="flogin" action="login" method="POST">
 
-<h3><%= msg %></h3>
-</div>
+      <fieldset>
+        <legend>
+          <h2>Login Form</h2>
+        </legend>
+
+        <label for="uname" id="un">Username:</label>
+        <input type="text" name="user_name" placeholder="Enter Username" id="uname" required><br /><br />
+
+        <label for="upass" id="ps">Password:</label>
+        <input type="password" name="password" placeholder="Enter Password" id="upass" minlength="6" required><br /><br />
+      </fieldset>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" value="Login" id="submit">Login</button> -->
+
+      <!-- Note:-use "&amp;nbsp"(use in html) or "margin"(left/right in css in head tag) to adjust the space) -->
+
+      <!-- <a href="register">New Member</a>
+      <a href="forgotPassword.html">Forgot Password?</a>
+
+    </form>
+
+    <h3><%= msg %></h3>
+  </div> -->
 
 </body>
+
 </html>
