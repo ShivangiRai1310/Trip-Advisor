@@ -32,7 +32,7 @@
           <div class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
             <a class="navbar-brand text-white d-block mx-auto text-center py-3 mb-2 bottom-border" href="./">Trip Advisor</a>
             <div class="bottom-border py-3  text-center">
-              <img src="../images/users/<%= user.user_name %>.jpeg" alt="admin image" width="40" height="40" class="rounded-circle mx-2">
+              <img src="../images/users/<%= user.user_name %>.jpeg" onerror="this.src='../images/users/default-user.png'"  alt="admin image" width="40" height="40" class="rounded-circle mx-2">
               <a href="/profile" class="text-white"><%= user.user_name %></a>
             </div>
             <ul class="navbar-nav flex-column mt-4">
@@ -125,7 +125,7 @@
           <h2 class="text-muted text-center mb-4 pb-4">Profile</h2>
           <form action="/profile" method="post" class="row">
             <div class="col-xl-4 col-sm-12 mt-4" >
-              <img src="../images/users/<%= user.user_name %>.jpeg" alt="" srcset=""> <br>
+              <img src="../images/users/<%= user.user_name %>.jpeg" onerror="this.src='../images/users/default-user.png'"  alt="" srcset=""> <br>
               <button type="button" class="btn btn-info btn-lg mb-5 py-2" id="edit-profile"><i class="fas fa-edit fa-lg mr-2"></i>Edit Profile</button>
               <button type="submit" class="btn btn-success btn-lg mb-5 py-2 hide" id="update-profile" ><i class="fas fa-user-edit fa-lg mr-2"></i>Update</button>
             </div>

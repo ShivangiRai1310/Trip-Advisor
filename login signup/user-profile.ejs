@@ -109,7 +109,7 @@
           <form action="user-profile-update" method="post" class="mx-auto">
             <div class="px-4 pt-0 pb-0 bg-dark">
               <div class="media align-items-end">
-                <div class="mr-4 profile-header"><img src="../images/users/<%= user.user_name %>.jpeg" alt="..."
+                <div class="mr-4 profile-header"><img src="../images/users/<%= user.user_name %>.jpeg"  onerror="this.src='../images/users/default-user.png'" alt="..."
                     width="160" class="rounded mb-2 img-thumbnail">
                   <a href="#edit-profile" class="btn btn-dark btn-md btn-block" id="edit-profile"><i
                       class="fas fa-edit fa-lg mr-2"></i>Edit profile</a>
@@ -196,7 +196,7 @@
 
           <div class="mx-3 my-5">
             <h5 class="mb-3 ml-4">Your Reviews</h5>
-
+            <% if(reviews.length!=0){ %>
             <div class="p-4 bg-light rounded shadow-sm" id="accordion">
 
               <div class="card">
@@ -264,6 +264,7 @@
               </div>
               <% } %>
             </div>
+            <% } %>
           </div>
 
         </div>

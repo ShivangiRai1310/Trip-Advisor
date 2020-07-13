@@ -41,6 +41,21 @@ con.connect(function (err) {
         console.log("Connected to dbms");
 });
 
+// function DMY() {
+//         var year, month, day;
+//         var monthShortNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+//         year = String(this.getFullYear());
+//         month = String(this.getMonth());
+//         // if (month.length == 1) {
+//         //     month = "0" + month;
+//         // }
+//         day = String(this.getDate());
+//         if (day.length == 1) {
+//             day = "0" + day;
+//         }
+//         return day + " " + monthShortNames[month] + " " + year;
+// };
+
 // INDEX PAGE
 app.get("/", authController.isLoggedIn, function (req, res) {
     res.render("index.ejs", { user: req.user });
@@ -155,6 +170,70 @@ app.post("/register", function (req, res) {
 
     // res.send("submitted");
 });
+
+//forgot passwords
+
+app.get("/forgot-password", function(req, res) {
+    app.use(express.static("./login signup"));
+  
+    res.render(__dirname + "/login signup/forgot-password.ejs", { msg: "" });
+  });
+  
+  app.post("/forgot-password", function(req, res) {
+    app.use(express.static("./login signup"));
+  
+    let { user_name, contact, password, confirm_password, email } = req.body; //SHORTCUT IF NAMES R SAME
+    let updation_date = date.currentDate();
+    // console.log(user_type);
+    // console.log(req.body);
+    // console.log(user_name +" "+ contact +" " + password +" " + confirm_password +" " + email +" " + user_type +" " + reg_date +" " + updation_date);
+  
+    let sql =
+      "SELECT user_name FROM user WHERE user_name = '" +
+      user_name +
+      "' AND email = '" +
+      email +
+      "' AND contact = '" +
+      contact +
+      "'";
+    con.query(sql, async function(err, rows) {
+      if (err) console.log(err);
+  
+      // console.log(rows);
+      if (rows.length == 0) {
+        res.render(__dirname + "/login signup/forgot-password.ejs", {
+          msg: "User with the entered credentials does not exist!! "
+        });
+      } else if (password != confirm_password) {
+        res.render(__dirname + "/login signup/forgot-password.ejs", {
+          msg: "Passwords do not match, Enter again!! "
+        });
+      } else {
+        let hashed_password = await bcrypt.hash(password, 8); //8 pased as no of rounds for encrypting, by default it takes salt (additional val added) so that even if a person who gets access to db n hacks one password, wont be able to hack others with same tech vuz of diff salt
+        //  console.log(hashed_password);
+  
+        let sql =
+          "UPDATE user SET password = '" +
+          hashed_password +
+          "' , updation_date = '" +
+          updation_date +
+          "' WHERE user_name = '" +
+          user_name +
+          "'";
+        con.query(sql, function(err, rows) {
+          if (err) console.log(err);
+          else {
+            // console.log(rows);
+            res.render(__dirname + "/login signup/forgot-password.ejs", {
+              msg: "Password Updated!!"
+            });
+          }
+        });
+      }
+    });
+  
+    // res.send("submitted");
+  });
 
 //ABOUT US
 app.get("/about-us", function (req, res) {
@@ -374,7 +453,7 @@ app.post("/confirm-booking", function (req, res) {
                     let m2 = "<br><br>Package Name : " + name + "<br>Count : " + count + "<br>Total Price : " + total_price + "<br>Travel Date : " + travel_date + "<br>Booking Date : " + booking_date;
                     let m3 = "<br> <br> <br>Payment can be done on the first day of tour.<br> <i>Thank you for booking with us.</i>"
                     msg = msg + m1 + m2 + m3;
-                    res.render(__dirname + "/pop-up.ejs", { title: "Package Booking Added", msg: msg });
+                    res.render(__dirname + "/pop-up.ejs", { title: "Package Booking Completed", msg: msg });
                 }
             });
         }
@@ -1073,7 +1152,42 @@ app.get("/analytics", authController.isLoggedIn, function (req, res) {
     app.use(express.static('./admin dashboard'));
 
     if (req.user && req.user.user_type == "admin") {
-        res.render(__dirname + "/admin dashboard/analytics.ejs", { user: req.user });
+        let sql="SELECT reg_date, COUNT(*) AS count FROM user GROUP BY reg_date;";
+        sql+= "SELECT booking_date, COUNT(*) AS count FROM bookings GROUP BY booking_date;";
+        sql+= "SELECT u.user_name AS name, COUNT(*) AS count FROM bookings AS b, user AS u WHERE u.user_id=b.user_id GROUP BY u.user_id;";
+        sql+= "SELECT u.user_name AS name, COUNT(*) AS count FROM reviews AS r, user AS u WHERE u.user_id=r.users_id GROUP BY u.user_id;";
+        con.query(sql, function (err, rows) {
+            if (err)
+                console.log(err);
+            else {
+                //console.log(rows);
+                // console.log(rows[1]);
+                //console.log(rows[3]);
+                 var reg_dates=[], reg_count=[], booking_dates=[], booking_count=[], user_name=[], user_booking_count=[], ruser_name=[], user_review_count=[];
+                for(var i=0;i<rows[0].length; i++)
+                {
+                    reg_dates.push(date.DMY.call(rows[0][i].reg_date));
+                    reg_count.push(rows[0][i].count);
+                }
+                for(var i=0;i<rows[1].length; i++)
+                {
+                    booking_dates.push(date.DMY.call(rows[1][i].booking_date));
+                    booking_count.push(rows[1][i].count);
+                }
+                for(var i=0;i<rows[2].length; i++)
+                {
+                    user_name.push(rows[2][i].name);
+                    user_booking_count.push(rows[2][i].count);
+                }
+                for(var i=0;i<rows[3].length; i++)
+                {
+                    ruser_name.push(rows[3][i].name);
+                    user_review_count.push(rows[3][i].count);
+                }
+
+                res.render(__dirname + "/admin dashboard/analytics.ejs", { user: req.user, reg_dates, reg_count,  booking_dates,  booking_count, user_name, user_booking_count, ruser_name ,user_review_count });
+            }
+        }); 
     }
     else {
         res.redirect("/login");
@@ -1085,7 +1199,37 @@ app.get("/charts", authController.isLoggedIn, function (req, res) {
     app.use(express.static('./admin dashboard'));
 
     if (req.user && req.user.user_type == "admin") {
-        res.render(__dirname + "/admin dashboard/charts.ejs", { user: req.user });
+
+        let sql="SELECT c.name, COUNT(*) AS count FROM cities AS c, places AS p WHERE c.city_id=p.city_id GROUP BY c.city_id;";
+        sql+= "SELECT p.name, COUNT(*) AS count FROM bookings AS b, packages AS p WHERE b.package_id=p.package_id GROUP BY p.package_id;";
+        sql+= "SELECT p.place_name AS name, COUNT(*) AS count FROM bookmarks AS b, places AS p WHERE b.place_id=p.place_id GROUP BY p.place_id;";
+        con.query(sql, function (err, rows) {
+            if (err)
+                console.log(err);
+            else {
+                // console.log(rows[0]);
+                // console.log(rows[1]);
+                // console.log(rows[2]);
+                var city_name=[], city_count=[], package_name=[], package_count=[], place_name=[], place_count=[];
+                for(var i=0;i<rows[0].length; i++)
+                {
+                    city_name.push(rows[0][i].name);
+                    city_count.push(rows[0][i].count);
+                }
+                for(var i=0;i<rows[1].length; i++)
+                {
+                    package_name.push(rows[1][i].name);
+                    package_count.push(rows[1][i].count);
+                }
+                for(var i=0;i<rows[2].length; i++)
+                {
+                    place_name.push(rows[2][i].name);
+                    place_count.push(rows[2][i].count);
+                }
+
+                res.render(__dirname + "/admin dashboard/charts.ejs", { user: req.user, city_name, city_count, package_name, package_count, place_name, place_count});
+            }
+        });   
     }
     else {
         res.redirect("/login");
