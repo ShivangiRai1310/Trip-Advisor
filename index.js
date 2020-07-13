@@ -243,7 +243,7 @@ app.get("/about-us", function (req, res) {
 });
 
 //GENERAL USER PROFILE
-app.get("/user-profile", authController.isLoggedIn, function (req, res) {    //the page to be hidden n visible only if it matches current token, for such authentication we create a middleware   
+app.get("/user-profile", authController.isLoggedIn, function (req, res) {    //the page to be hidden n visible only if it matches current token, for such authentication we create a middleware
     app.use(express.static('./login signup'));
     // console.log(req.message);                                          //we include the authController middleware's isLoggedIn func first in which the defined variables can be accessed here
 
@@ -355,7 +355,7 @@ app.get("/kolkata", authController.isLoggedIn, function (req, res) {
     }
     else {
         res.redirect("/login");
-    }   
+    }
 });
 
 app.post("/add-bookmark", function (req, res) {
@@ -497,7 +497,7 @@ app.post("/get-location", function (req, res) {
 
 // DASHBOARD PAGE
 app.get("/dashboard", authController.isLoggedIn, function (req, res) {
-    app.use(express.static('./admin dashboard'));   //change static folder since earlier wasnt rendering css   
+    app.use(express.static('./admin dashboard'));   //change static folder since earlier wasnt rendering css
 
     if (req.user && req.user.user_type == "admin") {
         let sql = "SELECT (SELECT COUNT(*) FROM user) as userCount ,(SELECT COUNT(*) FROM cities) as cityCount ,(SELECT COUNT(*) FROM places) as placesCount ,(SELECT COUNT(*) FROM packages) as packagesCount ,(SELECT COUNT(*) FROM reviews) as reviewsCount ,(SELECT COUNT(*) FROM bookings) as bookingsCount ,(SELECT COUNT(*) FROM enquiries) as enquiriesCount ";
@@ -1246,4 +1246,68 @@ app.listen(port, function (err) {
     }
     else
         console.log("Listening on localhost:" + port);
+});
+
+//forgot passwords
+
+app.get("/forgot-password", function(req, res) {
+  app.use(express.static("./login signup"));
+
+  res.render(__dirname + "/login signup/forgot-password.ejs", { msg: "" });
+});
+
+app.post("/forgot-password", function(req, res) {
+  app.use(express.static("./login signup"));
+
+  let { user_name, contact, password, confirm_password, email } = req.body; //SHORTCUT IF NAMES R SAME
+  let updation_date = date.currentDate();
+  // console.log(user_type);
+  // console.log(req.body);
+  // console.log(user_name +" "+ contact +" " + password +" " + confirm_password +" " + email +" " + user_type +" " + reg_date +" " + updation_date);
+
+  let sql =
+    "SELECT user_name FROM user WHERE user_name = '" +
+    user_name +
+    "' AND email = '" +
+    email +
+    "' AND contact = '" +
+    contact +
+    "'";
+  con.query(sql, async function(err, rows) {
+    if (err) console.log(err);
+
+    // console.log(rows);
+    if (rows.length == 0) {
+      res.render(__dirname + "/login signup/forgot-password.ejs", {
+        msg: "User with the entered credentials does not exist!! "
+      });
+    } else if (password != confirm_password) {
+      res.render(__dirname + "/login signup/forgot-password.ejs", {
+        msg: "Passwords do not match, Enter again!! "
+      });
+    } else {
+      let hashed_password = await bcrypt.hash(password, 8); //8 pased as no of rounds for encrypting, by default it takes salt (additional val added) so that even if a person who gets access to db n hacks one password, wont be able to hack others with same tech vuz of diff salt
+      //  console.log(hashed_password);
+
+      let sql =
+        "UPDATE user SET password = '" +
+        hashed_password +
+        "' , updation_date = '" +
+        updation_date +
+        "' WHERE user_name = '" +
+        user_name +
+        "'";
+      con.query(sql, function(err, rows) {
+        if (err) console.log(err);
+        else {
+          // console.log(rows);
+          res.render(__dirname + "/login signup/forgot-password.ejs", {
+            msg: "Password Updated!!"
+          });
+        }
+      });
+    }
+  });
+
+  // res.send("submitted");
 });
