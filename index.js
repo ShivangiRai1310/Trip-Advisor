@@ -316,6 +316,8 @@ app.get("/varanasi", authController.isLoggedIn, function (req, res) {
     }
 });
 
+
+
 app.get("/kolkata", authController.isLoggedIn, function (req, res) {
     app.use(express.static('./cities/places'));
     let city_name = req.url.slice(1);
