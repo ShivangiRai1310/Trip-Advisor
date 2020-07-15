@@ -161,19 +161,19 @@ app.post("/register", function (req, res) {
 
 app.get("/forgot-password", function(req, res) {
     app.use(express.static("./login signup"));
-  
+
     res.render(__dirname + "/login signup/forgot-password.ejs", { msg: "" });
   });
-  
+
   app.post("/forgot-password", function(req, res) {
     app.use(express.static("./login signup"));
-  
+
     let { user_name, contact, password, confirm_password, email } = req.body; //SHORTCUT IF NAMES R SAME
     let updation_date = date.currentDate();
     // console.log(user_type);
     // console.log(req.body);
     // console.log(user_name +" "+ contact +" " + password +" " + confirm_password +" " + email +" " + user_type +" " + reg_date +" " + updation_date);
-  
+
     let sql =
       "SELECT user_name FROM user WHERE user_name = '" +
       user_name +
@@ -184,7 +184,7 @@ app.get("/forgot-password", function(req, res) {
       "'";
     con.query(sql, async function(err, rows) {
       if (err) console.log(err);
-  
+
       // console.log(rows);
       if (rows.length == 0) {
         res.render(__dirname + "/login signup/forgot-password.ejs", {
@@ -197,7 +197,7 @@ app.get("/forgot-password", function(req, res) {
       } else {
         let hashed_password = await bcrypt.hash(password, 8); //8 pased as no of rounds for encrypting, by default it takes salt (additional val added) so that even if a person who gets access to db n hacks one password, wont be able to hack others with same tech vuz of diff salt
         //  console.log(hashed_password);
-  
+
         let sql =
           "UPDATE user SET password = '" +
           hashed_password +
@@ -217,7 +217,7 @@ app.get("/forgot-password", function(req, res) {
         });
       }
     });
-  
+
     // res.send("submitted");
   });
 
@@ -1175,7 +1175,7 @@ app.get("/analytics", authController.isLoggedIn, function (req, res) {
 
                 res.render(__dirname + "/admin dashboard/analytics.ejs", { user: req.user, reg_dates, reg_count,  booking_dates,  booking_count, user_name, user_booking_count, ruser_name ,user_review_count });
             }
-        }); 
+        });
     }
     else {
         res.redirect("/login");
@@ -1217,7 +1217,7 @@ app.get("/charts", authController.isLoggedIn, function (req, res) {
 
                 res.render(__dirname + "/admin dashboard/charts.ejs", { user: req.user, city_name, city_count, package_name, package_count, place_name, place_count});
             }
-        });   
+        });
     }
     else {
         res.redirect("/login");
@@ -1298,4 +1298,39 @@ app.post("/forgot-password", function(req, res) {
   });
 
   // res.send("submitted");
+});
+// Add comment
+app.post("/add-review", function(req, res) {
+  app.use(express.static("./cities/places"));
+
+  let {
+    user_id,
+    comment_place,
+    comment_heading,
+    comment_text,
+    cityname
+  } = req.body;
+  console.log(req.body);
+
+  let sql =
+    "SELECT place_id FROM places WHERE place_name = '" + comment_place + "'";
+  con.query(sql, function(err, rows) {
+    if (err) console.log(err);
+    else {
+      let place_id = rows[0].place_id;
+      // console.log(place_id);
+      let sql =
+        "INSERT INTO reviews VALUES(null, '" +
+        user_id +
+        "', '" +
+        place_id +
+        "', '" +
+        comment_heading +
+        "', '" +
+        comment_text +
+        "', 4)";
+      con.query(sql);
+    }
+  });
+  res.redirect("/" + cityname);
 });
