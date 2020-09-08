@@ -1227,7 +1227,7 @@ app.get("/charts", authController.isLoggedIn, function (req, res) {
 
 // con.end();
 
-app.listen(port, function (err) {
+app.listen(process.env.PORT || port, function (err) {
 
     if (err) {
 
