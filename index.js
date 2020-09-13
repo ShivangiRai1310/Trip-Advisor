@@ -34,6 +34,12 @@ const con = mysql.createConnection({
     multipleStatements: true
 });
 
+//For local database connection while .env contains values for remote database connection
+// database = dbms
+// host = localhost
+// user = root
+// password = 12345
+
 con.connect(function (err) {
     if (err)
         console.log("Error in connection " + err);
