@@ -6,11 +6,19 @@ const jwt = require('jsonwebtoken');
 // dotenv.config({ path: '../.env'}); 
 
 // MYSQL CONNECTION
+// const con = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: '12345',
+//     database: 'dbms'
+// });
+
+//Remote database connection
 const con = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '12345',
-    database: 'dbms'
+    host: 'remotemysql.com',
+    user: 'EXIz0ey1qg',
+    password: 'MIztw0kqKH',
+    database: 'EXIz0ey1qg'
 });
 
 con.connect(function (err) {
