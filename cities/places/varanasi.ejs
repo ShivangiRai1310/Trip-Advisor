@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  <title>Varanasi</title>
+
+  <!-- CSS STYLES -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../swiper.min.css">
+  <link rel="stylesheet" href="styles-places.css">
+
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <script src="https://kit.fontawesome.com/c151499d61.js" crossorigin="anonymous"></script>
+
+  <!-- GOOGLE FONTS -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Arvo&family=Caveat:wght@400;700&family=Cinzel:wght@400;700&family=Dancing+Script:wght@700&family=Great+Vibes&family=Open+Sans&family=Permanent+Marker&display=swap"
+    rel="stylesheet">
+
+
+  <!-- BOOTSTRAP SCRIPTS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #000839;">
+    <a class="navbar-brand" href="/"><img class="logo-part1" src="../../images/logo-part1.png" alt="Trip advisor"></a>
+    <a class="navbar-brand" href="/"><img class="logo-part2" src="../../images/logo-part2.png" alt="Trip advisor"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/explore-cities">Cities
+            <!-- <span class="sr-only">(current)</span> -->
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#add-comment">Add Review</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Places
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#assi-ghat">Assi Ghat</a>
+            <a class="dropdown-item" href="#kashi-vishwanath">Kashi Vishwanath</a>
+            <a class="dropdown-item" href="#sarnath">Sarnath</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+      </form>
+      <% if(user.user_type === "general"){ %>
+      <a class="nav-link" href="user-profile" id="sign-in-button" style="color: white;"><i class="fas fa-user-circle my-2 fa-2x"></i></a>
+      <% } else if(user.user_type === "admin") { %>
+      <a class="nav-link" href="profile" id="sign-in-button" style="color: white;"><i class="fas fa-user-circle my-2 fa-2x"></i></a>
+      <% } %>
+    </div>
+  </nav>
+
+  <!-- Heading -->
+  <div class="heading" id="varanasi">
+    <p> VARANASI</p>
+    <span>the land of the living</span>
+  </div>
+
+  <!-- Gallery -->
+
+  <form action="/add-bookmark" id="add-bookmark" method="post">
+    <input type="text" name="user_id" value="<%= user.user_id %>" hidden>
+    <input type="text" name="place_name" value="" hidden>
+    <input type="text" name="cityname" value="varanasi" hidden>
+  </form>
+
+  <!-- =============================== ASSI GHAT =========================== -->
+  <div class="place-gallery" id="assi-ghat">
+    <div class="container-fluid row">
+      <div class="col-9 place-name">
+        <p>ASSI GHAT</p>
+      </div>
+      <div class="col-3 like-btn">
+        <p>Like what you see? <i class="fas fa-heart liked" place-name="Assi Ghat"></i> </p>
+      </div>
+    </div>
+
+    <div class="container-fluid row place-descriprtion">
+      <div class="col-5">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img class="d-block w-100" src="../../images/varanasi/assi-ghat1.jpg" alt="First slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="../../images/varanasi/assi-ghat2.jpg" alt="Second slide">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+      <div class="col-7 gallery-info">
+        <p> <strong> A holy river in Varanasi <br></strong><br>
+          Assi Ghat is the southernmost ghat in Varanasi.
+          To most visitors to Varanasi, it is known for being a place where long-term foreign students,
+          researchers, and tourists live. Assi Ghat is one of the ghats often visited for recreation and
+          during festivals. On typical days about 300 people visit every hour in the mornings, and on festival
+          days 2500 people arrive per hour. Most of the people visiting the ghat on usual days are students from
+          the nearby Banaras Hindu University. The ghat accommodates about 22,500 people at once during festivals
+          like Shivratri.<br> <br>
+          <strong>Location:</strong> Banks of the holy ganges river</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVIEWS -->
+  <section class="pb-5">
+    <div class="container">
+      <p class="review-heading">What do people have to say about this place???</p>
+      <div class="row">
+        <div class="col-lg-10 col-xl-8 mx-auto">
+          <div class="p-5 bg-white shadow rounded">
+            <!-- Bootstrap carousel-->
+            <div class="carousel slide" id="carouselExampleIndicators-1" data-ride="carousel">
+              <!-- Bootstrap carousel indicators [nav] -->
+              <ol class="carousel-indicators mb-0">
+                <li class="active" data-target="#carouselExampleIndicators-1" data-slide-to="0"></li>
+                <li data-target="#carouselExampleIndicators-1" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators-1" data-slide-to="2"></li>
+              </ol>
+              <!-- Bootstrap inner [slides]-->
+              <div class="carousel-inner px-5 ">
+
+                <!-- Carousel slide-->
+                <% let cnt = 0; %>
+                <% for(var i=0; i<reviews.length;i++){ %>
+                <% if( reviews[i].place_name == "Assi Ghat") {%>
+                <% cnt= cnt+1; %>
+                <% if(cnt == 1) { %>
+                <div class="carousel-item active">
+                  <div class="media"><img class="rounded-circle img-thumbnail"
+                      src="../../images/users/<%= reviews[i].user_name %>.jpeg" alt="" width="100">
+                    <div class="media-body ml-3">
+                      <blockquote class="blockquote border-0 p-0">
+                        <h5 class="font-italic"><%= reviews[i].title %></h5>
+                        <p class="font-italic lead"> <i class="fa fa-quote-left mr-3 "></i>
+                          <%= reviews[i].message %></p>
+                        <footer class="blockquote-footer">
+                          <cite title="Source Title"><%= reviews[i].user_name %></cite>
+                        </footer>
+                      </blockquote>
+                      <p class="review-heading">How do they like it??<br>
+                        <%  for(var j=0; j< reviews[i].rating ;j++){ %>
+                        <i class="fas fa-star mr-1"></i>
+                        <% } %>
+                        <%  for(var j=0; j< 5-reviews[i].rating ;j++){ %>
+                        <i class="far fa-star mr-1"></i>
+                        <% } %>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <% } else { %>
+                <div class="carousel-item">
+                  <div class="media"><img class="rounded-circle img-thumbnail"
+                      src="../../images/users/<%= reviews[i].user_name %>.jpeg" alt="" width="100">
+                    <div class="media-body ml-3">
+                      <blockquote class="blockquote border-0 p-0">
+                        <h5 class="font-italic"><%= reviews[i].title %></h5>
+                        <p class="font-italic lead"> <i class="fa fa-quote-left mr-3 "></i>
+                          <%= reviews[i].message %></p>
+                        <footer class="blockquote-footer">
+                          <cite title="Source Title"><%= reviews[i].user_name %></cite>
+                        </footer>
+                      </blockquote>
+                      <p class="review-heading">How do they like it??<br>
+                        <!-- <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                          class="fas fa-star-half-alt"></i><i class="far fa-star"></i> -->
+                        <%  for(var j=0; j< reviews[i].rating ;j++){ %>
+                        <i class="fas fa-star mr-1"></i>
+                        <% } %>
+                        <%  for(var j=0; j< 5-reviews[i].rating ;j++){ %>
+                        <i class="far fa-star mr-1"></i>
+                        <% } %>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <% }}} %>
+              </div>
+              <!-- Bootstrap controls [dots]-->
+              <a class="carousel-control-prev width-auto" href="#carouselExampleIndicators-1" role="button"
+                data-slide="prev">
+                <i class="fa fa-angle-left text-dark text-lg"></i>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next width-auto" href="#carouselExampleIndicators-1" role="button"
+                data-slide="next">
+                <i class="fa fa-angle-right text-dark text-lg"></i>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ SARNATH =========================== -->
+  <div class="place-gallery" id="sarnath">
+    <div class="container-fluid row">
+      <div class="col-9 place-name">
+        <p>THE BUDDHIST PILGRIMAGE OF SARNATH</p>
+      </div>
+      <div class="col-3 like-btn">
+        <p>Like what you see? <i class="fas fa-heart liked" place-name="Sarnath"></i> </p>
+      </div>
+    </div>
+
+    <div class="container-fluid row place-descriprtion">
+      <div class="col-5">
+        <div id="carouselExampleControls2" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img class="d-block w-100" src="../../images/varanasi/var-sarnath1.jpg" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="../../images/varanasi/var-sarnath2.jpg" alt="Third slide">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls2" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+      <div class="col-7 gallery-info">
+        <p> <strong> A Buddhist religious spot <br></strong><br>
+          Explore Sarnath, an important Buddhist pilgrimage destination, where Buddha made his first sermon.
+          Visit temples, stupas and monuments, famous tourist attractions in the area, and pilgrimage spots.
+          Listen to heartwarming stories of the famous temples that will help you understand Sarnath and local life.
+          Meditate in the park after experiencing all the knowledge you've acquired during your pilgrimage.
+          <br> <br>
+          <strong>Location:</strong> Varanasi, Uttar Pradesh</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVIEWS -->
+  <section class="pb-5">
+    <div class="container">
+      <p class="review-heading">What do people have to say about this place???</p>
+      <div class="row">
+        <div class="col-lg-10 col-xl-8 mx-auto">
+          <div class="p-5 bg-white shadow rounded">
+            <!-- Bootstrap carousel-->
+            <div class="carousel slide" id="carouselExampleIndicators-2" data-ride="carousel">
+              <!-- Bootstrap carousel indicators [nav] -->
+              <ol class="carousel-indicators mb-0">
+                <li class="active" data-target="#carouselExampleIndicators-2" data-slide-to="0"></li>
+                <li data-target="#carouselExampleIndicators-2" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators-2" data-slide-to="2"></li>
+              </ol>
+              <!-- Bootstrap inner [slides]-->
+              <div class="carousel-inner px-5 ">
+                <!-- Carousel slide-->
+                <% cnt = 0; %>
+                <% for(var i=0; i<reviews.length;i++){ %>
+                <% if( reviews[i].place_name == "Sarnath") {%>
+                <% cnt= cnt+1; %>
+                <% if(cnt == 1) { %>
+                <div class="carousel-item active">
+                  <div class="media"><img class="rounded-circle img-thumbnail"
+                      src="../../images/users/<%= reviews[i].user_name %>.jpeg" alt="" width="100">
+                    <div class="media-body ml-3">
+                      <blockquote class="blockquote border-0 p-0">
+                        <h5 class="font-italic"><%= reviews[i].title %></h5>
+                        <p class="font-italic lead"> <i class="fa fa-quote-left mr-3 "></i>
+                          <%= reviews[i].message %></p>
+                        <footer class="blockquote-footer">
+                          <cite title="Source Title"><%= reviews[i].user_name %></cite>
+                        </footer>
+                      </blockquote>
+                      <p class="review-heading">How do they like it??<br>
+                        <%  for(var j=0; j< reviews[i].rating ;j++){ %>
+                        <i class="fas fa-star mr-1"></i>
+                        <% } %>
+                        <%  for(var j=0; j< 5-reviews[i].rating ;j++){ %>
+                        <i class="far fa-star mr-1"></i>
+                        <% } %>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <% } else { %>
+                <div class="carousel-item">
+                  <div class="media"><img class="rounded-circle img-thumbnail"
+                      src="../../images/users/<%= reviews[i].user_name %>.jpeg" alt="" width="100">
+                    <div class="media-body ml-3">
+                      <blockquote class="blockquote border-0 p-0">
+                        <h5 class="font-italic"><%= reviews[i].title %></h5>
+                        <p class="font-italic lead"> <i class="fa fa-quote-left mr-3 "></i>
+                          <%= reviews[i].message %></p>
+                        <footer class="blockquote-footer">
+                          <cite title="Source Title"><%= reviews[i].user_name %></cite>
+                        </footer>
+                      </blockquote>
+                      <p class="review-heading">How do they like it??<br>
+                        <!-- <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                          class="fas fa-star-half-alt"></i><i class="far fa-star"></i> -->
+                        <%  for(var j=0; j< reviews[i].rating ;j++){ %>
+                        <i class="fas fa-star mr-1"></i>
+                        <% } %>
+                        <%  for(var j=0; j< 5-reviews[i].rating ;j++){ %>
+                        <i class="far fa-star mr-1"></i>
+                        <% } %>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <% }}} %>
+              </div>
+              <!-- Bootstrap controls [dots]-->
+              <a class="carousel-control-prev width-auto" href="#carouselExampleIndicators-2" role="button"
+                data-slide="prev">
+                <i class="fa fa-angle-left text-dark text-lg"></i>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next width-auto" href="#carouselExampleIndicators-2" role="button"
+                data-slide="next">
+                <i class="fa fa-angle-right text-dark text-lg"></i>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================== KASHI VISWANATH TEMPLE ================================ -->
+
+  <div class="place-gallery" id="kashi-vishwanath">
+    <div class="container-fluid row">
+      <div class="col-9 place-name">
+        <p>KASHI VISHAVANATH</p>
+      </div>
+      <div class="col-3 like-btn">
+        <p>Like what you see? <i class="fas fa-heart liked" place-name="Kashi Vishwanath"></i> </p>
+      </div>
+    </div>
+
+    <div class="container-fluid row place-descriprtion">
+      <div class="col-5">
+        <div id="carouselExampleControls3" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img class="d-block w-100" src="../../images/varanasi/var-vishwanath2.jpg" alt="First slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="../../images/varanasi/var-vishwanath2.jpg" alt="Second slide">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls3" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+      <div class="col-7 gallery-info">
+        <p> <strong> A temple in Varanasi <br></strong><br>
+          Kashi Vishwanath Temple is one of the most famous Hindu temples dedicated to Lord Shiva.
+          It is located in Varanasi, Uttar Pradesh, India.
+          The Temple stands on the western bank of the holy river Ganga, and is one of the twelve Jyotirlingas, the
+          holiest of Shiva Temples. The main deity is known by the names Shri Vishwanath and Vishweshwara (IAST:
+          Vishveshvara) literally
+          meaning Lord of the Universe. Varanasi city is also called Kashi in ancient time, and hence the Temple is
+          popularly called as Kashi Vishwanath Temple.
+          The etymology of the name Vishveshvara is Vishva: Universe, Ishvara: lord, one who has dominion.<br> <br>
+          <strong>Location:</strong> Heart of the city Varanasi</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- REVIEWS -->
+  <section class="pb-5">
+    <div class="container">
+      <p class="review-heading">What do people have to say about this place???</p>
+      <div class="row">
+        <div class="col-lg-10 col-xl-8 mx-auto">
+          <div class="p-5 bg-white shadow rounded">
+            <!-- Bootstrap carousel-->
+            <div class="carousel slide" id="carouselExampleIndicators-3" data-ride="carousel">
+              <!-- Bootstrap carousel indicators [nav] -->
+              <ol class="carousel-indicators mb-0">
+                <li class="active" data-target="#carouselExampleIndicators-3" data-slide-to="0"></li>
+                <li data-target="#carouselExampleIndicators-3" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators-3" data-slide-to="2"></li>
+              </ol>
+              <!-- Bootstrap inner [slides]-->
+              <div class="carousel-inner px-5 ">
+
+                <!-- Carousel slide-->
+                <% cnt = 0; %>
+                <% for(var i=0; i<reviews.length;i++){ %>
+                <% if( reviews[i].place_name == "Kashi Vishwanath") {%>
+                <% cnt= cnt+1; %>
+                <% if(cnt == 1) { %>
+                <div class="carousel-item active">
+                  <div class="media"><img class="rounded-circle img-thumbnail"
+                      src="../../images/users/<%= reviews[i].user_name %>.jpeg" alt="" width="100">
+                    <div class="media-body ml-3">
+                      <blockquote class="blockquote border-0 p-0">
+                        <h5 class="font-italic"><%= reviews[i].title %></h5>
+                        <p class="font-italic lead"> <i class="fa fa-quote-left mr-3 "></i>
+                          <%= reviews[i].message %></p>
+                        <footer class="blockquote-footer">
+                          <cite title="Source Title"><%= reviews[i].user_name %></cite>
+                        </footer>
+                      </blockquote>
+                      <p class="review-heading">How do they like it??<br>
+                        <%  for(var j=0; j< reviews[i].rating ;j++){ %>
+                        <i class="fas fa-star mr-1"></i>
+                        <% } %>
+                        <%  for(var j=0; j< 5-reviews[i].rating ;j++){ %>
+                        <i class="far fa-star mr-1"></i>
+                        <% } %>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <% } else { %>
+                <div class="carousel-item">
+                  <div class="media"><img class="rounded-circle img-thumbnail"
+                      src="../../images/users/<%= reviews[i].user_name %>.jpeg" alt="" width="100">
+                    <div class="media-body ml-3">
+                      <blockquote class="blockquote border-0 p-0">
+                        <h5 class="font-italic"><%= reviews[i].title %></h5>
+                        <p class="font-italic lead"> <i class="fa fa-quote-left mr-3 "></i>
+                          <%= reviews[i].message %></p>
+                        <footer class="blockquote-footer">
+                          <cite title="Source Title"><%= reviews[i].user_name %></cite>
+                        </footer>
+                      </blockquote>
+                      <p class="review-heading">How do they like it??<br>
+                        <!-- <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                          class="fas fa-star-half-alt"></i><i class="far fa-star"></i> -->
+                        <%  for(var j=0; j< reviews[i].rating ;j++){ %>
+                        <i class="fas fa-star mr-1"></i>
+                        <% } %>
+                        <%  for(var j=0; j< 5-reviews[i].rating ;j++){ %>
+                        <i class="far fa-star mr-1"></i>
+                        <% } %>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <% }}} %>
+              </div>
+              <!-- Bootstrap controls [dots]-->
+              <a class="carousel-control-prev width-auto" href="#carouselExampleIndicators-3" role="button"
+                data-slide="prev">
+                <i class="fa fa-angle-left text-dark text-lg"></i>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next width-auto" href="#carouselExampleIndicators-3" role="button"
+                data-slide="next">
+                <i class="fa fa-angle-right text-dark text-lg"></i>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!--
+  <div class="place-gallery" id="add-comment">
+    <div class="login d-flex align-items-center py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 col-xl-7 mx-auto">
+            <h3 class="display-4">What do you say!?</h3>
+            <p class="text-muted mb-4">Add your comments here</p>
+            <form>
+              <div class="form-group mb-3">
+                <label for="">The place you want to tell about</label>
+                <input id="comment-place" type="text" placeholder="The place you want to tell about" required=""
+                  autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+
+              </div>
+              <div class="form-group mb-3">
+                <input id="comment-heading" type="text" placeholder="What is your comment about" required=""
+                  autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+              </div>
+              <div class="form-group mb-3">
+                <textarea id="comment-text" type="text" placeholder="Add your comment here" required=""
+                  class="form-control rounded-pill border-0 shadow-sm px-4"></textarea>
+              </div>
+              <div class="mb-3">
+                <p>Your Rating:</p> <i onclick="this.style.color= 'red'" class="fas fa-heart"></i><i
+                  onclick="this.style.color= 'red'" class="fas fa-heart"></i><i onclick="this.style.color= 'red'"
+                  class="fas fa-heart"></i><i onclick="this.style.color= 'red'" class="fas fa-heart"></i><i
+                  onclick="this.style.color= 'red'" class="fas fa-heart"></i>
+                <!-- <label for="customCheck1" class="custom-control-label">Remember password</label> -->
+              <!-- </div>
+              <button type="submit" class="btn btn-danger btn-block text-uppercase mb-2 rounded-pill shadow-sm">Make
+                your opinion count</button> -->
+              <!-- <div class="text-center d-flex justify-content-between mt-4"><p>Snippet by <a href="https://bootstrapious.com/snippets" class="font-italic text-muted">
+                                          <u>Boostrapious</u></a></p></div> -->
+            <!-- </form>
+          </div>
+        </div>
+      </div>
+    </div> --> -->
+
+    <div class="place-gallery" id="add-comment">
+        <div class="login d-flex align-items-center py-5">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-10 col-xl-7 mx-auto">
+                <h3 class="display-4">What do you say!?</h3>
+                <p class="text-muted mb-4">Add your comments here</p>
+                <form action="add-review" method="POST">
+                  <div class="form-group mb-3">
+                    <input id="comment-place" name="comment_place" type="text" placeholder="The place you want to tell about" required=""
+                      autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                  </div>
+                  <div class="form-group mb-3">
+                    <input id="comment-heading" name="comment_heading" type="text" placeholder="What is your comment about" required=""
+                      autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                  </div>
+                  <div class="form-group mb-3">
+                    <textarea id="comment-text" name="comment_text" type="text" placeholder="Add your comment here" required=""
+                      class="form-control rounded-pill border-0 shadow-sm px-4"></textarea>
+                  </div>
+                  <input type="text" name="user_id" value="<%= user.user_id %>" hidden>
+                  <input type="text" name="cityname" value="varanasi" hidden>
+                  <div class="mb-3">
+                    <p>Your Rating:</p> <i onclick="this.style.color= 'red'" class="fas fa-heart"></i><i
+                      onclick="this.style.color= 'red'" class="fas fa-heart"></i><i onclick="this.style.color= 'red'"
+                      class="fas fa-heart"></i><i onclick="this.style.color= 'red'" class="fas fa-heart"></i><i
+                      onclick="this.style.color= 'red'" class="fas fa-heart"></i>
+                    <!-- <label for="customCheck1" class="custom-control-label">Remember password</label> -->
+                  </div>
+                  <button type="submit" class="btn btn-danger btn-block text-uppercase mb-2 rounded-pill shadow-sm">Make
+                    your opinion count</button>
+                  <!-- <div class="text-center d-flex justify-content-between mt-4"><p>Snippet by <a href="https://bootstrapious.com/snippets" class="font-italic text-muted">
+                                              <u>Boostrapious</u></a></p></div> -->
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    <!-- JAVASCRIPT -->
+    <script type="text/javascript" src="swiper.min.js"></script>
+    <script src="places.js" charset="utf-8"></script>
+</body>
+
+</html>

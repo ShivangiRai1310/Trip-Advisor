@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kolkata Package Details</title>
+
+    <!-- CSS STYLES -->
+    <link rel="stylesheet" href="package.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+    <!-- FONT AWESOME ICONS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
+        integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #000839;">
+        <a class="navbar-brand" href="./"><img class="logo-part1" src="../images/logo-part1.png" alt="Trip advisor"></a>
+        <a class="navbar-brand" href="./"><img class="logo-part2" src="../images/logo-part2.png" alt="Trip advisor"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="./">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#overview">Overview</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#itinerary">Itinerary</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#inclusion">Details</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#book-now">Book Now</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <a href="user-profile"><button type="button" name="sign-in" class="btn btn-dark btn-lg" id="sign-in-button"
+                style="background-color: #000839">
+                <i class="fas fa-user-circle ml-2"></i>
+            </button></a>
+        </div>
+    </nav>
+
+
+    <!-- HEADER SECTION -->
+    <section id="header" class="container-fluid text-center" style="background-image: url(../images/kolkata/kolkata1.jpg);">
+        <div class="row">
+            <div class="col-xl-7 col-md-12 my-auto pb-3">
+                <h1><b>Kolkata: Tour around the city in three days</b></h1>
+                <h2><b>3 Days - 2 Nights</b></h2>
+            </div>
+            <div class="col-xl-5 col-md-12 my-auto ">
+                <div id="slideshow" class="carousel slide" data-ride="carousel">
+
+                    <!-- COROUSEL INDICATORS -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#slideshow" data-slide-to="0" class="active"></li>
+                        <li data-target="#slideshow" data-slide-to="1"></li>
+                        <li data-target="#slideshow" data-slide-to="2"></li>
+                        <li data-target="#slideshow" data-slide-to="3"></li>
+                        <li data-target="#slideshow" data-slide-to="4"></li>
+                        <li data-target="#slideshow" data-slide-to="5"></li>
+                        <li data-target="#slideshow" data-slide-to="6"></li>
+                        <li data-target="#slideshow" data-slide-to="7"></li>
+                        <li data-target="#slideshow" data-slide-to="8"></li>
+                        <li data-target="#slideshow" data-slide-to="9"></li>
+                        <li data-target="#slideshow" data-slide-to="10"></li>
+                    </ol>
+
+                    <!-- COROUSEL ELEMENT -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-interval="3000">
+                            <img src="../images/kolkata/1 victoria-memorial.jpg" class="d-block w-100"
+                                alt="gallery-image">
+                        </div>
+                        <div class="carousel-item" data-interval="3000">
+                            <img src="../images/kolkata/2 Indian-Museum-Kolkata.jpg" class="d-block w-100"
+                                alt="gallery-image">
+                        </div>
+                        <div class="carousel-item" data-interval="3000">
+                            <img src="../images/kolkata/3 marble-palace.jpg" class="d-block w-100"
+                                alt="gallery-image">
+                        </div>
+                        <div class="carousel-item" data-interval="3000">
+                            <img src="../images/kolkata/4 St.-Paul’s-Cathedral.jpg" class="d-block w-100"
+                                alt="gallery-image">
+                        </div>
+                        <div class="carousel-item" data-interval="3000">
+                            <img src="../images/kolkata/5 Belur-Math.jpg" class="d-block w-100"
+                                alt="gallery-image">
+                        </div>
+                        <div class="carousel-item" data-interval="3000">
+                            <img src="../images/kolkata/6 Kolkata-Race-Course.jpg" class="d-block w-100"
+                                alt="gallery-image">
+                        </div>
+                        <div class="carousel-item" data-interval="3000">
+                            <img src="../images/kolkata/7 Eden-Gardens-Kolkata-1024x576.jpg" class="d-block w-100"
+                                alt="gallery-image">
+                        </div>
+                        <div class="carousel-item" data-interval="3000">
+                            <img src="../images/kolkata/8 Dakshineshwar-Kali-Temple.jpg" class="d-block w-100"
+                                alt="gallery-image">
+                        </div>
+                        <div class="carousel-item" data-interval="3000">
+                            <img src="../images/kolkata/9 Science-City-Kolkata.jpg" class="d-block w-100"
+                                alt="gallery-image">
+                        </div>
+                        <div class="carousel-item" data-interval="3000">
+                            <img src="../images/kolkata/10 howrah-bridge.jpg" class="d-block w-100"
+                                alt="gallery-image">
+                        </div>
+                    </div>
+
+                    <!-- CARAOUSEL CONTROLS -->
+                    <a class="carousel-control-prev" href="#slideshow" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#slideshow" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFITS SECTION -->
+    <section id="benefits" class="row text-center">
+        <div class="col-3">
+            <i class="fas fa-hotel fa-3x py-4"></i>
+            <h3>Hotels</h3>
+            <p>For our tours we use good comfortable hotels in the region, which are appreciated by travelled guests.
+            </p>
+        </div>
+        <div class="col-3">
+            <i class="fas fa-car fa-3x py-4"></i>
+            <h3>Transport</h3>
+            <p>Internal city transfers</p>
+        </div>
+        <div class="col-3">
+            <i class="fas fa-utensils fa-3x py-4"></i>
+            <h3>Food</h3>
+            <p>Feel at home with delicious Indian meals and World treats along the way</p>
+        </div>
+        <div class="col-3">
+            <i class="fas fa-camera-retro fa-3x py-4"></i>
+            <h3>Sightseeing</h3>
+            <p>Skip worries of sightseeing entrance fees and other planned activities</p>
+        </div>
+
+    </section>
+
+    <!-- OVERVIEW SECTION -->
+    <section id="overview" class="container-fluid px-5">
+        <div class="row mx-2">
+            <div class="col-6 ">
+                <h2 class="text-center mb-4">Overview</h2>
+                <p>Holidays are all about the expansion of your horizons. The person who comes back from said holiday should be more enriched, more aware and more fulfilled in their life than the person who went on. <br>
+                    There are a few different ways vacations can do this for you. They may give you some thrills, some gorgeous scenery or some knowledge. <br>
+                    The experience of going on a vacation with our Kolkata tour packages for 3 days falls into that third category. 
+                    Kolkata is a historic city, with numerous monuments dotted throughout its expanse. <br>
+                    Travel with us and have a comfortable trip around the capital of West Bengal.
+                    So go ahead book 2 nights 3 days Kolkata tour packages with us and see the literature city of India. <br> 
+                    Travel to the majestic city of Kolkata. Explore important cultural and historical landmarks. See the sights of the Howrah Bridge. Discover Writers Building and Pareshnath Jain Temple & much more.
+                    </p>
+            </div>
+            <div class="col-6 my-auto mx-auto">
+                <h2>Key Details</h2> <br>
+                <ul class="details">
+                    <li><i class="far fa-clock fa-md mr-3"></i>Duration : 3 Days - 2 Nights</li>
+                    <li><i class="fas fa-money-bill-wave fa-md mr-3"></i>Price Per Head : &#8377; 8,000</li> <br>
+                    <li><i class="fas fa-bolt fa-md mr-3"></i>Instant Confirmation</li>
+                    <li><i class="fab fa-product-hunt fa-md mr-3"></i>Hotel Pickup</li>
+                    <li><i class="far fa-credit-card fa-md mr-3"></i>Payment On the Day of Arrival</li>
+                    <li><i class="fas fa-phone-volume fa-md mr-3"></i>24/7 Support</li>
+                </ul>
+                <button type="button" id="book-now" class="btn btn-lg btn-dark my-5" formaction="">Book Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOOKING SECTION -->
+    <section id="booking" class="container-fluid">
+        <h2 class="text-muted text-center mb-4 pb-3"><i class="fas fa-edit fa-lg mr-3"></i> Fill Booking Details </h2>
+        <form action="/confirm-booking" method="post" id="form1" class="ml-auto mr-auto">
+            <div class="row">
+                <div class="col-6 px-5 ">
+                    <div class="form-group py-2">
+                        <label>Package Name</label>
+                        <input type="text" class="form-control" value="<%= package.name %>" name="name" readonly>
+                    </div>
+                    <div class="form-group py-2">
+                        <label>User Name</label>
+                        <input type="text" class="form-control" value="<%= user.user_name %>" name="user_name" readonly>
+                    </div>
+                    <div class="form-group py-2">
+                        <label>Contact</label>
+                        <input type="tel" class="form-control" value="<%= user.contact %>" name="contact" readonly>
+                    </div>
+                    <div class="form-group py-2">
+                        <label>Email</label>
+                        <input type="email" class="form-control" value="<%= user.email %>" name="email" readonly>
+                    </div>
+                </div>
+                <div class="col-6 px-5">
+                    <div class="form-group py-2">
+                        <label>People Count</label>
+                        <input type="number" class="form-control" id="ppl-count" placeholder="Enter People Count" onchange="setTotalAmount('<%= package.price %>');" min="1" name="count" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <label>Total Amount</label>
+                        <input type="number" class="form-control" id="total-amt"
+                            placeholder="people count * price per head = &#8377; total amount" value="" name="total_price" readonly>
+                    </div>
+                    <div class="form-group py-2">
+                        <label>Travel Date</label>
+                        <input type="date" class="form-control date_open" placeholder="Enter Travel Date" name="travel_date" required>
+                    </div>
+                </div>
+                <!-- need to add other package details -->
+                <div class="col-12 py-2">
+                    <button type="button" class="btn btn-success btn-lg" onclick="javascript: return false;"
+                        data-toggle="modal" data-target="#confirm-booking"><i
+                            class="fas fa-check-circle fa-lg mr-2"></i>Confirm
+                        Booking</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- MODAL window for confirm-booking -->
+        <div class="modal fade" id="confirm-booking">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Booking Confirmation</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        Confirm your booking.
+                        <br>
+                        Payment can be done on the first day of tour.
+                        <br>
+                        Thank you for booking with us.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" onclick="document.getElementById('form1').submit();"
+                        data-dismiss="modal" class="btn btn-success" >Confirm</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ITINERARY SECTION -->
+    <section id="itinerary" class="container-fluid">
+        <h2 class="text-light text-center py-5">Detailed Day Wise Itinerary</h2>
+
+        <div id="accordion">
+            <div class="card">
+                <div class="card-header">
+                    <button class="btn btn-block bg-secondary text-light text-left" data-toggle="collapse"
+                        data-target="#collapseOne">Day 1 - Kolkata: Arrival</button>
+                </div>
+                <div class="collapse show" id="collapseOne" data-parent="#accordion">
+                    <div class="card-body row mx-5">
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Howrah Bridge</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 2 hours</h5>
+                            <p> Bridge that connects Kolkata to its neighbouring city of Howrah, allowing people to cross the Hooghly River with ease and opening up new opportunities for residents of both cities.</p>
+                        </div>
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Victoria Memorial Palace</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 2 hours</h5>
+                            <p>With its garden and museum, holds much of the beauty and history of Kolkata.</p>
+                        </div>
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Mallik Ghat Flower Market</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 1 hour</h5>
+                            <p>Where you may buy flowers wholesale, which is a vibrant, chaotic affair.</p>
+                        </div>
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Raj Bhavan</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 30 minutes</h5>
+                            <p>Will go for visit to some of Kolkata’s administrative buildings, such as the Raj Bhavan.
+                            </p>
+                        </div>
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Town Hall</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 30 minutes</h5>
+                            <p>Will go for visit to Town Hall.
+                            </p>
+                        </div>
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Raj Bhavan</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 30 minutes</h5>
+                            <p>Will go for visit to some of Kolkata’s administrative buildings, such as the Raj Bhavan.
+                            </p>
+                        </div>
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Writers’ Building around Dalhousie Square.</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 30 minutes</h5>
+                            <p>Will go for visit to Writers’ Building.
+                            </p>
+                        </div>   
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <button class="btn btn-block bg-secondary text-light text-left" data-toggle="collapse"
+                        data-target="#collapseTwo">
+                        Day 2 - Kolkata: Sightseeing
+                    </button>
+                </div>
+                <div class="collapse" id="collapseTwo" data-parent="#accordion">
+                    <div class="card-body row mx-5">
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Pareshnath Jain Temple</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 1 hour</h5>
+                            <p>It represents the diverse and storied history of Kolkata, besides showcasing its intricate and unique architecture.
+                            </p>
+                        </div>
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Mother House</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 1 hour</h5>
+                            <p>Will go for visit to Mother House.</p>
+                        </div>
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>St. Paul Cathedral</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 1 hour</h5>
+                            <p>Will go for visit to St. Paul Cathedral.
+                            </p>
+                        </div>
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>St. John’s Church</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 1 hour</h5>
+                            <p>Will go for visit to St. John’s Church.
+                            </p>
+                        </div>
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Fort William</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 1 hour</h5>
+                            <p>Will go for visit to Fort William.
+                            </p>
+                        </div>
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Belur Math</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 1 hour</h5>
+                            <p>Will go for visit to Belur Math.
+                            </p>
+                        </div>
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>The Birla Planetarium</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 1 hour</h5>
+                            <p>Will go for visit to The Birla Planetarium.
+                            </p>
+                        </div>
+
+                        
+
+                    </div>
+                    <div class="col-11 mx-5" style="text-align: justify;">
+                        <p><b>Explore the stunning city.</b> <br>   
+                            You may want to make your breakfast heavier than usual because you’re going to be traveling across the city of Kolkata throughout the day. On a tour of this great city, we will have the opportunity to visit some of its most important monuments. Each and every one of them holds some significance in the history and culture of Kolkata.</p>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <div class="card">
+                <div class="card-header">
+                    <button class="btn btn-block bg-secondary text-light text-left" data-toggle="collapse"
+                        data-target="#collapseFour">
+                        Day 3 - Kolkata: Departure
+                    </button>
+                </div>
+                <div class="collapse" id="collapseFour" data-parent="#accordion">
+                    <div class="card-body row mx-5">
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Netaji Subhash Chandra Bose International Airport, Jessore Road, Dum Dum, Kolkata, West Bengal, India</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 1 hour</h5>
+                            <p>Departure Transfer to Kolkata Airport</p>
+                        </div>
+                        <div class="col-12 mx-5" style="text-align: justify;">
+                            <p><b>Curtains on the Kolkata chapter</b> <br>
+                                It is never easy to say goodbye to a city like Kolkata, even more so thanks to the memories it will have imprinted into your brain, but alas, that is what will be ahead of you on the third and final day of this tour. After breakfast, check-out from your hotel and be prepared for your departure from the city.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+
+    <!-- INCLUSION SECTION -->
+    <section id="inclusion" class="container-fluid px-5">
+        <div class="row w-60">
+            <div class="col-6 px-5">
+                <h4>Inclusions :</h4>
+                <ul>
+                    <li><i class="fas fa-check-circle text-success fa-md mr-2"></i>Pick and Drop at time of
+                        arrival/departure</li>
+                    <li><i class="fas fa-check-circle text-success fa-md mr-2"></i>Breakfast</li>
+                    <li><i class="fas fa-check-circle text-success fa-md mr-2"></i>02 Nights stay in 03 star hotels in
+                        Varanasi</li>
+                    <li><i class="fas fa-check-circle text-success fa-md mr-2"></i>All sightseeing & transfers in private
+                        ac Vehicle</li>   
+                </ul>
+            </div>
+            <div class="col-6 px-5">
+                <h4>Exclusions :</h4>
+                <ul>
+                    <li><i class="fas fa-times-circle text-danger fa-md mr-2"></i>Any Airfare / Train fare</li>
+                    <li><i class="fas fa-times-circle text-danger fa-md mr-2"></i>Any Guide Charges</li>
+                    <li><i class="fas fa-times-circle text-danger fa-md mr-2"></i>Package price does not include Gala dinner charges applicable on Christmas and New Year's Eve.</li>
+                    <li><i class="fas fa-times-circle text-danger fa-md mr-2"></i>Anything not mentioned in inclusions.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- GREETINGS SECTION -->
+    <section id="greetings" class="container-fluid text-center">
+        <img src="../images/Heart.gif" alt="">
+        <h2>Let’s stitch travel dreams together!</h2>
+        
+    </section>
+
+
+    <!-- FOOTER SECTION -->
+    <footer>
+        <div class="container-fluid row">
+            <div class="col-lg-4 col-md-6 my-auto d-flex justify-content-center"><a href="index.html"><img
+                        src="../images/logo.png" alt="Trip advisor"></a></div>
+            <div class="col-lg-4 col-md-2 my-auto d-flex justify-content-center text-center"> <i
+                    class="social-icon fab fa-facebook-f fa-lg"></i>
+                <i class="social-icon fab fa-twitter fa-lg"></i>
+                <i class="social-icon fab fa-instagram fa-lg"></i>
+                <i class="social-icon fas fa-envelope fa-lg"></i></div>
+            <div class="col-lg-4 col-md-4  my-auto justify-content-center text-center">
+                <p>TripAdvisor@gmail.com <br>Contact us : 1234567890 <br>© Copyright 2020 TripAdvisor</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script src="package.js" charset="utf-8"></script>
+
+</body>
+
+</html>

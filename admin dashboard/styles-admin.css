@@ -1,0 +1,214 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #eee;
+  }
+
+/* NAVBAR */
+
+.sidebar{
+  height: 100vh;
+  background: linear-gradient( rgba(0,0,0,.5), rgba(0,0,0,.9) ), url(images/img1.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: 5px 5px 20px #999;
+}
+
+.bottom-border{
+  border-bottom: 1px groove white;
+}
+
+.sidebar-link{
+  transition: all .4s;
+
+}
+
+.sidebar-link:hover{
+  background-color: #999;
+  border-radius: 4px;  
+}
+
+.hide{
+  display: none;
+}
+
+.current{
+  background-color: #f44336;
+  border-radius: 7px;
+  box-shadow: 2px 5px 5px black;
+  transition: all .3s;
+}
+
+.current:hover{
+  background-color: #f66436;
+  border-radius: 7px;
+  box-shadow: 2px 5px 10px black;
+  transform: translateY(-1px);
+  
+}
+
+.search-input{
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  border-bottom: 2px solid #dc3545;
+  transition: all .4s;
+}
+
+.search-input:focus{
+  background: transparent;
+  box-shadow: none;
+  border-bottom: 2px solid #dc3545;
+}
+
+.search-button{
+  border-radius: 50%;
+  padding: 10px 10px;
+  transition: all .4s;
+}
+
+.search-button:hover{
+  background-color: #eee;
+  transform: translateY(-1px);
+}
+
+.icon-parent{
+  position: relative;
+}
+
+.icon-bullet::after{
+  content: " ";
+  position: absolute;
+  top: 7px;
+  left: 15px;
+  height: 12px;
+  width: 12px;
+  background-color: #f44336;
+  border-radius: 50%;
+}
+
+@media (max-width:768px){
+  .sidebar{
+    position: static;
+    height: auto;
+  }
+
+  .top-navbar{
+    position: static;
+  }
+}
+
+/* CARDS */
+.card-common{
+  box-shadow: 1px 2px 5px #999;
+  transition: all .4s;
+}
+
+.card-common:hover{
+  box-shadow: 2px 3px 15px #999;
+  transform: translateY(-1px);
+}
+
+.refresh{
+  color: #999;
+  transition: all .4s;
+}
+
+.refresh:hover{
+  color: #444;
+  transform: translateY(-1px);
+}
+
+/* PROFILE */
+#profile img{
+  width: 220px;
+  border-radius: 50%;
+  margin-bottom: 200px;
+  box-shadow: 2px 5px 5px black;
+  transition: all .3s;
+}
+
+#profile img:hover{
+  box-shadow: 2px 5px 10px black;
+  transform: translateY(-1px);
+}
+
+#profile form{
+  width: 70%;
+  margin-left: 15%;
+  padding: 5% 2%;
+  background-color: white;
+  text-align: center;
+}
+
+/* #profile form input{
+  display: none;
+} */
+
+#profile form label{
+  font-size: 1.5rem;
+}
+
+#profile form p{
+  font-style: italic;
+}
+
+
+/* USERS */
+#users tr:hover{
+  background-color: rgb(192, 188, 188);
+}
+
+.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter{
+  padding-bottom: 1rem;
+}
+
+.dataTables_wrapper .dataTables_info{
+  padding-top: 1.5em;
+  margin-top: 1.2rem;
+}
+.dataTables_wrapper .dataTables_paginate {
+  padding-top: 1.5em;
+  
+}
+
+.form-width{
+  width: 50%;
+}
+
+.sub-section{
+  display: none;
+}
+
+/* CATEGORY */
+ul{
+  list-style-type: none;
+}
+
+/* CITIES */
+.description{
+  max-width: 400px;
+  word-wrap: break-word;
+}
+
+.sub-section p{
+  word-wrap: break-word;
+}
+
+/* PLACES */
+.address{
+  max-width: 200px;
+  word-wrap: break-word;
+}
+
+/* REVIEWS */
+.checked{
+  color: orange;
+}
+
+/* ENQUIRIES*/
+.subject{
+  max-width: 200px;
+  word-wrap: break-word;
+}
+

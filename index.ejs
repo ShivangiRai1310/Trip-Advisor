@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trip Advisor</title>
+
+  <!-- CSS STYLES -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <!-- BOOTSTRAP SCRIPTS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  <!-- FONT AWESOME ICONS -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+
+  <!-- GOOGLE FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Arvo&family=Caveat:wght@400;700&family=Cinzel:wght@400;700&family=Dancing+Script:wght@700&family=Great+Vibes&family=Open+Sans&family=Permanent+Marker&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- HEADER SECTION -->
+  <header>
+
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #000839;">
+      <!-- Brand -->
+      <a class="navbar-brand" href="./"><img class="logo-part1" src="images/logo-part1.png" alt="Trip advisor"></a>
+      <a class="navbar-brand" href="./"><img class="logo-part2" src="images/logo-part2.png" alt="Trip advisor"></a>
+      <!-- Toggler/collapsibe Button -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Navbar links -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto navbar-list">
+          <li class="nav-item active">
+            <a class="nav-link" href="./">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+          <!-- Dropdown -->
+          <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="" data-toggle="dropdown">Explore</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="explore-cities">Cities</a>
+              <a class="dropdown-item" href="#explore_packages">Packages</a>
+            </div>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+
+          <!-- <li class="nav-item"><a class="nav-link" href="">SignUp/SignIn</a></li> -->
+        </ul>
+        <ul class="navbar-nav ml-auto navbar-list">
+          <% if(user) { %>
+          <% if(user.user_type === "general"){ %>
+          <li class="nav-item my-auto">
+            <p class="my-auto mr-2">Welcome <%= user.user_name %> !!</p>
+          </li>
+          <li class="nav-item my-auto"><a class="nav-link" href="user-profile">Profile</a></li>
+          <li class="nav-item my-auto"><a class="nav-link" href="logout">Logout</a></li>
+          <li><a class="nav-link" href="user-profile"><i class="fas fa-user-circle my-2 fa-2x"></i></a></li>
+          <% } else if(user.user_type === "admin") { %>
+          <li class="nav-item my-auto">
+            <p class="my-auto mr-2">Welcome <%= user.user_name %> !!</p>
+          </li>
+          <li class="nav-item my-auto"><a class="nav-link" href="dashboard">Dashboard</a></li>
+          <li class="nav-item my-auto"><a class="nav-link" href="logout">Logout</a></li>
+          <li><a class="nav-link" href="profile"><i class="fas fa-user-circle my-2 fa-2x"></i></a></li>
+          <%} } else { %>
+          <li class="nav-item my-auto"><a class="nav-link" href="login">Login</a></li>
+          <li class="nav-item my-auto"><a class="nav-link" href="register">Register</a></li>
+          <li><a class="nav-link" href="login"><i class="fas fa-user-circle my-2 fa-2x"></i></a></li>
+          <% } %>
+
+        </ul>
+      </div>
+    </nav>
+
+
+    <div id="title">
+      <div id="slideshow" class="carousel slide" data-ride="carousel">
+
+        <!-- COROUSEL INDICATORS -->
+        <ol class="carousel-indicators">
+          <li data-target="#slideshow" data-slide-to="0" class="active"></li>
+          <li data-target="#slideshow" data-slide-to="1"></li>
+          <li data-target="#slideshow" data-slide-to="2"></li>
+          <li data-target="#slideshow" data-slide-to="3"></li>
+          <li data-target="#slideshow" data-slide-to="4"></li>
+        </ol>
+
+        <!-- COROUSEL ELEMENT -->
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-interval="3000">
+            <p style="color: #000839; top: 30%; left: 10%;">The world is yours to explore.</p>
+            <img src="images/carousel/img8.jpg" class="d-block w-100" alt="title1">
+          </div>
+          <div class="carousel-item" data-interval="3000">
+            <p style="color: #000839;">A more rewarding way to travel.</p>
+            <img src="images/carousel/varanasi.jpg" class="d-block w-100" alt="title2">
+          </div>
+          <div class="carousel-item" data-interval="3000">
+            <p style="color: #000839; ">Fuel your soul with travel</p>
+            <img src="images/carousel/srinagar.jpg" class="d-block w-100" alt="title3">
+          </div>
+          <div class="carousel-item" data-interval="3000">
+            <p style="color: #000839;  top: 25%; left: 10%;">Book with us and book it out of here!</p>
+            <img src="images/carousel/kerala.jpg" class="d-block w-100" alt="title4">
+          </div>
+          <div class="carousel-item" data-interval="3000">
+            <p style="color: tomato; ">Adventure awaits, lets find it.</p>
+            <img src="images/carousel/img1.jpg" class="d-block w-100" alt="title5">
+          </div>
+
+        </div>
+
+        <!-- CARAOUSEL CONTROLS -->
+        <a class="carousel-control-prev" href="#slideshow" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#slideshow" role="button" data-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </a>
+      </div>
+    </div>
+
+  </header>
+
+  <!-- ABOUT SECTION -->
+  <section id="about">
+    <h2>About Us</h2>
+    <div class="container1">
+      <div>Trip advisor is a web-application that helps you to plan and organise your trips. We here offer you to
+        visit the most famous cities in India as well as abroad. Not sure what places you might wanna visit when
+        you travel to a new city but
+        have a limited stay? Don't worry we got you covered!!! We here come with a list of hand-picked places
+        for you, so you don't miss
+        anything! All you gotta do is pack your bags because rest all is done by our user-friendly packages.
+        <br>
+        Get ready to have the best travel experience!!!
+        <br><br><br>
+        <a href="about-us"><button type="button" class="btn btn-md btn-dark">Read More About Us</button></a>
+      </div>
+      <img src="images/logo.png" alt="Trip advisor">
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="container-fluid">
+      <div class="px-lg-5">
+
+        <!-- For demo purpose -->
+        <div class="row py-5">
+          <div class="col-lg-12 mx-auto">
+            <div>
+              <h1 class="display-6">Photo Gallery</h1>
+            </div>
+          </div>
+        </div>
+        <!-- End -->
+
+        <div class="row">
+          <!-- Gallery item -->
+          <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+            <div class="bg-white rounded shadow-sm"><img src="images\edited\Img-1.jpg" alt="" class="img-fluid card-img-top">
+              <div class="p-4">
+                <h5> <a href="#" class="text-dark">Varanasi</a></h5>
+                <p class="small mb-0">Benaras is older than history, older than tradition, older even
+                  than legend</p>
+                <div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+                  <p class="small mb-0"><i class="fa fa-picture-o mr-2"></i>
+                    <span class="font-weight-bold">
+                      <i style="color: red;" class="fas fa-star"></i><i style="color: red;" class="fas fa-star"></i><i style="color: red;" class="fas fa-star"></i><i style="color: red;" class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </span></p>
+                  <div class="badge badge-danger px-3 rounded-pill font-weight-normal">New</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End -->
+
+          <!-- Gallery item -->
+          <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+            <div class="bg-white rounded shadow-sm"><img src="images\edited\Img-2.jpg" alt="" class="img-fluid card-img-top">
+              <div class="p-4">
+                <h5> <a href="#" class="text-dark">Kolkata</a></h5>
+                <p class="small mb-0">Not just a place, it is indeed an emotion. It is chaotic, it is
+                  moody.</p>
+                <div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+                  <p class="small mb-0"><i class="fa fa-picture-o mr-2"></i>
+                    <span class="font-weight-bold">
+                      <i style="color: blue;" class="fas fa-star"></i><i style="color: blue;" class="fas fa-star"></i><i style="color: blue;" class="fas fa-star"></i><i style="color: blue;" class="fas fa-star"></i><i style="color: blue;"
+                        class="fas fa-star"></i>
+                    </span></p>
+                  <div class="badge badge-primary px-3 rounded-pill font-weight-normal">Trend</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End -->
+
+          <!-- Gallery item -->
+          <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+            <div class="bg-white rounded shadow-sm"><img src="images\edited\Img-3.jpg" alt="" class="img-fluid card-img-top">
+              <div class="p-4">
+                <h5> <a href="#" class="text-dark">Srinagar</a></h5>
+                <p class="small mb-0">If there is heaven on Earth, its here, its here, its here.</p>
+                <div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+                  <p class="small mb-0"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">
+                      <i style="color: orange;" class="fas fa-star"></i><i style="color: orange;" class="fas fa-star"></i><i style="color: orange;" class="fas fa-star"></i><i style="color: orange;" class="fas fa-star"></i><i style="color: orange;"
+                        class="fas fa-star"></i>
+                    </span></p>
+                  <div class="badge badge-warning px-3 rounded-pill font-weight-normal text-white"> Featured</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End -->
+
+          <!-- Gallery item -->
+          <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+            <div class="bg-white rounded shadow-sm"><img src="images\edited\Img-4.jpg" alt="" class="img-fluid card-img-top">
+              <div class="p-4">
+                <h5> <a href="#" class="text-dark">Delhi</a></h5>
+                <p class="small mb-0">It’s better to see something once, than to hear it a hundred
+                  times.</p>
+                <div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+                  <p class="small mb-0"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">
+                      <i style="color: green;" class="fas fa-star"></i><i style="color: green;" class="fas fa-star"></i><i style="color: green;" class="fas fa-star"></i><i style="color: green;" class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </span></p>
+                  <div class="badge badge-success px-3 rounded-pill font-weight-normal">Hot</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End -->
+
+          <!-- Gallery item -->
+          <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+            <div class="bg-white rounded shadow-sm"><img src="images\edited\Img-5.jpg" alt="" class="img-fluid card-img-top">
+              <div class="p-4">
+                <h5> <a href="#" class="text-dark">Chandigarh</a></h5>
+                <p class="small mb-0">Travel for travel’s sake. The great affair is to move.</p>
+                <div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+                  <p class="small mb-0"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">
+                      <i style="color: blue;" class="fas fa-star"></i><i style="color: blue;" class="fas fa-star"></i><i style="color: blue;" class="fas fa-star"></i><i style="color: blue;" class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </span></p>
+                  <div class="badge badge-primary px-3 rounded-pill font-weight-normal">New</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End -->
+
+          <!-- Gallery item -->
+          <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+            <div class="bg-white rounded shadow-sm"><img src="images\edited\Img-6.jpg" alt="" class="img-fluid card-img-top">
+              <div class="p-4">
+                <h5> <a href="#" class="text-dark">Mumbai</a></h5>
+                <p class="small mb-0">Don’t tell me how educated you are, tell me how much you have
+                  travelled.</p>
+                <div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+                  <p class="small mb-0"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">
+                      <i style="color: orange;" class="fas fa-star"></i><i style="color: orange;" class="fas fa-star"></i><i style="color: orange;" class="fas fa-star"></i><i style="color: orange;" class="fas fa-star"></i><i style="color: orange;"
+                        class="fas fa-star"></i>
+                    </span></p>
+                  <div class="badge badge-warning px-3 rounded-pill font-weight-normal text-white">
+                    Featured</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End -->
+
+          <!-- Gallery item -->
+          <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+            <div class="bg-white rounded shadow-sm"><img src="images\edited\Img-7.jpg" alt="" class="img-fluid card-img-top">
+              <div class="p-4">
+                <h5> <a href="#" class="text-dark">Bangalore</a></h5>
+                <p class="small mb-0">All journeys have secret destinations of which the traveler is
+                  unaware.</p>
+                <div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+                  <p class="small mb-0"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">
+                      <i style="color: blue;" class="fas fa-star"></i><i style="color: blue;" class="fas fa-star"></i><i style="color: blue;" class="fas fa-star"></i><i style="color: blue;" class="fas fa-star"></i><i style="color: blue;"
+                        class="fas fa-star"></i>
+                    </span></p>
+                  <div class="badge badge-info px-3 rounded-pill font-weight-normal">Hot</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End -->
+
+          <!-- Gallery item -->
+          <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+            <div class="bg-white rounded shadow-sm"><img src="images\edited\Img-8.jpg" alt="" class="img-fluid card-img-top">
+              <div class="p-4">
+                <h5> <a href="#" class="text-dark">Jaipur</a></h5>
+                <p class="small mb-0">All that is gold does not glitter; not all those who wander are
+                  lost.</p>
+                <div class="d-flex align-items-center justify-content-between rounded-pill bg-light px-3 py-2 mt-4">
+                  <p class="small mb-0"><i class="fa fa-picture-o mr-2"></i><span class="font-weight-bold">
+                      <i style="color: orange;" class="fas fa-star"></i><i style="color: orange;" class="fas fa-star"></i><i style="color: orange;" class="fas fa-star"></i><i style="color: orange;" class="fas fa-star"></i><i style="color: orange;"
+                        class="fas fa-star"></i>
+                    </span></p>
+                  <div class="badge badge-warning px-3 rounded-pill font-weight-normal text-white">
+                    Featured</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End -->
+        </div>
+        <!-- <div class="py-5 text-right"><a href="#" class="btn btn-dark px-5 py-3 text-uppercase">Show me more</a>
+                </div> -->
+      </div>
+    </div>
+  </section>
+
+  <section id="plan">
+    <h2><a>Plan your trip here</a></h2>
+    <div class="container-fluid row text-center px-5 mt-5">
+      <div class="col-xl-6 col-sm-12 px-5">
+        <h3 class="text-center mb-4">Overview</h3>
+        <p>
+          Want to customize your trip according to your own time and way?
+          Try and do it with this feature of ours.Just tell us where you want to
+          start your journey from and where you plan to go. Rest will be taken care
+          by us. We provide you with a simple to understand and follow map so that you
+          know where you are headed in the new city.
+        </p>
+        <a href="trip-plan"><button type="button" class="btn btn-dark btn-lg my-4">Explore More</button></a>
+      </div>
+      <div class="col-xl-6 col-sm-12 my-auto text-center px-5 py-2">
+        <div class="container-fluid">
+          <video width="500" height="300" controls>
+            <source src="video-clips\Mountain.mp4" type="video/mp4">
+            <source src="video-clips\Mountain.ogg" type="video/ogg">
+            Your browser does not support HTML video.
+          </video>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPLORE CITIES -->
+  <section id="explore_cities">
+    <h2>Explore Cities</h2>
+    <div class="cities">
+      <div>
+        <a href="/varanasi"><img src="images/varanasi/var.jpg" alt="varanasi image"></a>
+        <a href="/varanasi">
+          <h4>Varanasi</h4>
+        </a>
+        <p>Varanasi, the spiritual capital of India, is full of soul, history, and significance.
+          For Hindus, it is the ultimate pilgrimage spot.
+          Located on the western bank of the Ganges (Ganga) River,
+          Varanasi is the oldest living city in the world with history dating back to 11th century BC.
+          Learn about the stories of the fascinating ancient ritual of Manikarnika Ghat
+          fires that have been burning for thousands of years and of Hindus bathing in
+          sacred waters of the Ganges River. Witness native rituals and customs being performed on
+          sacred waters and discover what makes Varanasi unlike any other place on earth.
+      </div>
+      <div class="right">
+        <a href="/kolkata"><img src="images/kolkata/kol.jpg" alt="kolkata image"></a>
+        <a href="/kolkata">
+          <h4>Kolkata</h4>
+        </a>
+        <p>Kolkata (formerly Calcutta) is the capital of India's West Bengal state.
+          Founded as an East India Company trading post, it was India's capital under the British Raj from
+          1773–1911.
+          Today it’s known for its grand colonial architecture, art galleries and cultural festivals.
+          It’s also home to Mother House, headquarters of the Missionaries of Charity, founded by Mother
+          Teresa, whose tomb is on site.
+          B.B.D. Bagh (formerly Dalhousie Square) is home to colonial-era landmarks like St. Andrew’s Church
+          with its tall white steeple.
+          It's also a setting for the General Post Office, featuring a monumental rotunda, and the
+          18th-century Writers’ Building,
+          which housed the East India Company’s administrative offices.</p>
+      </div>
+      <div>
+        <a href=""><img src="images/Jaipur-HawaMahal.jpg" alt="jaipur image"></a>
+        <a href="">
+          <h4>Jaipur</h4>
+        </a>
+        <p>Jaipur is a major tourist destination in India forming a part of the Golden Triangle. In the 2008
+          Conde Nast Traveller Readers Choice Survey, Jaipur was ranked the 7th best place to visit in Asia.
+          Visitor attractions include the Albert Hall Museum, Hawa Mahal, Jal Mahal, City Palace, Amer Fort,
+          Jantar Mantar, etc.</p>
+      </div>
+      <div>
+        <a href="explore-cities"><button type="button" class="btn btn-dark btn-lg">Explore More</button></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="explore_packages">
+    <h2>Explore Packages</h2>
+
+    <div class="container-fluid">
+      <div class="card">
+        <div class="face face1">
+          <div class="content">
+            <h3>Varanasi Bodhgaya Tour</h3>
+            <hr>
+            <p>Enjoy the hindu Pilgrimage tour of Varanasi & Nearby cities like Allahabad, Ayodhya,
+              Namisharanya, Chitrakoot, Gaya, Bodhgaya. <br>
+              Kashi Yatra through the spiritual heart of India - Varanasi, Allahabad and Bodhgaya.</p>
+            <hr>
+            <a href="/varanasi-package"><button class="btn btn-success mt-2">View Details</button></a>
+          </div>
+        </div>
+        <div class="face face2">
+          <h2>Varanasi</h2>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="face face1">
+          <div class="content">
+            <h3>Kolkata: Tour around the city in three days</h3>
+            <hr>
+            <p>Travel to the majestic city of Kolkata. Explore important cultural and historical landmarks.
+              See the sights of the Howrah Bridge. Discover Writers Building and Pareshnath Jain Temple &
+              much more.</p>
+            <hr>
+            <a href="/kolkata-package"><button class="btn btn-success mt-2">View Details</button></a>
+          </div>
+        </div>
+        <div class="face face2">
+          <h2>Kolkata</h2>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="face face1">
+          <div class="content">
+            <h3>Charming Kashmir Sightseeing Tour</h3>
+            <hr>
+            <p>Go for sightseeing, and make your tour a memorable affair amidst mighty, snowy peaks. From
+              shikara rides and houseboats to Gondola rides and nature walks, there are a myriad of things
+              to do in Kashmir that make it magical.</p>
+            <hr>
+            <button class="btn btn-success mt-2">View Details</button>
+          </div>
+        </div>
+        <div class="face face2">
+          <h2>Kashmir</h2>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- CONTACT US SECTION -->
+  <section id="contact" class="contact-us-section">
+    <div class="container contact-form">
+      <div class="contact-image">
+        <img src="https://image.ibb.co/kUagtU/rocket_contact.png" alt="rocket_contact" />
+      </div>
+      <form action="/add-enquiry" method="post">
+        <h3>Drop Us a Message</h3>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" name="name" class="form-control" placeholder="Your Name *" required />
+            </div>
+            <div class="form-group">
+              <input type="email" name="email" class="form-control" placeholder="Your Email *" required />
+            </div>
+            <div class="form-group">
+              <input type="text" name="contact" class="form-control" placeholder="Your Phone Number *" required />
+            </div>
+            <div class="form-group">
+              <!-- <button type="reset" class="btn btn-dark btn-lg">Reset</button>
+                            <button type="submit" class="btn btn-dark btn-lg">Send Message</button> -->
+              <button type="reset" class="btnContact mt-3 mb-2">Reset</button>
+              <button type="submit" class="btnContactSubmit my-3">Send Message</button>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" name="subject" class="form-control" id="" placeholder="Subject">
+            </div>
+            <div class="form-group">
+              <textarea name="message" class="form-control" placeholder="Your Message *" style="width: 100%; height: 150px;" required></textarea>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- <div class="left">
+      <h2>Contact Us</h2>
+    </div>
+    <div class="right">
+      <form action="/add-enquiry" method="post">
+        <input type="text" name="name" id="" placeholder="Name"> <br>
+        <input type="text" name="contact" id="" placeholder="Phone Number"> <br>
+        <input type="email" name="email" id="" placeholder="Email-id"> <br>
+        <input type="text" name="subject" id="" placeholder="Subject"> <br>
+        <textarea name="message" id="" cols="40" rows="5" placeholder="Type your message here"></textarea> <br>
+        <button type="reset" class="btn btn-dark btn-lg">Reset</button>
+        <button type="submit" class="btn btn-dark btn-lg">Send Message</button>
+      </form> -->
+  </section>
+
+  <footer>
+    <div class="container-fluid row">
+      <div class="col-lg-4 col-md-6 my-auto d-flex justify-content-center"><a href="./"><img src="images/logo.png" alt="Trip advisor"></a></div>
+      <div class="col-lg-4 col-md-2 my-auto d-flex justify-content-center text-center">
+        <i class="social-icon fab fa-facebook-f fa-lg"></i>
+        <i class="social-icon fab fa-twitter fa-lg"></i>
+        <i class="social-icon fab fa-instagram fa-lg"></i>
+        <i class="social-icon fas fa-envelope fa-lg"></i></div>
+      <div class="col-lg-4 col-md-4  my-auto justify-content-center text-center">
+        <p>TripAdvisor@gmail.com <br>Contact us : 1234567890 <br>© Copyright 2020 TripAdvisor</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="index.js"></script>
+
+
+</body>
+
+</html>

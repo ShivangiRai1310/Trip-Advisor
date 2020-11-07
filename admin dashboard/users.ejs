@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+      <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <!-- BOOTSTRAP TABLE CDN   -->
+  <!-- <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css"> -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.css" />
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/b3f4cf5b60.js" crossorigin="anonymous"></script>
+  <!-- <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script> -->
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <!-- BASE CSS -->
+  <link rel="stylesheet" href="styles-admin.css">
+  <style>
+
+  </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-md navbar-light px-0 ">
+    <button class="navbar-toggler ml-auto mb-2 bg-light" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <div class="container-fluid">
+        <div class="row">
+
+          <!-- SIDEBAR -->
+          <div class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
+            <a class="navbar-brand text-white d-block mx-auto text-center py-3 mb-2 bottom-border" href="./">Trip Advisor</a>
+            <div class="bottom-border py-3  text-center">
+              <img src="../images/users/<%= user.user_name %>.jpeg" alt="admin image" width="40" height="40" class="rounded-circle mx-2">
+              <a href="/profile" class="text-white"><%= user.user_name %></a>
+            </div>
+            <ul class="navbar-nav flex-column mt-4">
+              <li class="nav-item sidebar-link"> <a href="/dashboard" class="nav-link text-light"><i class="fas fa-home text-light fa-lg mr-3"></i> Dashboard </a></li>
+              <li class="nav-item sidebar-link"> <a href="/profile" class="nav-link text-light"><i class="fas fa-user text-light fa-lg mr-3"></i> Profile </a></li>
+              <li class="nav-item sidebar-link current"> <a href="/users" class="nav-link text-light"><i class="fas fa-users text-light fa-lg mr-3"></i> Users </a>
+                <ul class="navbar-nav flex-column ml-5 ">
+                  <li class="nav-item sidebar-sub-link"><a href="#add-users" class="nav-link text-light"><i class="fas fa-plus-circle mr-3"></i>Add User</a></li>
+                  <li class="nav-item sidebar-sub-link"><a href="#update-users" class="nav-link text-light"><i class="fas fa-edit mr-3"></i>Update User</a></li>
+                  <li class="nav-item sidebar-sub-link"><a href="#delete-users" class="nav-link text-light"><i class="fas fa-trash-alt mr-3"></i>Delete User</a></li>
+                </ul>
+              </li>
+              <!-- <li class="nav-item sidebar-link"> <a href="/category" class="nav-link text-light"><i class="fas fa-stream text-light fa-lg mr-3"></i> Category </a>
+                <ul class="navbar-nav flex-column ml-5 hide">
+                  <li class="nav-item sidebar-sub-link"><a href="#add-category" class="nav-link text-light"><i class="fas fa-plus-circle mr-3"></i>Add Category</a></li>
+                  <li class="nav-item sidebar-sub-link"><a href="#update-category" class="nav-link text-light"><i class="fas fa-edit mr-3"></i>Update Category</a></li>
+                  <li class="nav-item sidebar-sub-link"><a href="#delete-category" class="nav-link text-light"><i class="fas fa-trash-alt mr-3"></i>Delete Category</a></li>
+                </ul>
+              </li> -->
+              <li class="nav-item sidebar-link"> <a href="/city" class="nav-link text-light"><i class="fas fa-globe text-light fa-lg mr-3"></i> Cities </a>
+                <ul class="navbar-nav flex-column ml-5 hide">
+                  <li class="nav-item sidebar-sub-link"><a href="#add-cities" class="nav-link text-light"><i class="fas fa-plus-circle mr-3"></i>Add City</a></li>
+                  <li class="nav-item sidebar-sub-link"><a href="#update-cities" class="nav-link text-light"><i class="fas fa-edit mr-3"></i>Update City</a></li>
+                  <li class="nav-item sidebar-sub-link"><a href="#delete-cities" class="nav-link text-light"><i class="fas fa-trash-alt mr-3"></i>Delete City</a></li>
+                </ul>
+              </li>
+              <li class="nav-item sidebar-link"> <a href="/places" class="nav-link text-light"><i class="fas fa-umbrella-beach text-light fa-lg mr-3"></i> Places </a>
+                <ul class="navbar-nav flex-column ml-5 hide">
+                  <li class="nav-item sidebar-sub-link"><a href="#add-places" class="nav-link text-light"><i class="fas fa-plus-circle mr-3"></i>Add Place</a></li>
+                  <li class="nav-item sidebar-sub-link"><a href="#update-places" class="nav-link text-light"><i class="fas fa-edit mr-3"></i>Update Place</a></li>
+                  <li class="nav-item sidebar-sub-link"><a href="#delete-places" class="nav-link text-light"><i class="fas fa-trash-alt mr-3"></i>Delete Place</a></li>
+                </ul>
+              </li>
+              <li class="nav-item sidebar-link"> <a href="/package" class="nav-link text-light"><i class="fab fa-telegram-plane text-light fa-lg mr-3"></i> Packages </a>
+                <ul class="navbar-nav flex-column ml-5 hide">
+                  <li class="nav-item sidebar-sub-link"><a href="#add-packages" class="nav-link text-light"><i class="fas fa-plus-circle mr-3"></i>Add Package</a></li>
+                  <li class="nav-item sidebar-sub-link"><a href="#update-packages" class="nav-link text-light"><i class="fas fa-edit mr-3"></i>Update Package</a></li>
+                  <li class="nav-item sidebar-sub-link"><a href="#delete-packages" class="nav-link text-light"><i class="fas fa-trash-alt mr-3"></i>Delete Package</a></li>
+                </ul>
+              </li>
+              <li class="nav-item sidebar-link"> <a href="/reviews" class="nav-link text-light"><i class="fas fa-star-half-alt fa-lg mr-3"></i> Reviews </a></li>
+              <li class="nav-item sidebar-link"> <a href="/bookings" class="nav-link text-light"><i class="fab fa-telegram-plane text-light fa-lg mr-3"></i> Bookings </a>
+                <ul class="navbar-nav flex-column ml-5 hide">
+                  <li class="nav-item sidebar-sub-link"><a href="#add-bookings" class="nav-link text-light"><i class="fas fa-plus-circle mr-3"></i>Add Bookings</a></li>
+                  <li class="nav-item sidebar-sub-link"><a href="#update-bookings" class="nav-link text-light"><i class="fas fa-edit mr-3"></i>Update Bookings</a></li>
+                  <li class="nav-item sidebar-sub-link"><a href="#delete-bookings" class="nav-link text-light"><i class="fas fa-trash-alt mr-3"></i>Delete Bookings</a></li>
+                </ul>
+              </li>
+              <li class="nav-item sidebar-link"> <a href="/enquiries" class="nav-link text-light"><i class="far fa-question-circle text-light fa-lg mr-3"></i> Enquiries </a></li>
+              <li class="nav-item sidebar-link"> <a href="/analytics" class="nav-link text-light"><i class="fas fa-chart-line text-light fa-lg mr-3"></i> Analytics </a></li>
+              <li class="nav-item sidebar-link"> <a href="/charts" class="nav-link text-light"><i class="fas fa-chart-bar text-light fa-lg mr-3"></i> Charts </a></li>
+            </ul>
+          </div>
+
+          <!-- TOP NAV -->
+          <div class="col-xl-10 col-lg-9 col-md-8 ml-auto bg-dark fixed-top py-2 top-navbar">
+            <div class="row align-items-center">
+              <div class="col-md-4">
+                <h4 class="text-light mb-0">DASHBOARD</h4>
+              </div>
+              <div class="col-md-5">
+                <form action="">
+                  <div class="input-group">
+                    <input type="text" class="form-control search-input" placeholder="Search...">
+                    <button type="button" class="btn btn-white search-button"><i class="fas fa-search text-danger"></i></button>
+                  </div>
+                </form>
+              </div>
+              <div class="col-md-3">
+                <ul class="navbar-nav">
+                  <li class="nav-item icon-parent"><a href="/reviews" class="nav-link icon-bullet"><i class="fas fa-comments text-muted fa-lg"></i></a></li>
+                  <li class="nav-item icon-parent"><a href="/enquiries" class="nav-link icon-bullet"><i class="fas fa-bell text-muted fa-lg"></i></a></li>
+                  <li class="nav-item ml-md-auto" ><a href="/logout" class="nav-link"><i class="fas fa-sign-out-alt text-danger fa-lg"></i></a></li>
+                  <!-- <li class="nav-item ml-md-auto" onclick="javascript: return false;" data-toggle="modal" data-target="#sign-out"><a href="" class="nav-link"><i class="fas fa-sign-out-alt text-danger fa-lg"></i></a></li> -->
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </nav>
+
+
+  <!-- MODAL window for sign-out -->
+  <!-- <div class="modal fade" id="sign-out">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Want to leave?</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          Press logout to leave
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal">Stay Here</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Logout</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+   <!-- USERS -->
+   <section id="users">
+
+    <!-- VIEW USERS -->
+    <div class="container-fluid pt-md-5 mt-md-1">
+      <div class="row mb-5 pt-md-5 mt-md-3">
+        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto table-responsive ">
+          <h2 class="text-muted text-center mb-4">Users</h2>
+
+          <table class="table table-light table-striped table-bordered text-center mydatatable" data-page-list="[5, 10, 25, 50, 100, 200, All]">
+            <thead class="thead-dark pt-3">
+              <tr class="text-muted">
+                <th>#</th>
+                <th>User Name</th>
+                <th>Contact</th>
+                <th>Email</th>
+                <th>User Type</th>
+                <th>RegDate</th>
+                <th>Updation Date</th>
+              </tr>
+            </thead>
+            <tbody>
+
+
+            <%  for(var i=0; i<users.length;i++){ %>
+              <tr>
+                <th><%= users[i].user_id %></th>
+                <td><%= users[i].user_name %></td>
+                <td><%= users[i].contact %></td>
+                <td><%= users[i].email %></td>
+                <td><%= users[i].user_type %></td>
+                <td><%= users[i].reg_date %></td>
+                <td><%= users[i].updation_date %></td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADD USERS -->
+    <div class="container-fluid pt-md-5 mt-md-1 form-width sub-section" id="add-users">
+      <div class="row mb-5 pt-md-5 mt-md-3">
+        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+          <h2 class="text-muted text-center mb-4"><i class="fas fa-plus-circle fa-lg mr-3"></i>Add Users</h2>
+          <form action="/add-users" method="post">
+            <div class="form-group py-2">
+              <label>User Name</label>
+              <input type="text" name="user_name" class="form-control" placeholder="Enter User Name" required>
+            </div>
+            <div class="form-group py-2">
+              <label>Contact</label>
+              <input type="tel" name="contact" class="form-control" placeholder="Enter Contact Number" required>
+            </div>
+            <div class="form-group py-2">
+              <label>Email Address</label>
+              <input type="email" name="email" class="form-control" placeholder="abc@example.com" required>
+            </div>
+            <div class="form-group py-2">
+              <label for="user-password">Password</label>
+              <input type="password" name="password" class="form-control" id="user-password" placeholder="Enter password" required>
+            </div>
+            <div class="form-group py-2">
+              <label class="mr-5">User Type</label><br>
+              <input type="radio" name="user_type" value="admin" class="mr-2"><label for="" class="mr-4">Admin</label>
+              <input type="radio" name="user_type" value="general" class="mr-2"><label for="" selected>General</label>
+            </div>
+            <button type="submit" class="btn btn-success"><i class="fas fa-plus-circle mr-2"></i>Add User</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- UPDATE USERS -->
+    <div class="container-fluid pt-md-5 mt-md-1 form-width sub-section" id="update-users">
+      <div class="row mb-5 pt-md-5 mt-md-3">
+        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+          <h2 class="text-muted text-center mb-4"><i class="fas fa-edit fa-lg mr-3"></i>Update Users</h2>
+          <!-- <form action="/autofill-users" method="post"> -->
+            <form action="/update-users" method="post">
+            <div class="form-group py-2">
+              <label>User</label>
+              <select class="form-control disable-basedon" name="user_name">
+                <option value="" disabled selected>Select User to Update</option>
+                <%  for(var i=0; i<users.length;i++){ %>
+                    <option value=<%= users[i].user_name %> ><%= users[i].user_name %></option>
+                <% } %>
+              </select>
+            </div>
+            <!-- <button type="submit" class="btn btn-danger disable" disabled="disabled"><i class="fas fa-sync mr-3"></i>Autofill</button>
+            </form> -->
+            <div class="form-group py-2">
+              <label>Contact</label>
+              <input type="tel" name="contact" class="form-control disable" placeholder="Enter Contact Number" disabled="disabled" required>
+            </div>
+            <div class="form-group py-2">
+              <label>Email Address</label>
+              <input type="email" name="email" class="form-control disable" placeholder="abc@example.com" disabled="disabled" required>
+            </div>
+            <div class="form-group py-2">
+              <label for="user-password">Password</label>
+              <input type="password" name="password" class="form-control  disable" placeholder="Enter password" disabled="disabled" required>
+            </div>
+            <div class="form-group py-2">
+              <label class="mr-5">User Type</label><br>
+              <input type="radio" name="user_type" value="admin" class="mr-2 disable" disabled="disabled"><label for="" class="mr-4">Admin</label>
+              <input type="radio" name="user_type" value="general" class="mr-2 disable" disabled="disabled" selected><label for="">General</label>
+            </div>
+            <button type="submit" class="btn btn-info disable" disabled="disabled"><i class="fas fa-edit mr-3"></i>Update User</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- DELETE USERS -->
+    <div class="container-fluid pt-md-5 mt-md-1 form-width sub-section" id="delete-users">
+      <div class="row mb-5 pt-md-5 mt-md-3">
+        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+          <h2 class="text-muted text-center mb-4"><i class="fas fa-trash-alt fa-lg mr-3"></i>Delete Users</h2>
+          <form method="post" action="/delete-user" id="form1">
+            <div class="form-group py-2">
+              <label>User</label>
+              <select class="form-control disable-basedon" name="user_name">
+                <option value="" disabled selected>Select User to Delete</option>
+                <%  for(var i=0; i<users.length;i++){ %>
+                    <option value=<%= users[i].user_name %> ><%= users[i].user_name %></option>
+                <% } %>
+              </select>
+            </div>
+
+            <button type="button" class="btn btn-danger mt-4 disable"  onclick="javascript: return false;"
+            data-toggle="modal" data-target="#deleteuser" disabled><i class="fas fa-trash-alt mr-3"></i>Delete User</button>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL window for deleteuser -->
+    <div class="modal fade" id="deleteuser">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h4 class="modal-title">Delete User</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                  Are you sure, you want to delete the user selected ?
+              </div>
+              <div class="modal-footer">
+                  <button type="submit" onclick="document.getElementById('form1').submit();" class="btn btn-danger" data-dismiss="modal">Delete</button>
+                  <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  </section>
+
+  <!--FOOTER -->
+  <footer>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+          <div class="row border-top pt-3">
+
+            <div class="col-lg-6 text-center">
+              <ul class="list-inline">
+                <li class="list-inline-item mr-2">
+                  <a href="./" class="text-dark">Trip Advisor</a>
+                </li>
+                <li class="list-inline-item mr-2">
+                  <a href="#" class="text-dark">About</a>
+                </li>
+                <li class="list-inline-item mr-2">
+                  <a href="#" class="text-dark">Support</a>
+                </li>
+                <li class="list-inline-item mr-2">
+                  <a href="#" class="text-dark">Blog</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-lg-6 text-center">
+              <p>&copy; 2020 Copyright. Made With <i class="fas fa-heart text-danger"></i> by <span class="text-success">Trip Advisor</span> </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <!-- BOOTSTRAP TABLE -->
+  <!-- <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script> -->
+  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.js"></script>
+
+  <!-- Bootstrap tooltips -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+  <!-- BASE JS -->
+  <script src="script.js"></script>
+</body>
+</html>

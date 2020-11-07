@@ -1,0 +1,73 @@
+//SIDEBAR N TOP NAVBAR
+my-auto                 => vertical align
+text-center             => horizontal align
+navbar-expand-md        =>would collapse as soon as screen size decreases below medium size
+navbar-light/dark       =>allows to display navbar toggler icon
+data-toggle="collapse"  => tells js what to happen on toggler click
+data-target="id-name"   => to specify which elements to target on toggle button press
+navbar-toggler-icon     => the icon image
+ml-auto                 => marging left , aligns ele to the right expand
+mb-2                    => margin 2 from bottom
+bg-light                => toggler icon background color light
+collapse navbar-collapse    =>class for div to include the collapsible ele
+height:100vh;           => means 100% height throughout the viewport irrespective of window size
+background:url();       => to give image as background
+box-shadow:             => [horizontal offset] [vertical offset] [blur radius] [color];
+fixed-top               => class in col, covered the padding
+text-white              => class to set set text white
+d-block                 => class to set display property to block
+mx-auto                 => class to set left n right margin of an ele same
+text-center             => class to center the text 
+py-3                    => padding 3 units along y axis
+flex-column             => class to store ul in column form with display flex
+mt-4,mb-4               => class for marging top, bottom
+transition: propertyname time;  => used to set time of a transition, to make them slow n smooth
+transform: translateY(-1px);    => changes pos of ele in y direction by 1 px (good to use in hover effects)
+fas fa-iconname         => class to insert form awesome icon
+text-danger/muted..     => change color of fas icon
+fa-light                => set large size of fas icon
+ml-auto                 => lets the ele to be pushed to the right end
+align-items-center      => class in row to align horizontally
+:focus                  => when typing in search
+
+//MODAL SIGNOUT
+modal                   => Modal plugin is a dialog box/popup window that is displayed on top of the current page:
+data-toggle="modal"; data-taget="#id";  => properties in the button to target modal  =>then div with same class n id
+onclick="javascript: return false;"     => to prevent a click on a button causing a (not wanted) reload of the page. for modal
+button type="button"    => necessary when it isnt a submit button to take to another web, rather just a simple button
+data-dismiss="div name" => a button property to remove an ele on button click
+
+//CARDS
+d-flex justify-content-between  => classes in parent div to align ele, in child divs text-left/right
+class="col-xl-10 col-lg-9 col-md-8 ml-auto"  => ml-auto setting so that content comes right window n not below sidebar so the size also 12-the sidebar size at each breakpoint
+
+//TABLE
+table                   =>bootstrap class
+table-striped           => class to display alternative backgrounds for each row
+pagination              => bootstrap class for ul with multiple li
+a class="page-link"     => gives the white box around li content
+&laquo;                 => entity name in html to display <<  similarly &raquo for >>
+w-75                    => class to set width of ele
+mb-xl-0                 => class to provide diff margin for specific size xl
+row class="align-items-center"  =>aligns tables here vertically
+
+//PROGRESS BAR / TASK LISTS
+progress                => class for div progress bar can be used to show a user how far along he/she is in a process, div within it has class progress-bar
+style="width:n%";       => width fills the parent div color the amt of progress done in progress-bar
+tooltip                 =>  Tooltip plugin is small pop-up box that appears when the user moves the mouse pointer over an element
+                        => a js function created to call .tooltip() upon data-toggle value as tooltip 
+title=""                => stores what to display in tooltip upon hover
+data-html="true";       => title can even have html tag then additional property needs to be added
+data-placement=".."     => top/bottom/left/right specifies position ig tooltip
+
+//ACTIVITIES / QUICK POSTS
+accordion               => bootstrap class when we wish in collapse bars if one open close others
+                        => in parent div id="accordion"
+data-parent="#accordion"    => in child divs
+show                    => a particular collapse kept active intially
+
+ul class="list-inline"  => so that li item are inline
+li class="list-inline-item" => child li items have this class
+
+
+

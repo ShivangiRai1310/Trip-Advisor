@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile</title>
+
+  <!-- CSS STYLES -->
+  <link rel="stylesheet" href="user-profile.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <!-- BOOTSTRAP SCRIPTS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+
+  <!-- FONT AWESOME ICONS -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
+    integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+
+  <!-- HEADER SECTION -->
+  <header>
+
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #000839;">
+      <!-- Brand -->
+      <a class="navbar-brand" href="./"><img class="logo-part1" src="images/logo-part1.png" alt="Trip advisor"></a>
+      <a class="navbar-brand" href="./"><img class="logo-part2" src="images/logo-part2.png" alt="Trip advisor"></a>
+      <!-- Toggler/collapsibe Button -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Navbar links -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto navbar-list">
+          <li class="nav-item active">
+            <a class="nav-link" href="./">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <!-- <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+              <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+
+              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href=""
+                      data-toggle="dropdown">Explore</a>
+                  <div class="dropdown-menu">
+                      <a class="dropdown-item" href="explore-cities">Cities</a>
+                      <a class="dropdown-item" href="#explore_packages">Packages</a>
+                  </div>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li> -->
+
+          <!-- <li class="nav-item"><a class="nav-link" href="">SignUp/SignIn</a></li> -->
+        </ul>
+        <ul class="navbar-nav ml-auto navbar-list">
+          <% if(user) { %>
+          <% if(user.user_type === "general"){ %>
+          <li class="nav-item my-auto">
+            <p class="my-auto mr-2">Welcome <%= user.user_name %> !!</p>
+          </li>
+          <!-- <li class="nav-item my-auto"><a class="nav-link" href="user-profile">Profile</a></li> -->
+          <li class="nav-item my-auto"><a class="nav-link" href="logout">Logout</a></li>
+          <li><a class="nav-link" href="user-profile"><i class="fas fa-user-circle my-2 fa-2x"></i></a></li>
+          <% } else if(user.user_type === "admin") { %>
+          <li class="nav-item my-auto">
+            <p class="my-auto mr-2">Welcome <%= user.user_name %> !!</p>
+          </li>
+          <li class="nav-item my-auto"><a class="nav-link" href="dashboard">Dashboard</a></li>
+          <li class="nav-item my-auto"><a class="nav-link" href="logout">Logout</a></li>
+          <li><a class="nav-link" href="profile"><i class="fas fa-user-circle my-2 fa-2x"></i></a></li>
+          <%} } else { %>
+          <li class="nav-item my-auto"><a class="nav-link" href="login">Login</a></li>
+          <li class="nav-item my-auto"><a class="nav-link" href="register">Register</a></li>
+          <li><a class="nav-link" href="login"><i class="fas fa-user-circle my-2 fa-2x"></i></a></li>
+          <% } %>
+
+        </ul>
+      </div>
+    </nav>
+
+  </header>
+
+  <!-- PROFILE -->
+  <section id="profile">
+    <div class="row">
+      <div class="col-lg-7 mx-auto text-white text-center pt-5">
+        <h1 class="display-4">Your Profile</h1>
+        <p class="lead mb-0">View and update your profile here</p>
+      </div>
+    </div>
+    <!-- End -->
+    <!-- <div class="container-fluid pt-md-5 mt-md-1">
+      <h2 class="text-muted text-center mb-4 pb-4">Profile</h2> -->
+    <div class="row py-5 px-4">
+      <div class="col-8 mx-auto">
+        <!-- <div class="row"> -->
+        <div class="bg-white shadow rounded overflow-hidden">
+          <form action="user-profile-update" method="post" class="mx-auto">
+            <div class="px-4 pt-0 pb-0 bg-dark">
+              <div class="media align-items-end">
+                <div class="mr-4 profile-header"><img src="../images/users/<%= user.user_name %>.jpeg"  onerror="this.src='../images/users/default-user.png'" alt="..."
+                    width="160" class="rounded mb-2 img-thumbnail">
+                  <a href="#edit-profile" class="btn btn-dark btn-md btn-block" id="edit-profile"><i
+                      class="fas fa-edit fa-lg mr-2"></i>Edit profile</a>
+                </div>
+                <div class="form-group py-2 media-body mb-3 mx-3 text-white">
+                  <h3 class="mt-0 mb-0" style="text-transform:uppercase;"><%= user.user_name %></h3>
+                  <p class="medium mb-4">USER ID : <%= user.user_id %></p>
+                  <input class="form-values" type="text" class="form-control" name="user_name"
+                    value="<%= user.user_name %>" readonly>
+                </div>
+              </div>
+            </div>
+            <div class="bg-light p-4 d-flex justify-content-center text-center" id="form-contents">
+              <ul class="mb-0" style="list-style-type:none">
+                <li>
+                  <p>
+                  <h4> CONTACT: </h4> <%= user.contact %>
+                  </p>
+                  <input class="form-values" type="tel" class="form-control" placeholder="Enter contact details"
+                    name="contact" pattern="[0-9]{10}" required>
+                </li>
+                <li>
+                  <p>
+                  <h4> EMAIL ADDRESS: </h4> <%= user.email %>
+                  </p>
+                  <input class="form-values" type="email" class="form-control" placeholder="abc@example.com"
+                    name="email" required>
+                </li>
+                <li>
+                  <h4 class="form-values"> USER PASSWORD:</h4>
+                  <input class="form-values" type="password" id="r4"
+                    placeholder="Enter new password (at least 6 characters)" minlength="6" name="password" required>
+                </li>
+                <li>
+                  <h4 class="form-values"> CONFIRM PASSWORD:</h4>
+                  <input class="form-values" name="confirm_password" id="r7" type="password"
+                    placeholder="Confirm Password" minlength="6" onchange="matchPassword()" required>
+                </li>
+                <li>
+                  <p>
+                  <h4> REGISTRATION DATE: </h4><%= user.reg_date %>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                  <h4> UPDATION DATE: </h4><%= user.updation_date %>
+                  </p>
+                </li>
+                <button type="submit" class="btn btn-success btn-md mb-5"><i
+                    class="fas fa-user-edit fa-lg mr-2"></i>Update Profile</button>
+              </ul>
+            </div>
+          </form>
+
+          <div class="separator py-1"></div>
+
+          <div class="mx-3 my-5" id="liked">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <h5 class="mb-0 ml-4">Liked Places</h5><a href="#" class="btn btn-link text-muted">Show all</a>
+            </div>
+
+            <!-- FIRST EXAMPLE ===================================-->
+            <div class="row">
+              <%  for(var i=0; i<places.length;i++){ %>
+              <% let city_name = places[i].name ; %>
+              <% city_name = city_name.toLowerCase(); %>
+              <div class="col-lg-4">
+                <a href="/<%= city_name %>">
+                  <figure class="rounded p-3 bg-light">
+                    <img src="../images/<%= city_name %>/<%= places[i].place_name %>.jpg" alt=""
+                      class="w-100 card-img-top">
+                    <figcaption class="p-4 card-img-bottom">
+                      <h2 class="h5 font-weight-bold mb-2 font-italic">"<%= places[i].place_name %>"</h2>
+                      <p class="mb-0 text-small text-muted font-italic">"<%= places[i].address %>"</p>
+                    </figcaption>
+                  </figure>
+                </a>
+              </div>
+              <% } %>
+            </div>
+          </div>
+
+          <!-- <div class="separator py-1"></div> -->
+
+          <div class="mx-3 my-5">
+            <h5 class="mb-3 ml-4">Your Reviews</h5>
+            <% if(reviews.length!=0){ %>
+            <div class="p-4 bg-light rounded shadow-sm" id="accordion">
+
+              <div class="card">
+                <div class="card-header">
+                  <button class="btn btn-block bg-secondary text-light text-left" data-toggle="collapse"
+                    data-target="#collapse<%= reviews[0].review_id %>">
+                    <img src="../images/users/<%= reviews[0].user_name %>.jpeg" alt="" width="50" class="mr-3 rounded">
+                    <b><%= reviews[0].user_name %></b> posted a new review
+                  </button>
+                </div>
+                <div class="collapse show" id="collapse<%= reviews[0].review_id %>" data-parent="#accordion">
+                  <div class="card-body row">
+                    <div class="col-5">
+                      <h5>Place Name : </h5>
+                      <p><%= reviews[0].place_name %></p>
+                      <h5>Ratings : </h5>
+                      <p>
+                        <%  for(var j=0; j< reviews[0].rating ;j++){ %>
+                        <i class="fas fa-star fa-lg mr-1 checked"></i>
+                        <% } %>
+                        <%  for(var j=0; j< 5-reviews[0].rating ;j++){ %>
+                        <i class="fas fa-star fa-lg mr-1"></i>
+                        <% } %>
+                      </p>
+                    </div>
+                    <div class="col-7">
+                      <h5>"<%= reviews[0].title %>"</h5>
+                      <%= reviews[0].message %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <%  for(var i=1; i<reviews.length;i++){ %>
+              <div class="card">
+                <div class="card-header">
+                  <button class="btn btn-block bg-secondary text-light text-left" data-toggle="collapse"
+                    data-target="#collapse<%= reviews[i].review_id %>">
+                    <img src="../images/users/<%= reviews[i].user_name %>.jpeg" alt="" width="50" class="mr-3 rounded">
+                    <b><%= reviews[i].user_name %></b> posted a new review
+                  </button>
+                </div>
+                <div class="collapse" id="collapse<%= reviews[i].review_id %>" data-parent="#accordion">
+                  <div class="card-body row">
+                    <div class="col-5">
+                      <h5>Place Name : </h5>
+                      <p><%= reviews[i].place_name %></p>
+                      <h5>Ratings : </h5>
+                      <p>
+                        <%  for(var j=0; j< reviews[i].rating ;j++){ %>
+                        <i class="fas fa-star fa-lg mr-1 checked"></i>
+                        <% } %>
+                        <%  for(var j=0; j< 5-reviews[i].rating ;j++){ %>
+                        <i class="fas fa-star fa-lg mr-1"></i>
+                        <% } %>
+                      </p>
+                    </div>
+                    <div class="col-7">
+                      <h5>"<%= reviews[i].title %>"</h5>
+                      <%= reviews[i].message %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <% } %>
+            </div>
+            <% } %>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!--FOOTER -->
+  <footer>
+    <div class="container-fluid">
+      <div class="row border-top pt-3">
+
+        <div class="col-lg-6 text-center">
+          <ul class="list-inline">
+            <li class="list-inline-item mr-2">
+              <a href="#" class="text-dark">Trip Advisor</a>
+            </li>
+            <li class="list-inline-item mr-2">
+              <a href="#" class="text-dark">About</a>
+            </li>
+            <li class="list-inline-item mr-2">
+              <a href="#" class="text-dark">Support</a>
+            </li>
+            <li class="list-inline-item mr-2">
+              <a href="#" class="text-dark">Blog</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-lg-6 text-center">
+          <p>&copy; 2020 Copyright. Made With <i class="fas fa-heart text-danger"></i> by <span
+              class="text-success">Trip Advisor</span> </p>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <!-- BOOTSTRAP TABLE -->
+  <!-- <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script> -->
+  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.js"></script>
+
+  <!-- Bootstrap tooltips -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+    integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+    crossorigin="anonymous"></script>
+  <!-- BASE JS -->
+  <script src="user-profile.js" charset="utf-8"></script>
+</body>
+
+</html>

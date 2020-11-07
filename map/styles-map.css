@@ -1,0 +1,81 @@
+body{
+    margin: 0px;
+    background-color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    line-height: 2;
+    padding: 0px;
+}
+
+/* NAVBAR */
+
+/* site logo */
+.logo-part1{
+    width: 56px;
+}
+.logo-part2{
+    width: 170px;
+}
+  
+section{
+    height: 800px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    padding: 60px 0px 40px 0px;
+}
+
+
+#overview{
+    background-color: #fbc99d;
+    height: auto;
+}
+
+#details{
+    background-color: #eee;
+    height: auto;
+}
+
+#map-display{
+    background-color: #ed1250;
+}
+
+#map{
+    width: 150%;
+    height: 100%;
+}
+
+#route{
+    background-color: #fff6da;
+    height: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* FOOTER */
+footer{
+    background-color: #000839;
+    color: white;
+}
+
+footer i{
+    padding: 10px;
+}
+
+footer p{
+    /* margin-left: 25%; */
+    margin-top: 3%;
+    line-height: 2; 
+} 

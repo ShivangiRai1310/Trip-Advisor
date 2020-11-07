@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Varanasi Package Details</title>
+
+    <!-- CSS STYLES -->
+    <link rel="stylesheet" href="package.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+    <!-- FONT AWESOME ICONS -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
+        integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #000839;">
+        <a class="navbar-brand" href="./"><img class="logo-part1" src="../images/logo-part1.png" alt="Trip advisor"></a>
+        <a class="navbar-brand" href="./"><img class="logo-part2" src="../images/logo-part2.png" alt="Trip advisor"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="./">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#overview">Overview</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#itinerary">Itinerary</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#inclusion">Details</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#book-now">Book Now</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <a href="user-profile"><button type="button" name="sign-in" class="btn btn-dark btn-lg" id="sign-in-button"
+                style="background-color: #000839">
+                <i class="fas fa-user-circle ml-2"></i>
+            </button></a>
+        </div>
+    </nav>
+
+
+    <!-- HEADER SECTION -->
+    <section id="header" class="container-fluid text-center" style="background-image: url(../images/varanasi/varanasi.jpg);">
+        <div class="row">
+            <div class="col-xl-7 col-md-12 my-auto pb-3">
+                <h1><b>Varanasi Bodhgaya Tour</b></h1>
+                <h2><b>4 Days - 3 Nights</b></h2>
+            </div>
+            <div class="col-xl-5 col-md-12 my-auto">
+                <div id="slideshow" class="carousel slide" data-ride="carousel">
+
+                    <!-- COROUSEL INDICATORS -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#slideshow" data-slide-to="0" class="active"></li>
+                        <li data-target="#slideshow" data-slide-to="1"></li>
+                        <li data-target="#slideshow" data-slide-to="2"></li>
+                        <li data-target="#slideshow" data-slide-to="3"></li>
+                        <li data-target="#slideshow" data-slide-to="4"></li>
+                        <li data-target="#slideshow" data-slide-to="5"></li>
+                    </ol>
+
+                    <!-- COROUSEL ELEMENT -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-interval="3000">
+                            <img src="../images/varanasi/1 Kashi Vishwanath.jpg" class="d-block w-100"
+                                alt="gallery-image">
+                        </div>
+                        <div class="carousel-item" data-interval="3000">
+                            <img src="../images/varanasi/2 TulsiManasTemple.jpg" class="d-block w-100"
+                                alt="gallery-image">
+                        </div>
+                        <div class="carousel-item" data-interval="3000">
+                            <img src="../images/varanasi/3 Durga Temple.jpg" class="d-block w-100"
+                                alt="gallery-image">
+                        </div>
+                        <div class="carousel-item" data-interval="3000">
+                            <img src="../images/varanasi/4 Tridev Temple.jpg" class="d-block w-100"
+                                alt="gallery-image">
+                        </div>
+                        <div class="carousel-item" data-interval="3000">
+                            <img src="../images/varanasi/5 Ganga Aarti.jpg" class="d-block w-100"
+                                alt="gallery-image">
+                        </div>
+                        <div class="carousel-item" data-interval="3000">
+                            <img src="../images/varanasi/6 chinese temple.jpg" class="d-block w-100"
+                                alt="gallery-image">
+                        </div>
+                    </div>
+
+                    <!-- CARAOUSEL CONTROLS -->
+                    <a class="carousel-control-prev" href="#slideshow" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#slideshow" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFITS SECTION -->
+    <section id="benefits" class="row text-center">
+        <div class="col-3">
+            <i class="fas fa-hotel fa-3x py-4"></i>
+            <h3>Hotels</h3>
+            <p>For our tours we use good comfortable hotels in the region, which are appreciated by travelled guests.
+            </p>
+        </div>
+        <div class="col-3">
+            <i class="fas fa-car fa-3x py-4"></i>
+            <h3>Transport</h3>
+            <p>Internal city transfers</p>
+        </div>
+        <div class="col-3">
+            <i class="fas fa-utensils fa-3x py-4"></i>
+            <h3>Food</h3>
+            <p>Feel at home with delicious Indian meals and World treats along the way</p>
+        </div>
+        <div class="col-3">
+            <i class="fas fa-camera-retro fa-3x py-4"></i>
+            <h3>Sightseeing</h3>
+            <p>Skip worries of sightseeing entrance fees and other planned activities</p>
+        </div>
+
+    </section>
+
+    <!-- OVERVIEW SECTION -->
+    <section id="overview" class="container-fluid px-5">
+        <div class="row mx-2">
+            <div class="col-6 ">
+                <h2 class="text-center mb-4">Overview</h2>
+                <p>This Tour Package is Ideal for those travellers who want to enjoy the hindu Pilgrimage tour of
+                    Varanasi &
+                    Nearby cities like Allahabad, Ayodhya, Namisharanya, Chitrakoot, Gaya, Bodhgaya. <br>
+                    Kashi Yatra through the spiritual heart of India - Varanasi, Allahabad and Bodhgaya. <br> For Hindu
+                    devotees,
+                    a trip to Kashi or Varanasi is a pinnacle of their spiritual life. Visit the holy river Ganga and
+                    witness the Aarti Ceremony. Pay your respects to your ancestors and perform rituals in their memory.
+                    <br> Be
+                    enchanted by the many temples of Allahabad as well as Triveni Sangam where you have the opportunity
+                    to
+                    take a holy dip. <br> A pilgrimage center for Buddhists, Bodhgaya is where Lord Buddha attained
+                    enlightenment. Refresh your care-worn spirit with this 5-day sojourn and return home with beautiful
+                    memories.</p>
+            </div>
+            <div class="col-6 my-auto mx-auto">
+                <h2>Key Details</h2> <br>
+                <ul class="details">
+                    <li><i class="far fa-clock fa-md mr-3"></i>Duration : 4 Days - 3 Nights</li>
+                    <li><i class="fas fa-money-bill-wave fa-md mr-3"></i>Price Per Head : &#8377; 12,000</li> <br>
+                    <li><i class="fas fa-bolt fa-md mr-3"></i>Instant Confirmation</li>
+                    <li><i class="fab fa-product-hunt fa-md mr-3"></i>Hotel Pickup</li>
+                    <li><i class="far fa-credit-card fa-md mr-3"></i>Payment On the Day of Arrival</li>
+                    <li><i class="fas fa-phone-volume fa-md mr-3"></i>24/7 Support</li>
+                </ul>
+                <button type="button" id="book-now" class="btn btn-lg btn-dark my-5" formaction="">Book Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOOKING SECTION -->
+    <section id="booking" class="container-fluid">
+        <h2 class="text-muted text-center mb-4 pb-3"><i class="fas fa-edit fa-lg mr-3"></i> Fill Booking Details </h2>
+        <form action="/confirm-booking" method="post" id="form1" class="ml-auto mr-auto">
+            <div class="row">
+                <div class="col-6 px-5 ">
+                    <div class="form-group py-2">
+                        <label>Package Name</label>
+                        <input type="text" class="form-control" value="<%= package.name %>" name="name" readonly>
+                    </div>
+                    <div class="form-group py-2">
+                        <label>User Name</label>
+                        <input type="text" class="form-control" value="<%= user.user_name %>" name="user_name" readonly>
+                    </div>
+                    <div class="form-group py-2">
+                        <label>Contact</label>
+                        <input type="tel" class="form-control" value="<%= user.contact %>" name="contact" readonly>
+                    </div>
+                    <div class="form-group py-2">
+                        <label>Email</label>
+                        <input type="email" class="form-control" value="<%= user.email %>" name="email" readonly>
+                    </div>
+                </div>
+                <div class="col-6 px-5">
+                    <div class="form-group py-2">
+                        <label>People Count</label>
+                        <input type="number" class="form-control" id="ppl-count" placeholder="Enter People Count" onchange="setTotalAmount('<%= package.price %>');" min="1" name="count" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <label>Total Amount</label>
+                        <input type="number" class="form-control" id="total-amt"
+                            placeholder="people count * price per head = &#8377; total amount" value="" name="total_price" readonly>
+                    </div>
+                    <div class="form-group py-2">
+                        <label>Travel Date</label>
+                        <input type="date" class="form-control date_open" placeholder="Enter Travel Date" name="travel_date" required>
+                    </div>
+                </div>
+                <!-- need to add other package details -->
+                <div class="col-12 py-2">
+                    <button type="button" class="btn btn-success btn-lg" onclick="javascript: return false;"
+                        data-toggle="modal" data-target="#confirm-booking"><i
+                            class="fas fa-check-circle fa-lg mr-2"></i>Confirm
+                        Booking</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- MODAL window for confirm-booking -->
+        <div class="modal fade" id="confirm-booking">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Booking Confirmation</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        Confirm your booking.
+                        <br>
+                        Payment can be done on the first day of tour.
+                        <br>
+                        Thank you for booking with us.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" onclick="document.getElementById('form1').submit();"
+                        data-dismiss="modal" class="btn btn-success" >Confirm</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ITINERARY SECTION -->
+    <section id="itinerary" class="container-fluid">
+        <h2 class="text-light text-center py-5">Detailed Day Wise Itinerary</h2>
+
+        <div id="accordion">
+            <div class="card">
+                <div class="card-header">
+                    <button class="btn btn-block bg-secondary text-light text-left" data-toggle="collapse"
+                        data-target="#collapseOne">Day 1 - Arrival Varanasi</button>
+                </div>
+                <div class="collapse show" id="collapseOne" data-parent="#accordion">
+                    <div class="card-body row mx-5">
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Shri Kashi Vishwanath Temple (Golden Temple), Lahori Tola, Varanasi 221001 India</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 30 minutes</h5>
+                            <p>Will do darshan of Kashi Vishwanath Temple</p>
+                        </div>
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Tulsi Manas Temple, Varanasi India</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 15 minutes</h5>
+                            <p>Will do darshan of Tulsi Manas Mandir</p>
+                        </div>
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Durga Temple, 27, Durgakund Rd Jawahar Nagar Colony, Bhelupur, Varanasi 221005 India</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 15 minutes</h5>
+                            <p>Will go for darshan of goddess Durga</p>
+                        </div>
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Tridev Temple Varanasi, Durgakund Rd., Varanasi 221005 India</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 15 minutes</h5>
+                            <p>Will go for darshan in tridev temple</p>
+                        </div>
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Kaudi Mata Mandir, Sankat Mochan Rd, Padampuri Colony, Durgakund, Jawahar Nagar Colony,
+                                Bhelupur, Varanasi, Uttar Pradesh 221010, India</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 15 minutes</h5>
+                            <p>Will go for darshan of Kaudi Mata</p>
+                        </div>
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Ganga Aarti, Dashashwamedh ghat Road, Varanasi 221001 India</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 1 hour</h5>
+                            <p>Will go for world famous Ganga Artri (Evening Ceremony) at river side.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <button class="btn btn-block bg-secondary text-light text-left" data-toggle="collapse"
+                        data-target="#collapseTwo">
+                        Day 2 - Varanasi Local Sightseeing
+                    </button>
+                </div>
+                <div class="collapse" id="collapseTwo" data-parent="#accordion">
+                    <div class="card-body row mx-5">
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Sarnath Via-Anlabereni, Varanasi 759026 India</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 3 hours</h5>
+                            <p> A place where lord Buddha gave his first sermon speech after enlightment.</p>
+                        </div>
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Ramnagar Fort, Kila Road Ramnagar Crossing, Varanasi 221008 India</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 2 hours</h5>
+                            <p>A royal family in Varanasi. A beautiful fort on the bank of river Ganges.</p>
+                        </div>
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Kaal Bhairava Mandir, K33/18, Bhat Ki Gali, Golghar, Ghasi Tola, Varanasi, Uttar Pradesh
+                                221001, India</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 1 hour</h5>
+                            <p>Will go for darshan of Kaal Bhairav Temple.</p>
+                        </div>
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Sri Bindu Madhava Perumal Temple, Varanasi 221001 India</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 1 hour</h5>
+                            <p>A place is for Lord Vishnu, very famous for South Indian People. Temple of Lord Vishnu.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <button class="btn btn-block bg-secondary text-light text-left" data-toggle="collapse"
+                        data-target="#collapseThree">
+                        Day 3 - Gaya Bodhgaya
+                    </button>
+                </div>
+                <div class="collapse" id="collapseThree" data-parent="#accordion">
+                    <div class="card-body row mx-5">
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Vishnupad Temple, Gaya India</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 1 hour</h5>
+                            <p>Will go for darshan in Vishnu Pad Temple</p>
+                        </div>
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Mangla Gauri Temple, Gaya India</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 1 hour</h5>
+                            <p>Will go for darshan for Mangla Guari Mata</p>
+                        </div>
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Mahabodhi Temple, Bihar 824231, Bodh Gaya 824231 India</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 1 hour</h5>
+                            <p>Visit of Mahabodhi Temple</p>
+                        </div>
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Chinese Temple, Nr. Bodhi Temple Complex, Bodh Gaya 824231 India</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 30 minutes</h5>
+                            <p>Will go for Chinese Temple.</p>
+                        </div>
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Barabar Caves, Twin Hills 1.6 Km From Nagarjuni Hill, Gaya India</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 1 hour</h5>
+                            <p>Visit of Barabar Caves in Bodhgaya</p>
+                        </div>
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Ajapala Nigrodha Tree, Mahabodhi Mahavihara Temple Complex, Bodh Gaya 824231 India</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 10 minutes</h5>
+                            <p>Have a look of tree.</p>
+                        </div>
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Royal Bhutan Monastery, Buddhist Town, Bodh Gaya India</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 1 hour</h5>
+                            <p>Visit Monastery.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <button class="btn btn-block bg-secondary text-light text-left" data-toggle="collapse"
+                        data-target="#collapseFour">
+                        Day 4 - Departure
+                    </button>
+                </div>
+                <div class="collapse" id="collapseFour" data-parent="#accordion">
+                    <div class="card-body row mx-5">
+
+                        <div class="col-6 px-2">
+                            <h5><i class="fas fa-map-marker-alt fa-md text-danger mr-2"></i> Stop At: </h5>
+                            <p>Lal Bahadur Shastri International Airport, Shahganj, District, Babatpur, Uttar Pradesh
+                                221006, India</p>
+                        </div>
+                        <div class="col-6 px-2">
+                            <h5><i class="far fa-clock fa-md text-primary mr-2"></i> Duration: 1 hour</h5>
+                            <p>Departure Transfer to Varanasi Airport</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+
+    <!-- INCLUSION SECTION -->
+    <section id="inclusion" class="container-fluid px-5">
+        <div class="row w-60">
+            <div class="col-6 px-5">
+                <h4>Inclusions :</h4>
+                <ul>
+                    <li><i class="fas fa-check-circle text-success fa-md mr-2"></i>Pick and Drop at time of
+                        arrival/departure</li>
+                    <li><i class="fas fa-check-circle text-success fa-md mr-2"></i>Breakfast</li>
+                    <li><i class="fas fa-check-circle text-success fa-md mr-2"></i>03 Nights stay in 03 star hotels in
+                        Varanasi</li>
+                    <li><i class="fas fa-check-circle text-success fa-md mr-2"></i>All sightseen & transfers in private
+                        ac Vehicle</li>
+                    <li><i class="fas fa-check-circle text-success fa-md mr-2"></i>Entry/Admission - Shri Kashi
+                        Vishwanath Temple (Golden Temple)</li>
+                    <li><i class="fas fa-check-circle text-success fa-md mr-2"></i>Entry/Admission - Tulsi Manas Temple
+                    </li>
+                </ul>
+            </div>
+            <div class="col-6 px-5">
+                <h4>Exclusions :</h4>
+                <ul>
+                    <li><i class="fas fa-times-circle text-danger fa-md mr-2"></i>Any Airfare / Train fare</li>
+                    <li><i class="fas fa-times-circle text-danger fa-md mr-2"></i>Any Guide Charges</li>
+                    <li><i class="fas fa-times-circle text-danger fa-md mr-2"></i>Entrance fees to monuments and museum
+                    </li>
+                    <li><i class="fas fa-times-circle text-danger fa-md mr-2"></i>Expenses caused by factors beyond our
+                        control like rail and flight delays, roadblocks, vehicle mal-functions, political disturbances
+                        etc.</li>
+                    <li><i class="fas fa-times-circle text-danger fa-md mr-2"></i>Entry/Admission - Sarnath</li>
+                    <li><i class="fas fa-times-circle text-danger fa-md mr-2"></i>Entry/Admission - Ramnagar Fort</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- GREETINGS SECTION -->
+    <section id="greetings" class="container-fluid text-center">
+        <img src="../images/Heart.gif" alt="">
+        <h2>Let’s stitch travel dreams together!</h2>
+        
+    </section>
+
+
+    <!-- FOOTER SECTION -->
+    <footer>
+        <div class="container-fluid row">
+            <div class="col-lg-4 col-md-6 my-auto d-flex justify-content-center"><a href="index.html"><img
+                        src="../images/logo.png" alt="Trip advisor"></a></div>
+            <div class="col-lg-4 col-md-2 my-auto d-flex justify-content-center text-center"> <i
+                    class="social-icon fab fa-facebook-f fa-lg"></i>
+                <i class="social-icon fab fa-twitter fa-lg"></i>
+                <i class="social-icon fab fa-instagram fa-lg"></i>
+                <i class="social-icon fas fa-envelope fa-lg"></i></div>
+            <div class="col-lg-4 col-md-4  my-auto justify-content-center text-center">
+                <p>TripAdvisor@gmail.com <br>Contact us : 1234567890 <br>© Copyright 2020 TripAdvisor</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script src="package.js" charset="utf-8"></script>
+
+</body>
+
+</html>

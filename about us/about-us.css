@@ -1,0 +1,66 @@
+/* site logo */
+.logo-part1{
+    width: 56px;
+  }
+  .logo-part2{
+    width: 170px;
+  }
+
+  /* SIGN IN BUTTON */
+  #sign-in-button{
+    border: 0;
+    font-size: 2.25rem;
+    padding-left: 2.5%;
+  }
+
+/* HEADER */
+header nav{
+    background-color: #000839;
+}
+
+header ul{
+    list-style-type: none;
+}
+
+header li{
+    font-size: 1.23rem;
+    margin-right: 2px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: white;
+    margin-top: auto;
+}
+
+/* .logo{
+    width: 150px;
+    margin-left: 20px;
+} */
+
+header a{
+    text-decoration: none;
+    color: white;
+}
+
+header a:hover{
+    text-decoration: underline;
+    color: #ed1250;
+}
+
+.social-link {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  border-radius: 50%;
+  transition: all 0.3s;
+  font-size: 0.9rem;
+}
+
+.social-link:hover,
+.social-link:focus {
+  background: #ddd;
+  text-decoration: none;
+  color: #555;
+}

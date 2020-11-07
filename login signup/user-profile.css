@@ -1,0 +1,73 @@
+/* PROFILE */
+body{
+    background: #654ea3;
+    background: -webkit-linear-gradient(to right, #654ea3, #eaafc8);
+    background: linear-gradient(to right, #654ea3, #eaafc8);
+    min-height: 100vh;
+    /* margin: 0px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    line-height: 2;
+    padding: 0px; */
+}
+  
+.profile-header {
+    transform: translateY(5rem);
+}
+
+/* NAVBAR */
+
+/* site logo */
+.logo-part1{
+    width: 56px;
+}
+.logo-part2{
+    width: 170px;
+}
+
+/* HEADER */
+header nav{
+    background-color: #000839;
+}
+
+header ul{
+    list-style-type: none;
+}
+
+header li{
+    font-size: 1.23rem;
+    margin-right: 2px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: white;
+    margin-top: auto;
+}
+
+
+#form-contents{
+    font-size: 1.2rem;
+    line-height: 2;
+}
+
+#form-contents li{
+    margin: 50px 0px;
+}
+
+/* LIKED PLACES */
+figure{
+    transition: all .3s;
+}
+figure:hover{
+    box-shadow: 2px 5px 10px black;
+    transform: translateY(-1px);
+}
+
+#liked a{
+    text-decoration: inherit;
+    color: inherit;
+}
+
+/* REVIEWS */
+.checked{
+    color: orange;
+}
+
