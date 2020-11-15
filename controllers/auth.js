@@ -15,10 +15,10 @@ const jwt = require('jsonwebtoken');
 
 //Remote database connection
 const con = mysql.createConnection({
-    host: 'remotemysql.com',
-    user: 'EXIz0ey1qg',
-    password: 'MIztw0kqKH',
-    database: 'EXIz0ey1qg'
+    host: 'freedb.tech',
+    user: 'freedbtech_rootuser',
+    password: '12345',
+    database: 'freedbtech_dbms'
 });
 
 con.connect(function (err) {
