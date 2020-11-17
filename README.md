@@ -37,11 +37,11 @@ ABOUT THE PROJECT
 
     The PC should have the follwing softwares already installed
 
-      1) Nodejs (preferable version 12.6.2 or higher)
+     1) Nodejs (preferable version 12.6.2 or higher)
 
-      2) MySql workbench (preferable version 8.0.2 or higher)
+     2) MySql workbench (preferable version 8.0.2 or higher)
 
-      3) Chrome or any other updated browser.
+     3) Chrome or any other updated browser.
 
 ## RUNNING THE PROJECT
 
